@@ -1,7 +1,7 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import Script from 'next/script';
-import { Poppins } from 'next/font/google';
+import { Instrument_Serif, Poppins } from 'next/font/google';
 import '../styles/global.css';
 import { Footer, Navbar, SocialBar } from '@shared-components';
 import CookieAlert from '../shared/components/cookie-alert';
@@ -16,6 +16,18 @@ const poppins = Poppins({
   variable: '--font-poppins'
 });
 
+// Italic serif for accent words in headings (as on aaadigital.com.au).
+const serif = Instrument_Serif({
+  subsets: ['latin'],
+  weight: '400',
+  style: ['italic'],
+  display: 'swap',
+  variable: '--font-serif',
+  // Next has no size-adjust metrics for this font, so name the fallback explicitly.
+  adjustFontFallback: false,
+  fallback: ['Georgia', 'serif']
+});
+
 const GA_ID = 'G-2595CLJE11';
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
@@ -28,9 +40,10 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
       <style jsx global>{`
         :root {
           --font-poppins: ${poppins.style.fontFamily};
+          --font-serif: ${serif.style.fontFamily};
         }
       `}</style>
-      <div className={`${poppins.variable} font-poppins min-h-screen overflow-x-clip`}>
+      <div className={`${poppins.variable} ${serif.variable} font-poppins min-h-screen overflow-x-clip`}>
         <Navbar />
         <SocialBar />
         <main id="main" tabIndex={-1} className="outline-none">

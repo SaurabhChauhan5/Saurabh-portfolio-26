@@ -1,4 +1,6 @@
 import { Button } from '@shared-components';
+import RotatingWord from '../../shared/components/rotating-word';
+import KeywordGlobe from '../../shared/components/keyword-globe';
 import { PROFILE, RESUME_PATH } from '@utils/data';
 
 const AUDIT_CHECKS = [
@@ -67,6 +69,79 @@ function AuditCard(): JSX.Element {
     </div>
   );
 }
+
+function AuditBadge(): JSX.Element {
+  return (
+    <div className="audit-badge card card-glow shadow-violet-5xl" aria-hidden="true">
+      <div className="flex items-center gap-2 text-xs text-violet">
+        <span className="w-2.5 h-2.5 rounded-full bg-pink/80" />
+        <span className="w-2.5 h-2.5 rounded-full bg-violet/60" />
+        <span className="ml-1 tracking-wide">Technical SEO audit</span>
+      </div>
+      <ul className="mt-3 grid grid-cols-2 gap-x-4 gap-y-1.5">
+        {AUDIT_CHECKS.map((item, i) => (
+          <li
+            key={item}
+            className="audit-row flex items-center gap-2 text-xs text-white"
+            style={{ animationDelay: `${500 + i * 120}ms` }}
+          >
+            <span className="audit-check audit-check-sm">
+              <svg viewBox="0 0 16 16" width="9" height="9" fill="none">
+                <path
+                  d="M3 8.5l3 3 7-7"
+                  stroke="currentColor"
+                  strokeWidth="2.4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </span>
+            {item}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+const GLOBE_WORDS = [
+  'Crawlability',
+  'XML sitemaps',
+  'robots.txt',
+  'Canonicals',
+  'Schema',
+  'Core Web Vitals',
+  'Indexing',
+  'Internal links',
+  'PageSpeed',
+  'Search Console',
+  'GA4',
+  'SEMrush',
+  'Rank Math',
+  'Local SEO',
+  'Google Business Profile',
+  'Citations',
+  'Backlinks',
+  'Meta titles',
+  'Descriptions',
+  'Headings',
+  'Semantic HTML',
+  'Shopify',
+  'WordPress',
+  'Wix',
+  'HTML',
+  'Structured data',
+  'LCP',
+  'CLS',
+  'INP',
+  'Keywords',
+  'Landing pages',
+  'Site architecture',
+  'Redirects',
+  'Alt text',
+  'Mobile-first',
+  'Audits'
+];
 
 const TOOLS = [
   'Google Search Console',
@@ -153,6 +228,16 @@ export default function Landing(): JSX.Element {
               SEO <span className="shimmer-text">Specialist</span>
             </span>
           </h1>
+          <p
+            className="mt-5 text-2xl sm:text-3xl font-semibold text-white hero-anim"
+            style={{ animationDelay: '80ms' }}
+          >
+            I make websites{' '}
+            <RotatingWord
+              className="serif-accent text-pink"
+              words={['crawlable.', 'indexable.', 'faster.', 'easier to find.', 'locally visible.']}
+            />
+          </p>
           <ul
             className="mt-6 flex flex-wrap gap-2 hero-anim"
             style={{ animationDelay: '120ms' }}
@@ -204,7 +289,17 @@ export default function Landing(): JSX.Element {
         </div>
 
         <div className="lg:col-span-5 hero-anim" style={{ animationDelay: '300ms' }}>
-          <div className="float-slow">
+          {/* Desktop: the keyword globe, with the compact audit badge underneath it. */}
+          <div className="hidden lg:flex flex-col items-center">
+            <div className="relative w-full globe-stage">
+              <KeywordGlobe words={GLOBE_WORDS} className="hero-globe" />
+            </div>
+            <div className="float-slow mt-2">
+              <AuditBadge />
+            </div>
+          </div>
+          {/* Phones and tablets: the full audit card (no globe). */}
+          <div className="lg:hidden float-slow">
             <AuditCard />
           </div>
         </div>

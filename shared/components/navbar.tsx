@@ -40,9 +40,9 @@ function useActiveSection(enabled: boolean): string {
   const [active, setActive] = useState('');
   useEffect(() => {
     if (!enabled || !('IntersectionObserver' in window)) return undefined;
-    const sections = NAV_LINKS.filter((l) => l.section)
-      .map((l) => document.getElementById(l.section))
-      .filter(Boolean);
+    // Watch every home section so the highlight clears in sections without a menu item.
+    const navIds = NAV_LINKS.filter((l) => l.section).map((l) => l.section);
+    const sections = Array.from(document.querySelectorAll('main section'));
     const observer = new IntersectionObserver(
       (entries) => {
         if (window.scrollY < window.innerHeight * 0.5) {
@@ -50,7 +50,9 @@ function useActiveSection(enabled: boolean): string {
           return;
         }
         entries.forEach((entry) => {
-          if (entry.isIntersecting) setActive(entry.target.id);
+          if (entry.isIntersecting) {
+            setActive(navIds.includes(entry.target.id) ? entry.target.id : '');
+          }
         });
       },
       { rootMargin: '-45% 0px -50% 0px' }

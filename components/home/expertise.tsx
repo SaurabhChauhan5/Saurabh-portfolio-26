@@ -1,48 +1,67 @@
+import { CSSProperties } from 'react';
 import { Icon, Reveal, SectionHeading } from '@shared-components';
+import StickyStack from '../../shared/components/sticky-stack';
 import { EXPERTISE } from '@utils/data';
 
 export default function Expertise(): JSX.Element {
   return (
     <section id="expertise" aria-labelledby="expertise-title" className="section bg-navy/60">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeading
-          index="02"
-          id="expertise-title"
-          eyebrow="What I do"
-          title={
-            <>
-              SEO <span className="text-pink">Expertise</span>
-            </>
-          }
-          lead="Everything from crawl and index fundamentals to local visibility and eCommerce site structure."
-        />
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-12 gap-10 lg:gap-14">
+        <div className="lg:col-span-5">
+          <div className="lg:sticky lg:top-28">
+            <SectionHeading
+              index="02"
+              id="expertise-title"
+              eyebrow="What I do"
+              title={
+                <>
+                  SEO <span className="text-pink">Expertise</span>
+                </>
+              }
+              lead="Everything from crawl and index fundamentals to local visibility and eCommerce site structure."
+            />
+            <Reveal as="ol" className="hidden lg:block space-y-2 text-sm text-violet">
+              {EXPERTISE.map((g, i) => (
+                <li key={g.title} className="flex items-center gap-3">
+                  <span className="hover-list-num">{String(i + 1).padStart(2, '0')}</span>
+                  {g.title}
+                </li>
+              ))}
+            </Reveal>
+          </div>
+        </div>
+
+        <StickyStack className="lg:col-span-7">
           {EXPERTISE.map((group, i) => (
-            <Reveal
+            <li
               key={group.title}
-              delay={(i % 3) * 100}
-              className="card spotlight p-6 hover-lift"
+              className="stack-card card p-6 sm:p-8"
+              style={{ '--i': i } as CSSProperties}
             >
-              <div className="flex items-center gap-3">
-                <span className="icon-tile">
-                  <Icon name={group.icon} />
+              <div className="flex items-center justify-between gap-4">
+                <div className="flex items-center gap-4">
+                  <span className="icon-tile">
+                    <Icon name={group.icon} />
+                  </span>
+                  <h3 className="text-xl sm:text-2xl font-bold text-white">{group.title}</h3>
+                </div>
+                <span
+                  className="text-4xl font-extrabold text-transparent stack-num"
+                  aria-hidden="true"
+                >
+                  {String(i + 1).padStart(2, '0')}
                 </span>
-                <h3 className="text-lg font-bold text-white">{group.title}</h3>
               </div>
-              <ul className="mt-5 space-y-2">
+              <ul className="mt-6 flex flex-wrap gap-2">
                 {group.items.map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-sm text-violet">
-                    <span
-                      className="mt-2 w-1.5 h-1.5 rounded-full bg-pink flex-shrink-0"
-                      aria-hidden="true"
-                    />
+                  <li key={item} className="chip chip-lg">
                     {item}
                   </li>
                 ))}
               </ul>
-            </Reveal>
+            </li>
           ))}
-        </div>
+        </StickyStack>
       </div>
     </section>
   );

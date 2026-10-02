@@ -36,7 +36,9 @@ export default function SectionHeading({
         id={id}
         className="relative mt-3 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight"
       >
-        {title}
+        <span className="mask">
+          <span className="mask-inner">{title}</span>
+        </span>
       </h2>
       {lead && (
         <p className="relative mt-4 text-base sm:text-lg text-violet leading-relaxed">{lead}</p>
