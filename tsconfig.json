@@ -1,0 +1,64 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "@components": [
+        "components/index.ts"
+      ],
+      "@shared-components": [
+        "shared/components/index.ts"
+      ],
+      "@utils/*": [
+        "shared/utils/*"
+      ],
+      "@pages/*": [
+        "pages/*"
+      ]
+    },
+    "incremental": true
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "postcss.config.js",
+    "tailwind.config.js"
+  ],
+  "exclude": [
+    "node_modules",
+    "components/home/skills.tsx",
+    "components/home/skills-icon.tsx",
+    "components/home/wordcloud.tsx",
+    "components/home/repo.tsx",
+    "components/home/work.tsx",
+    "components/project-details/details.tsx",
+    "components/project-details/landing.tsx",
+    "components/work",
+    "shared/utils/apiService.tsx",
+    "shared/utils/contexts.tsx",
+    "shared/utils/skills.tsx",
+    "shared/utils/words.tsx",
+    "shared/utils/constants.ts",
+    "shared/cursor.tsx",
+    "shared/components/header-small.tsx",
+    "shared/components/loader.tsx",
+    "shared/components/text-cards.tsx"
+  ]
+}
