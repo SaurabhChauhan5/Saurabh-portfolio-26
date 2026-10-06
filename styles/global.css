@@ -441,8 +441,14 @@ a {
 .site-header {
   transition: transform 0.35s ease, background-color 0.3s, box-shadow 0.3s;
 }
+.site-header.is-hidden {
+  transform: translateY(-100%);
+}
 .filter-bar {
   transition: top 0.35s ease;
+}
+.nav-hidden .filter-bar {
+  top: 0;
 }
 .logo-ring {
   display: inline-flex;
