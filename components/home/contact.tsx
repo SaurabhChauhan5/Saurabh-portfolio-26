@@ -84,7 +84,7 @@ export default function Contact(): JSX.Element {
                   <span className="block text-xs text-violet">Email</span>
                   <a
                     href={MAILTO}
-                    className="block text-white font-medium truncate hover:text-pink transition-colors">
+                    className="block py-0.5 text-white font-medium truncate hover:text-pink transition-colors">
                     {PROFILE.email}
                   </a>
                 </span>
