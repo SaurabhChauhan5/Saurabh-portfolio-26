@@ -1,4 +1,4 @@
-import { Reveal, SectionHeading } from '@shared-components';
+import { Icon, Reveal, SectionHeading } from '@shared-components';
 import { EDUCATION, TECH_FOUNDATION } from '@utils/data';
 
 export default function Foundation(): JSX.Element {
@@ -33,6 +33,7 @@ export default function Foundation(): JSX.Element {
                           className="w-4 h-4 object-contain"
                         />
                       )}
+                      {t.feather && <Icon name={t.feather} size={15} className="text-pink" />}
                       {t.name}
                     </li>
                   ))}
@@ -50,8 +51,13 @@ export default function Foundation(): JSX.Element {
               <ul className="mt-2 divide-y divide-violet/20">
                 {EDUCATION.map((ed) => (
                   <li key={ed.school} className="py-5 last:pb-0">
-                    <h3 className="text-xl font-bold text-white">{ed.school}</h3>
-                    <p className="mt-1 text-violet">{ed.degree}</p>
+                    <div className="flex items-center gap-3">
+                      <span className="edu-logo">
+                        <img src={ed.logo} alt="" width={40} height={40} loading="lazy" />
+                      </span>
+                      <h3 className="text-xl font-bold text-white leading-snug">{ed.school}</h3>
+                    </div>
+                    <p className="mt-2 text-violet">{ed.degree}</p>
                     <div className="mt-3 flex flex-wrap gap-2">
                       <span className="chip">{ed.dates}</span>
                       <span className="chip">{ed.grade}</span>

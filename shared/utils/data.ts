@@ -535,53 +535,59 @@ export const PROJECTS: Project[] = [
 
 // Mirrors the Technical Skills section of the resume. Project-specific tools
 // (Streamlit, Tableau, ESP32 and so on) appear only on their project cards.
-export const TECH_FOUNDATION: { group: string; items: { name: string; icon?: string }[] }[] = [
+// Brand icons from Simple Icons (CC0), coloured with each brand's colour.
+const BR = '/images/brands';
+
+export const TECH_FOUNDATION: {
+  group: string;
+  items: { name: string; icon?: string; feather?: string }[];
+}[] = [
   {
     group: 'Technical SEO',
     items: [
-      { name: 'Google Search Console' },
-      { name: 'Google Business Profile (GBP)' },
-      { name: 'GA4' },
-      { name: 'SEMrush' },
-      { name: 'PageSpeed Insights' },
-      { name: 'Core Web Vitals' },
-      { name: 'Schema Markup' },
-      { name: 'XML Sitemaps' },
-      { name: 'robots.txt' },
-      { name: 'Canonical Tags' },
-      { name: 'Crawlability' },
-      { name: 'Indexability' },
-      { name: 'Structured Data' },
-      { name: 'Local SEO' },
-      { name: 'On-Page SEO' },
-      { name: 'Off-Page SEO' },
-      { name: 'Link Building' },
-      { name: 'Rank Math' }
+      { name: 'Google Search Console', icon: `${BR}/googlesearchconsole.svg` },
+      { name: 'Google Business Profile (GBP)', icon: `${BR}/google.png` },
+      { name: 'GA4', icon: `${BR}/googleanalytics.svg` },
+      { name: 'SEMrush', icon: `${BR}/semrush.svg` },
+      { name: 'PageSpeed Insights', icon: `${BR}/pagespeedinsights.svg` },
+      { name: 'Core Web Vitals', feather: 'activity' },
+      { name: 'Schema Markup', icon: `${BR}/schema.png` },
+      { name: 'XML Sitemaps', feather: 'sitemap' },
+      { name: 'robots.txt', feather: 'robot' },
+      { name: 'Canonical Tags', feather: 'canonical' },
+      { name: 'Crawlability', feather: 'crawl' },
+      { name: 'Indexability', feather: 'index' },
+      { name: 'Structured Data', feather: 'code' },
+      { name: 'Local SEO', feather: 'pin' },
+      { name: 'On-Page SEO', feather: 'file' },
+      { name: 'Off-Page SEO', feather: 'external' },
+      { name: 'Link Building', feather: 'link' },
+      { name: 'Rank Math', icon: `${BR}/rankmath.png` }
     ]
   },
   {
     group: 'Web Technologies & CMS',
     items: [
-      { name: 'HTML5', icon: '/images/skills/html.svg' },
-      { name: 'CSS3', icon: '/images/skills/css.svg' },
-      { name: 'JavaScript (ES6+)', icon: '/images/skills/js.svg' },
-      { name: 'WordPress' },
-      { name: 'Shopify' },
-      { name: 'Wix' },
-      { name: 'ReactJS', icon: '/images/skills/react.svg' },
-      { name: 'Bootstrap' }
+      { name: 'HTML5', icon: `${BR}/html5.svg` },
+      { name: 'CSS3', icon: `${BR}/css3.svg` },
+      { name: 'JavaScript (ES6+)', icon: `${BR}/javascript.svg` },
+      { name: 'WordPress', icon: `${BR}/wordpress.svg` },
+      { name: 'Shopify', icon: `${BR}/shopify.svg` },
+      { name: 'Wix', icon: `${BR}/wix.svg` },
+      { name: 'ReactJS', icon: `${BR}/react.svg` },
+      { name: 'Bootstrap', icon: `${BR}/bootstrap.svg` }
     ]
   },
   {
     group: 'Development & Data',
     items: [
-      { name: 'Git', icon: '/images/skills/git.svg' },
-      { name: 'GitHub', icon: '/images/icons/github.svg' },
-      { name: 'Node.js', icon: '/images/skills/node.svg' },
-      { name: 'Express.js', icon: '/images/skills/express.svg' },
-      { name: 'MongoDB', icon: '/images/skills/mongodb.svg' },
-      { name: 'SQL', icon: '/images/skills/mysql.png' },
-      { name: 'Python', icon: '/images/skills/python.svg' }
+      { name: 'Git', icon: `${BR}/git.svg` },
+      { name: 'GitHub', icon: `${BR}/github.svg` },
+      { name: 'Node.js', icon: `${BR}/nodedotjs.svg` },
+      { name: 'Express.js', icon: `${BR}/express.svg` },
+      { name: 'MongoDB', icon: `${BR}/mongodb.svg` },
+      { name: 'SQL', feather: 'index' },
+      { name: 'Python', icon: `${BR}/python.svg` }
     ]
   }
 ];
@@ -589,17 +595,17 @@ export const TECH_FOUNDATION: { group: string; items: { name: string; icon?: str
 // Logos shown next to technology tags on project cards and project pages.
 const SK = '/images/skills';
 export const TECH_ICONS: Record<string, string> = {
-  ReactJS: `${SK}/react.svg`,
-  'React.js': `${SK}/react.svg`,
-  'Node.js': `${SK}/node.svg`,
-  'Express.js': `${SK}/express.svg`,
-  MongoDB: `${SK}/mongodb.svg`,
+  ReactJS: `${BR}/react.svg`,
+  'React.js': `${BR}/react.svg`,
+  'Node.js': `${BR}/nodedotjs.svg`,
+  'Express.js': `${BR}/express.svg`,
+  MongoDB: `${BR}/mongodb.svg`,
   Cloudinary: `${SK}/cloudinary.png`,
-  HTML: `${SK}/html.svg`,
-  HTML5: `${SK}/html.svg`,
-  CSS: `${SK}/css.svg`,
-  JavaScript: `${SK}/js.svg`,
-  Python: `${SK}/python.svg`,
+  HTML: `${BR}/html5.svg`,
+  HTML5: `${BR}/html5.svg`,
+  CSS: `${BR}/css3.svg`,
+  JavaScript: `${BR}/javascript.svg`,
+  Python: `${BR}/python.svg`,
   Streamlit: `${SK}/streamlit.png`,
   'Content-Based Filtering': `${SK}/content-based.png`,
   ESP32: `${SK}/esp32.png`,
@@ -633,13 +639,15 @@ export const EDUCATION = [
     school: 'Amity University Online',
     degree: 'MBA, Dual Specialization in Business Analytics & Digital Marketing',
     dates: 'Jul 2026 – Present',
-    grade: 'Online, pursuing'
+    grade: 'Online, pursuing',
+    logo: '/images/education/amity.png'
   },
   {
     school: 'Graphic Era Hill University',
     degree: 'B.Tech in Computer Science & Engineering',
     dates: 'Jul 2021 – Jun 2025',
-    grade: 'CGPA: 7.63/10'
+    grade: 'CGPA: 7.63/10',
+    logo: '/images/education/graphic-era.png'
   }
 ];
 

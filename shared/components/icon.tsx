@@ -1,6 +1,14 @@
 /* eslint-disable react/require-default-props */
 import {
+  Activity,
   BarChart2,
+  Bookmark,
+  Code,
+  Cpu,
+  Database,
+  ExternalLink,
+  GitBranch,
+  Search,
   Droplet,
   FileText,
   Grid,
@@ -30,7 +38,15 @@ const ICONS = {
   grid: Grid,
   home: Home,
   tool: Tool,
-  key: Key
+  key: Key,
+  activity: Activity,
+  sitemap: GitBranch,
+  robot: Cpu,
+  canonical: Bookmark,
+  crawl: Search,
+  index: Database,
+  code: Code,
+  external: ExternalLink
 };
 
 type Props = { name: string; size?: number; className?: string };
