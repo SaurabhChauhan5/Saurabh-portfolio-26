@@ -266,6 +266,65 @@ a {
   background: rgba(238, 187, 195, 0.1);
   border: 1px solid rgba(238, 187, 195, 0.2);
 }
+.thumb-stack {
+  display: flex;
+  align-items: center;
+}
+.thumb-stack .thumb {
+  position: relative;
+  flex-shrink: 0;
+  width: 4.5rem;
+  aspect-ratio: 16 / 10;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  border: 2px solid #232946;
+  background: #1b2038;
+  box-shadow: 0 6px 16px -8px rgba(0, 0, 0, 0.7);
+  transition: transform 0.3s ease;
+}
+.thumb-stack .thumb + .thumb {
+  margin-left: -1.1rem;
+}
+.thumb-stack .thumb-more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #232946;
+  background: linear-gradient(135deg, #eebbc3, #b8c1ec);
+}
+.thumb-stack-sm .thumb {
+  width: 2.75rem;
+  border-radius: 0.35rem;
+}
+.thumb-stack-sm .thumb + .thumb {
+  margin-left: -0.75rem;
+}
+.industry-feature:hover .thumb:nth-child(2) {
+  transform: translateX(6px) rotate(-2deg);
+}
+.industry-feature:hover .thumb:nth-child(3) {
+  transform: translateX(12px) rotate(2deg);
+}
+.industry-feature:hover .thumb:nth-child(4),
+.industry-feature:hover .thumb:nth-child(5) {
+  transform: translateX(18px);
+}
+.industry-li {
+  border-bottom: 1px solid rgba(184, 193, 236, 0.1);
+}
+.industry-li:last-child {
+  border-bottom: 0;
+}
+@media (min-width: 640px) {
+  .industry-li:nth-last-child(2):nth-child(odd) {
+    border-bottom: 0;
+  }
+}
+.industry-row:hover .text-white {
+  color: #eebbc3;
+}
 .logo-pill {
   display: inline-flex;
   align-items: center;
@@ -1109,7 +1168,7 @@ body::before {
 
 /* ---------- Pinned horizontal client flow ---------- */
 .flow-panel {
-  padding: 5rem 0;
+  padding: 3rem 0 4rem;
 }
 .flow-viewport {
   overflow-x: auto;
@@ -1142,8 +1201,8 @@ body::before {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 4rem 0 2rem;
+  justify-content: flex-start;
+  padding: 5.5rem 0 2rem;
   overflow: hidden;
 }
 .client-flow.is-pinned .flow-viewport {

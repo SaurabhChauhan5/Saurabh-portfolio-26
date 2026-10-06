@@ -1,3 +1,5 @@
+/* eslint-disable react/require-default-props */
+import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, MapPin } from 'react-feather';
 import { CountUp, Icon, Reveal, SectionHeading } from '@shared-components';
@@ -5,6 +7,8 @@ import {
   ACTIVE_CLIENT_BUSINESSES,
   ACTIVE_WEBSITES,
   AGENCY,
+  CLIENT_GROUPS,
+  ClientWebsite,
   CLIENT_LOCATIONS,
   INDUSTRIES,
   PREVIOUS_CLIENTS,
@@ -12,10 +16,46 @@ import {
   TOTAL_WEBSITES
 } from '@utils/data';
 
-export default function Clients(): JSX.Element {
-  const max = Math.max(...INDUSTRIES.map((i) => i.count));
+const slugify = (t: string) =>
+  t
+    .toLowerCase()
+    .replace(/&/g, 'and')
+    .replace(/[^a-z0-9]+/g, '-');
+
+const sitesFor = (industry: string): ClientWebsite[] =>
+  CLIENT_GROUPS.find((g) => g.industry === industry)?.sites ?? [];
+
+// Overlapping homepage thumbnails for an industry, with a "+N" for the rest.
+function ThumbStack({
+  sites,
+  max,
+  small = false
+}: {
+  sites: ClientWebsite[];
+  max: number;
+  small?: boolean;
+}): JSX.Element | null {
+  if (!sites.length) return null;
+  const shown = sites.slice(0, max);
+  const rest = sites.length - shown.length;
   return (
-    <section aria-labelledby="clients-title" className="section relative overflow-hidden">
+    <span className={`thumb-stack ${small ? 'thumb-stack-sm' : 'mt-4'}`} aria-hidden="true">
+      {shown.map((site) => (
+        <span key={site.domain} className="thumb">
+          <Image src={site.img} alt="" fill sizes="96px" className="object-cover object-top" />
+        </span>
+      ))}
+      {rest > 0 && <span className="thumb thumb-more">+{rest}</span>}
+    </span>
+  );
+}
+
+export default function Clients(): JSX.Element {
+  const sorted = [...INDUSTRIES].sort((a, b) => b.count - a.count);
+  const featured = sorted.slice(0, 2);
+  const others = sorted.slice(2);
+  return (
+    <section aria-labelledby="clients-title" className="section relative overflow-hidden lg:pb-16">
       <img
         src="/images/vectors/boxes.svg"
         alt=""
@@ -86,38 +126,79 @@ export default function Clients(): JSX.Element {
               ))}
             </ul>
           </Reveal>
-          <ul className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {INDUSTRIES.map((ind, i) => (
-              <Reveal
-                as="li"
-                key={ind.name}
-                delay={i * 60}
-                className="card spotlight p-4 sm:p-5 hover-lift">
-                <div className="flex items-center gap-3">
-                  <span className="icon-tile icon-tile-sm">
-                    <Icon name={ind.icon} size={18} />
-                  </span>
-                  <span className="flex-1 text-sm sm:text-base text-white font-medium leading-snug">
+          <div className="lg:col-span-8 grid sm:grid-cols-2 gap-4 content-start">
+            {featured.map((ind, i) => (
+              <Reveal key={ind.name} delay={i * 90} className="h-full">
+                <Link
+                  href={`/clients#${slugify(ind.name)}`}
+                  className="industry-feature card spotlight hover-lift group h-full flex flex-col p-5 sm:p-6">
+                  <div className="flex items-start justify-between gap-3">
+                    <span className="icon-tile">
+                      <Icon name={ind.icon} size={20} />
+                    </span>
+                    <span className="text-right">
+                      <span className="block text-4xl sm:text-5xl font-extrabold gradient-text leading-none tabular-nums">
+                        {ind.count}
+                      </span>
+                      <span className="block mt-1 text-xs text-violet uppercase tracking-wider">
+                        active clients
+                      </span>
+                    </span>
+                  </div>
+                  <h3 className="mt-4 text-xl font-bold text-white group-hover:text-pink transition-colors">
                     {ind.name}
+                  </h3>
+                  <ThumbStack sites={sitesFor(ind.name)} max={4} />
+                  <span className="mt-auto pt-5 inline-flex items-center gap-1.5 text-sm text-pink font-medium">
+                    See these websites
+                    <ArrowRight
+                      size={15}
+                      aria-hidden="true"
+                      className="transition-transform group-hover:translate-x-1"
+                    />
                   </span>
-                  <span className="text-xl font-extrabold gradient-text tabular-nums">
-                    {ind.count}
-                  </span>
-                </div>
-                <span
-                  className="mt-3 block h-1 rounded-full bg-violet/10 overflow-hidden"
-                  aria-hidden="true">
-                  <span
-                    className="grow-bar block h-full rounded-full bg-gradient-to-r from-violet to-pink"
-                    style={{ width: `${(ind.count / max) * 100}%` }}
-                  />
-                </span>
-                <span className="sr-only">
-                  {ind.count} active {ind.count === 1 ? 'client' : 'clients'}
-                </span>
+                </Link>
               </Reveal>
             ))}
-          </ul>
+
+            <Reveal delay={180} className="sm:col-span-2 card spotlight p-5 sm:p-6">
+              <h3 className="text-xs font-semibold tracking-widest text-pink uppercase">
+                More industries
+              </h3>
+              <ul className="mt-3 grid sm:grid-cols-2 gap-x-8">
+                {others.map((ind) => {
+                  const sites = sitesFor(ind.name);
+                  const row = (
+                    <>
+                      <span className="icon-tile icon-tile-sm">
+                        <Icon name={ind.icon} size={16} />
+                      </span>
+                      <span className="flex-1 text-sm sm:text-base text-white font-medium leading-snug">
+                        {ind.name}
+                      </span>
+                      {sites.length > 0 && <ThumbStack sites={sites} max={2} small />}
+                      <span className="w-6 text-right text-lg font-extrabold gradient-text tabular-nums">
+                        {ind.count}
+                      </span>
+                    </>
+                  );
+                  return (
+                    <li key={ind.name} className="industry-li">
+                      {sites.length > 0 ? (
+                        <Link
+                          href={`/clients#${slugify(ind.name)}`}
+                          className="industry-row group flex items-center gap-3 py-3">
+                          {row}
+                        </Link>
+                      ) : (
+                        <span className="industry-row flex items-center gap-3 py-3">{row}</span>
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
+            </Reveal>
+          </div>
         </div>
         <Reveal className="mt-10 text-center">
           <Link href="/clients" className="btn-link group">
