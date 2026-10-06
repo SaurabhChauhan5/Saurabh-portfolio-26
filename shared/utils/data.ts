@@ -109,6 +109,7 @@ export const ABOUT_AREAS = [
   'Google Business Profile (GBP)',
   'Link building / off-page SEO',
   'Rank Math',
+  'Yoast SEO',
   'WordPress',
   'Shopify',
   'Wix',
@@ -189,7 +190,8 @@ export const EXPERTISE: ExpertiseGroup[] = [
       'SEMrush',
       'PageSpeed Insights',
       'Core Web Vitals',
-      'Rank Math'
+      'Rank Math',
+      'Yoast SEO'
     ]
   }
 ];
@@ -551,7 +553,7 @@ export const TECH_FOUNDATION: {
       { name: 'SEMrush', icon: `${BR}/semrush.svg` },
       { name: 'PageSpeed Insights', icon: `${BR}/pagespeedinsights.svg` },
       { name: 'Core Web Vitals', feather: 'activity' },
-      { name: 'Schema Markup', icon: `${BR}/schema.png` },
+      { name: 'Schema Markup', feather: 'schema' },
       { name: 'XML Sitemaps', feather: 'sitemap' },
       { name: 'robots.txt', feather: 'robot' },
       { name: 'Canonical Tags', feather: 'canonical' },
@@ -562,7 +564,8 @@ export const TECH_FOUNDATION: {
       { name: 'On-Page SEO', feather: 'file' },
       { name: 'Off-Page SEO', feather: 'external' },
       { name: 'Link Building', feather: 'link' },
-      { name: 'Rank Math', icon: `${BR}/rankmath.png` }
+      { name: 'Rank Math', icon: `${BR}/rankmath.png` },
+      { name: 'Yoast SEO', icon: `${BR}/yoast.svg` }
     ]
   },
   {

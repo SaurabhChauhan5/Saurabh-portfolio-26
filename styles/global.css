@@ -974,7 +974,7 @@ body::before {
   }
   .site-card .browser-url {
     margin-left: 0.25rem;
-    font-size: 0.62rem;
+    font-size: 0.7rem;
     padding: 0.1rem 0.45rem;
   }
 }
@@ -1238,7 +1238,8 @@ aside[aria-label='Social links'] {
   pointer-events: none;
 }
 .audit-badge {
-  width: 320px;
+  width: 100%;
+  max-width: 320px;
   padding: 0.9rem 1rem;
   background: rgba(35, 41, 70, 0.92);
   -webkit-backdrop-filter: blur(8px);

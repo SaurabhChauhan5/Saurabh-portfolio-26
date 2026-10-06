@@ -52,7 +52,9 @@ export default function PageHero({
               <li key={c.name} className="flex items-center gap-2">
                 {i > 0 && <span aria-hidden="true">/</span>}
                 {c.href ? (
-                  <Link href={c.href} className="hover:text-pink transition-colors">
+                  <Link
+                    href={c.href}
+                    className="inline-block py-1 hover:text-pink transition-colors">
                     {c.name}
                   </Link>
                 ) : (

@@ -21,6 +21,7 @@ const TOOLS = [
   { name: 'SEMrush', icon: `${BR}/semrush.svg` },
   { name: 'PageSpeed Insights', icon: `${BR}/pagespeedinsights.svg` },
   { name: 'Rank Math', icon: `${BR}/rankmath.png` },
+  { name: 'Yoast SEO', icon: `${BR}/yoast.svg` },
   { name: 'Google Business Profile', icon: `${BR}/google.png` }
 ];
 

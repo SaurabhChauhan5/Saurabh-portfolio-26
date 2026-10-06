@@ -16,13 +16,13 @@ export default function ProjectDetailedPage({ project }: Props): JSX.Element {
         <nav aria-label="Breadcrumb" className="text-sm text-violet mb-8">
           <ol className="flex flex-wrap gap-2">
             <li>
-              <Link href="/" className="hover:text-pink">
+              <Link href="/" className="inline-block py-1 hover:text-pink">
                 Home
               </Link>
             </li>
             <li aria-hidden="true">/</li>
             <li>
-              <Link href="/projects" className="hover:text-pink">
+              <Link href="/projects" className="inline-block py-1 hover:text-pink">
                 Projects
               </Link>
             </li>

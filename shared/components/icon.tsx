@@ -19,6 +19,7 @@ import {
   Link2,
   MapPin,
   Settings,
+  Share2,
   ShoppingBag,
   Tool,
   Truck,
@@ -48,7 +49,8 @@ const ICONS = {
   index: Database,
   code: Code,
   external: ExternalLink,
-  archive: Archive
+  archive: Archive,
+  schema: Share2
 };
 
 type Props = { name: string; size?: number; className?: string };

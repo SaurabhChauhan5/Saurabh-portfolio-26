@@ -18,6 +18,7 @@ import {
   MapPin,
   Search,
   Settings,
+  Share2,
   ShoppingBag,
   Sliders,
   Tag,
@@ -35,16 +36,17 @@ const BRANDS: [RegExp, string][] = [
   [/semrush/i, `${BR}/semrush.svg`],
   [/pagespeed/i, `${BR}/pagespeedinsights.svg`],
   [/rank math/i, `${BR}/rankmath.png`],
+  [/yoast/i, `${BR}/yoast.svg`],
   [/google business profile|\bgbp\b/i, `${BR}/google.png`],
   [/shopify/i, `${BR}/shopify.svg`],
   [/wordpress/i, `${BR}/wordpress.svg`],
   [/\bwix\b/i, `${BR}/wix.svg`],
   [/\bhtml\b/i, `${BR}/html5.svg`],
-  [/schema/i, `${BR}/schema.png`],
   [/github|\bgit\b/i, `${BR}/github.svg`]
 ];
 
 const TOPICS: [RegExp, typeof Search][] = [
+  [/schema/i, Share2],
   [/crawl/i, Search],
   [/index/i, Database],
   [/sitemap/i, GitBranch],

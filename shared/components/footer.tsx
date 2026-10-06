@@ -15,7 +15,7 @@ export default function Footer(): JSX.Element {
           <ul className="grid grid-cols-2 gap-y-2 text-sm">
             {NAV_LINKS.map((l) => (
               <li key={l.href}>
-                <Link href={l.href} className="hover:text-pink transition-colors">
+                <Link href={l.href} className="inline-block py-1 hover:text-pink transition-colors">
                   {l.title}
                 </Link>
               </li>
@@ -25,7 +25,7 @@ export default function Footer(): JSX.Element {
                 href={RESUME_PATH}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-pink transition-colors">
+                className="inline-block py-1 hover:text-pink transition-colors">
                 Resume
               </a>
             </li>
@@ -37,12 +37,14 @@ export default function Footer(): JSX.Element {
             <li>
               <a
                 href={`mailto:${PROFILE.email}`}
-                className="hover:text-pink transition-colors break-words">
+                className="inline-block py-1 hover:text-pink transition-colors break-words">
                 {PROFILE.email}
               </a>
             </li>
             <li>
-              <a href={PROFILE.phoneHref} className="hover:text-pink transition-colors">
+              <a
+                href={PROFILE.phoneHref}
+                className="inline-block py-1 hover:text-pink transition-colors">
                 {PROFILE.phone}
               </a>
             </li>
@@ -51,14 +53,14 @@ export default function Footer(): JSX.Element {
                 href={PROFILE.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-pink transition-colors">
+                className="inline-block py-1 hover:text-pink transition-colors">
                 LinkedIn
               </a>
               <a
                 href={PROFILE.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-pink transition-colors">
+                className="inline-block py-1 hover:text-pink transition-colors">
                 GitHub
               </a>
             </li>
