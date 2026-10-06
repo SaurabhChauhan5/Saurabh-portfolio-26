@@ -1042,24 +1042,32 @@ body::before {
 .flow-card-end {
   width: min(60vw, 300px);
 }
-.flow-arrow {
-  display: inline-flex;
-  align-items: center;
+.flow-progress {
+  display: none;
+}
+.client-flow.is-pinned .flow-panel {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  width: 2.75rem;
-  height: 2.75rem;
-  border-radius: 999px;
-  color: #fffffe;
-  border: 1px solid rgba(184, 193, 236, 0.3);
-  transition: border-color 0.2s, color 0.2s, opacity 0.2s;
+  padding: 4rem 0 2rem;
+  overflow: hidden;
 }
-.flow-arrow:hover:not(:disabled) {
-  border-color: #eebbc3;
-  color: #eebbc3;
+.client-flow.is-pinned .flow-viewport {
+  overflow: visible;
 }
-.flow-arrow:disabled {
-  opacity: 0.35;
-  cursor: default;
+.client-flow.is-pinned .flow-progress {
+  display: block;
+}
+.flow-progress-bar {
+  display: block;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #eebbc3, #b8c1ec);
+  transform-origin: left;
+  transform: scaleX(var(--flow-p, 0));
 }
 
 /* ---------- Statement section ---------- */
@@ -1080,6 +1088,10 @@ body::before {
 
 aside[aria-label='Social links'] {
   transition: opacity 0.3s ease;
+}
+.flow-active aside[aria-label='Social links'] {
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* ---------- Hero keyword globe ---------- */

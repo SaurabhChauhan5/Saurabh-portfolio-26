@@ -21,8 +21,8 @@ export const AGENCY = { name: 'AAA Digital', url: 'https://aaadigital.com.au/' }
 export const PROFILE = {
   name: 'Saurabh Chauhan',
   title: 'SEO Specialist',
-  positioning: 'SEO Specialist | Technical SEO',
-  focusAreas: ['Technical SEO', 'Local SEO', 'eCommerce SEO', 'On-Page SEO'],
+  positioning: 'SEO Specialist | Technical SEO | Web Performance',
+  focusAreas: ['Technical SEO', 'Local SEO', 'eCommerce SEO', 'On-Page SEO', 'Web Performance'],
   summary:
     'I improve crawlability, indexability, website structure and organic search performance for Australian businesses across HTML, WordPress, Shopify and Wix.',
   credibility: 'Managing SEO across 24 active Australian business websites',
@@ -40,7 +40,7 @@ export const PROFILE = {
 };
 
 export const SEO_DEFAULTS = {
-  title: 'Saurabh Chauhan | SEO Specialist | Technical SEO',
+  title: 'Saurabh Chauhan | SEO Specialist · Technical SEO & Web Performance',
   description:
     'SEO Specialist in Gurugram, India, managing SEO for 24 active Australian business websites: technical, local and eCommerce SEO across HTML, WordPress, Shopify and Wix.'
 };
@@ -88,7 +88,8 @@ export const STATS = [
     suffix: '',
     label: 'SEO Areas',
     note: 'Technical • On-Page • Off-Page • Local • eCommerce'
-  }
+  },
+  { value: 1, suffix: '+', label: 'Year of Professional SEO Experience' }
 ];
 
 export const ABOUT_AREAS = [
@@ -369,7 +370,8 @@ export const EXPERIENCE: Role[] = [
       'Build SEO-friendly HTML landing pages and customize WordPress and Shopify websites for eCommerce SEO, implementing semantic structure, metadata, internal linking, structured data and technical improvements.',
       'Manage Local SEO and Google Business Profile (GBP) optimization, including local citations and business listings across major Australian directories.',
       'Perform off-page SEO and link building, including backlink research, competitor backlink analysis, link opportunities and citation building.',
-      'Monitor organic search performance, keyword visibility, indexing and technical health using Google Search Console, GA4, SEMrush and PageSpeed Insights, and guide developers and teammates on implementation priorities and website optimization fixes.'
+      'Monitor organic search performance, keyword visibility, indexing and technical health using Google Search Console, GA4, SEMrush and PageSpeed Insights, and guide developers and teammates on implementation priorities and website optimization fixes.',
+      'Use AI-assisted workflows for SEO metadata and repetitive optimization tasks.'
     ]
   },
   {
@@ -494,7 +496,7 @@ export const PROJECTS: Project[] = [
     name: 'Data-Driven Deals: Unveiling Sales Insights with Tableau',
     tagline: 'Business intelligence dashboard',
     description:
-      'Designed a Tableau dashboard to analyze sales trends for business goods. The dashboard presents the business’s sales trends clearly, helping users understand the data and make informed decisions.',
+      'Designed a Tableau dashboard to analyze sales trends for business goods. The dashboard presents the business’s sales trends clearly, helping users understand the data and make informed decisions. It could help increase revenue by at least 7% in the next quarter.',
     highlights: [
       'Interactive Tableau dashboard of business sales trends.',
       'Visualizations designed to support data-informed decisions.'
