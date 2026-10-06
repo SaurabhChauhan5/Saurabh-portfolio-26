@@ -1,6 +1,8 @@
 /* eslint-disable react/require-default-props */
 import {
   Activity,
+  BarChart2,
+  Calendar,
   Bookmark,
   BookOpen,
   CheckCircle,
@@ -16,6 +18,7 @@ import {
   Link2,
   List,
   MapPin,
+  MessageCircle,
   Search,
   Settings,
   Share2,
@@ -42,11 +45,17 @@ const BRANDS: [RegExp, string][] = [
   [/wordpress/i, `${BR}/wordpress.svg`],
   [/\bwix\b/i, `${BR}/wix.svg`],
   [/\bhtml\b/i, `${BR}/html5.svg`],
+  [/\bcss\b/i, `${BR}/css3.svg`],
+  [/javascript/i, `${BR}/javascript.svg`],
   [/github|\bgit\b/i, `${BR}/github.svg`]
 ];
 
 const TOPICS: [RegExp, typeof Search][] = [
   [/schema/i, Share2],
+  [/social|media|creative/i, MessageCircle],
+  [/content planning/i, Calendar],
+  [/report/i, BarChart2],
+  [/develop|interface|responsive|rest api/i, Code],
   [/crawl/i, Search],
   [/index/i, Database],
   [/sitemap/i, GitBranch],

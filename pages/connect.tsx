@@ -1,8 +1,19 @@
 import { Seo } from '@shared-components';
-import { breadcrumbLd } from '../shared/components/seo';
 import { PROFILE } from '@utils/data';
+import { breadcrumbLd } from '../shared/components/seo';
 
 import ConnectPage from '../components/connect/index';
+import CONTACT_FAQ from '../components/connect/faq';
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: CONTACT_FAQ.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a }
+  }))
+};
 
 const Contact = (): JSX.Element => (
   <>
@@ -14,7 +25,8 @@ const Contact = (): JSX.Element => (
         breadcrumbLd([
           { name: 'Home', path: '/' },
           { name: 'Contact', path: '/connect' }
-        ])
+        ]),
+        faqLd
       ]}
     />
     <ConnectPage />

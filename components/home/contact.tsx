@@ -1,6 +1,10 @@
-import { Linkedin, Mail, MapPin, Phone, FileText } from 'react-feather';
+import { ArrowUpRight, Briefcase, FileText, Linkedin, Mail, MapPin, Phone } from 'react-feather';
 import { Button, Reveal } from '@shared-components';
-import { PROFILE, RESUME_PATH } from '@utils/data';
+import { ACTIVE_WEBSITES, PROFILE, RESUME_PATH } from '@utils/data';
+import CopyEmail from '../../shared/components/copy-email';
+import TopicIcon from '../../shared/components/topic-icon';
+
+const MAILTO = `mailto:${PROFILE.email}?subject=${encodeURIComponent('SEO enquiry')}`;
 
 export default function Contact(): JSX.Element {
   return (
@@ -30,47 +34,96 @@ export default function Contact(): JSX.Element {
           className="w-full opacity-80"
         />
       </span>
-      <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Reveal variant="scale" className="card spotlight contact-card p-8 sm:p-12 text-center">
-          <div className="flex items-center justify-center">
-            <span className="w-12 mr-3 h-px bg-violet" aria-hidden="true" />
-            <p className="font-light gradient-text text-sm md:text-base">Get in touch</p>
-            <span className="w-12 ml-3 h-px bg-violet" aria-hidden="true" />
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Reveal variant="scale" className="cta-card">
+          <div className="cta-card-inner grid lg:grid-cols-12 gap-10 lg:gap-12 items-center p-5 sm:p-10 lg:p-14">
+            <div className="lg:col-span-7 min-w-0">
+              <p className="availability">
+                <span className="pulse-dot" aria-hidden="true" />
+                Get in touch
+              </p>
+              <h2
+                id="contact-title"
+                className="mt-5 text-3xl sm:text-5xl font-extrabold text-white leading-tight">
+                Let&apos;s Improve Your <span className="gradient-text">Search Performance</span>
+              </h2>
+              <p className="mt-5 text-base sm:text-lg text-violet max-w-xl leading-relaxed">
+                Looking for an SEO Specialist who understands both search engines and the technology
+                behind websites? Let&apos;s connect.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Button href={MAILTO}>
+                  <Mail size={18} aria-hidden="true" /> Email Me
+                </Button>
+                <Button href={PROFILE.linkedin} type="outlined" external>
+                  <Linkedin size={18} aria-hidden="true" /> LinkedIn
+                </Button>
+                <Button href={RESUME_PATH} type="ghost" download>
+                  <FileText size={18} aria-hidden="true" /> View Resume
+                </Button>
+              </div>
+              <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2">
+                <span className="text-xs font-semibold tracking-widest text-violet/80 uppercase">
+                  Platforms
+                </span>
+                {['HTML', 'WordPress', 'Shopify', 'Wix'].map((p) => (
+                  <span key={p} className="hero-platform">
+                    <TopicIcon label={p} size={18} />
+                    {p}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <address className="lg:col-span-5 min-w-0 not-italic space-y-3">
+              <div className="cta-row">
+                <span className="icon-tile icon-tile-sm">
+                  <Mail size={18} aria-hidden="true" />
+                </span>
+                <span className="flex-1 min-w-0">
+                  <span className="block text-xs text-violet">Email</span>
+                  <a
+                    href={MAILTO}
+                    className="block text-white font-medium truncate hover:text-pink transition-colors">
+                    {PROFILE.email}
+                  </a>
+                </span>
+                <CopyEmail />
+              </div>
+              <a href={PROFILE.phoneHref} className="cta-row group">
+                <span className="icon-tile icon-tile-sm">
+                  <Phone size={18} aria-hidden="true" />
+                </span>
+                <span className="flex-1">
+                  <span className="block text-xs text-violet">Phone</span>
+                  <span className="block text-white font-medium group-hover:text-pink transition-colors">
+                    {PROFILE.phone}
+                  </span>
+                </span>
+                <ArrowUpRight size={16} className="text-violet" aria-hidden="true" />
+              </a>
+              <div className="cta-row">
+                <span className="icon-tile icon-tile-sm">
+                  <MapPin size={18} aria-hidden="true" />
+                </span>
+                <span className="flex-1">
+                  <span className="block text-xs text-violet">Based in</span>
+                  <span className="block text-white font-medium">{PROFILE.location}</span>
+                </span>
+              </div>
+              <div className="cta-row">
+                <span className="icon-tile icon-tile-sm">
+                  <Briefcase size={18} aria-hidden="true" />
+                </span>
+                <span className="flex-1">
+                  <span className="block text-xs text-violet">Working with</span>
+                  <span className="block text-white font-medium">
+                    {ACTIVE_WEBSITES} active Australian business websites
+                  </span>
+                </span>
+              </div>
+            </address>
           </div>
-          <h2
-            id="contact-title"
-            className="mt-4 text-3xl sm:text-5xl font-extrabold text-white leading-tight">
-            Let&apos;s Improve Your <span className="gradient-text">Search Performance</span>
-          </h2>
-          <p className="mt-5 text-base sm:text-lg text-violet max-w-2xl mx-auto leading-relaxed">
-            Looking for an SEO Specialist who understands both search engines and the technology
-            behind websites? Let&apos;s connect.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Button href={`mailto:${PROFILE.email}`}>
-              <Mail size={18} aria-hidden="true" /> Email Me
-            </Button>
-            <Button href={PROFILE.linkedin} type="outlined" external>
-              <Linkedin size={18} aria-hidden="true" /> LinkedIn
-            </Button>
-            <Button href={RESUME_PATH} type="ghost" download>
-              <FileText size={18} aria-hidden="true" /> View Resume
-            </Button>
-          </div>
-          <address className="not-italic mt-10 grid sm:grid-cols-3 gap-4 text-sm">
-            <a href={`mailto:${PROFILE.email}`} className="contact-item">
-              <Mail size={18} aria-hidden="true" />
-              <span className="break-words">{PROFILE.email}</span>
-            </a>
-            <a href={PROFILE.phoneHref} className="contact-item">
-              <Phone size={18} aria-hidden="true" />
-              <span>{PROFILE.phone}</span>
-            </a>
-            <span className="contact-item">
-              <MapPin size={18} aria-hidden="true" />
-              <span>{PROFILE.location}</span>
-            </span>
-          </address>
         </Reveal>
       </div>
     </section>

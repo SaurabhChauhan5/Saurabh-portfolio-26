@@ -128,7 +128,7 @@ export default function Clients(): JSX.Element {
           </Reveal>
           <div className="lg:col-span-8 grid sm:grid-cols-2 gap-4 content-start">
             {featured.map((ind, i) => (
-              <Reveal key={ind.name} delay={i * 90} className="h-full">
+              <Reveal key={ind.name} delay={i * 90} className="h-full min-w-0">
                 <Link
                   href={`/clients#${slugify(ind.name)}`}
                   className="industry-feature card spotlight hover-lift group h-full flex flex-col p-5 sm:p-6">

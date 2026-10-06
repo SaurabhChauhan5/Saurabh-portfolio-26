@@ -5,6 +5,7 @@ import { Reveal, SectionHeading } from '@shared-components';
 import { EXPERIENCE } from '@utils/data';
 import { Role } from '@utils/types';
 import ScrollTimeline from '../../shared/components/scroll-timeline';
+import TopicIcon from '../../shared/components/topic-icon';
 
 const PREVIEW_BULLETS = 3;
 
@@ -58,20 +59,30 @@ function RoleCard({ role, preview }: { role: Role; preview: boolean }): JSX.Elem
           </div>
         </div>
         {!isSeo && <p className="mt-3 chip inline-block">Development background</p>}
-        <ul
-          className={`mt-5 grid gap-2 ${
-            !preview && isSeo && role.responsibilities.length > 6 ? 'md:grid-cols-2 md:gap-x-8' : ''
-          }`}>
+        <ul className="mt-5 space-y-3 max-w-3xl">
           {bullets.map((r) => (
-            <li key={r} className="flex items-start gap-2 text-sm text-violet leading-relaxed">
-              <span
-                className="mt-2 w-1.5 h-1.5 rounded-full bg-pink flex-shrink-0"
-                aria-hidden="true"
-              />
+            <li
+              key={r}
+              className="flex items-start gap-3 text-sm sm:text-base text-violet leading-relaxed">
+              <span className="bullet-icon">
+                <TopicIcon label={r.split(' ').slice(0, 4).join(' ')} size={14} />
+              </span>
               {r}
             </li>
           ))}
         </ul>
+        {!preview && role.tags && (
+          <ul
+            className="mt-6 pt-5 border-t border-violet/15 flex flex-wrap gap-2"
+            aria-label="Tools and focus areas">
+            {role.tags.map((t) => (
+              <li key={t} className="chip inline-flex items-center gap-1.5">
+                <TopicIcon label={t} size={13} />
+                {t}
+              </li>
+            ))}
+          </ul>
+        )}
         {preview && hidden > 0 && (
           <p className="mt-3 text-xs text-violet/80">
             + {hidden} more {hidden === 1 ? 'responsibility' : 'responsibilities'}

@@ -1,8 +1,15 @@
 /* eslint-disable react/require-default-props */
 import Link from 'next/link';
-import { ArrowRight } from 'react-feather';
-import { CountUp, Reveal, SectionHeading } from '@shared-components';
-import { CASE_STUDIES, INDEXATION, MULTI_PLATFORM_EXAMPLES } from '@utils/data';
+import { ArrowRight, MapPin } from 'react-feather';
+import { CountUp, Icon, Reveal, SectionHeading } from '@shared-components';
+import {
+  CASE_STUDIES,
+  CLIENT_LOCATIONS,
+  INDEXATION,
+  INDUSTRIES,
+  MULTI_PLATFORM_EXAMPLES,
+  SERVICE_SCOPE
+} from '@utils/data';
 import { CaseStudy } from '@utils/types';
 import TopicIcon from '../../shared/components/topic-icon';
 
@@ -141,7 +148,7 @@ export default function CaseStudies({ preview = false }: Props): JSX.Element {
         {/* Case study 01 — featured */}
         <Reveal
           as="article"
-          className="card spotlight card-glow overflow-hidden grid lg:grid-cols-2"
+          className="card spotlight card-glow overflow-hidden grid lg:grid-cols-2 scroll-mt-28"
           id={indexation.id}>
           <div className="p-6 sm:p-10">
             <CaseHeader cs={indexation} />
@@ -163,46 +170,100 @@ export default function CaseStudies({ preview = false }: Props): JSX.Element {
             <TeaserCard cs={local} delay={120} />
           </div>
         ) : (
-          <div className="mt-6 grid lg:grid-cols-2 gap-6">
+          <div className="mt-6 space-y-6">
             <Reveal
               as="article"
-              variant="left"
-              className="card spotlight p-6 sm:p-8"
+              className="card spotlight overflow-hidden grid lg:grid-cols-2 scroll-mt-28"
               id={multiPlatform.id}>
-              <CaseHeader cs={multiPlatform} />
-              <div className="mt-6">
+              <div className="p-6 sm:p-10">
+                <CaseHeader cs={multiPlatform} />
+                <h4 className="mt-6 mb-3 text-white font-semibold">Work included</h4>
                 <WorkList items={multiPlatform.work} />
               </div>
-              <h4 className="mt-6 mb-3 text-white font-semibold">Experience examples</h4>
-              <dl className="grid sm:grid-cols-2 gap-3">
-                {MULTI_PLATFORM_EXAMPLES.map((ex) => (
-                  <div key={ex.platform} className="card-inner p-4">
-                    <dt className="text-pink text-sm font-semibold">{ex.platform}</dt>
-                    <dd className="mt-1 text-sm text-violet">{ex.sites.join(' · ')}</dd>
-                  </div>
-                ))}
-              </dl>
-              <p className="mt-4 text-xs text-violet/80">
-                Listed as platform experience examples, not performance claims.
-              </p>
+              <div className="p-4 sm:p-6 lg:p-8 lg:pl-0">
+                <div className="card-inner p-6 h-full">
+                  <h4 className="text-xs font-semibold tracking-widest text-pink uppercase">
+                    Platform experience examples
+                  </h4>
+                  <ul className="mt-4 grid sm:grid-cols-2 gap-3">
+                    {MULTI_PLATFORM_EXAMPLES.map((ex) => (
+                      <li key={ex.platform} className="platform-example">
+                        <span className="brand-tile">
+                          <TopicIcon label={ex.platform} size={22} />
+                        </span>
+                        <span>
+                          <span className="block text-white font-semibold">{ex.platform}</span>
+                          <span className="block mt-0.5 text-sm text-violet leading-snug">
+                            {ex.sites.join(' · ')}
+                          </span>
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="mt-5 text-xs text-violet/80">
+                    Listed as platform experience examples, not performance claims.
+                  </p>
+                </div>
+              </div>
             </Reveal>
 
             <Reveal
               as="article"
-              variant="right"
-              delay={120}
-              className="card spotlight p-6 sm:p-8"
+              className="card spotlight overflow-hidden grid lg:grid-cols-2 scroll-mt-28"
               id={local.id}>
-              <CaseHeader cs={local} />
-              <div className="mt-6">
+              <div className="p-6 sm:p-10">
+                <CaseHeader cs={local} />
+                <h4 className="mt-6 mb-3 text-white font-semibold">Work included</h4>
                 <WorkList items={local.work} />
+                <div className="mt-8 card-inner p-4 flex items-center gap-4">
+                  <span className="pulse-dot" aria-hidden="true" />
+                  <p className="text-sm text-violet">
+                    An ongoing part of my day-to-day SEO work for{' '}
+                    <span className="text-white font-semibold">Australian business clients</span>.
+                  </p>
+                </div>
               </div>
-              <div className="mt-8 card-inner p-5 flex items-center gap-4">
-                <span className="pulse-dot" aria-hidden="true" />
-                <p className="text-sm text-violet">
-                  An ongoing part of my day-to-day SEO work for{' '}
-                  <span className="text-white font-semibold">Australian business clients</span>.
-                </p>
+              <div className="p-4 sm:p-6 lg:p-8 lg:pl-0">
+                <div className="card-inner p-6 h-full">
+                  <h4 className="text-xs font-semibold tracking-widest text-pink uppercase">
+                    Where this work applies
+                  </h4>
+                  <p className="mt-2 text-sm text-violet">
+                    Local and service businesses among my active clients:
+                  </p>
+                  <ul className="mt-4 flex flex-wrap gap-2">
+                    {INDUSTRIES.map((ind) => (
+                      <li key={ind.name} className="chip inline-flex items-center gap-1.5">
+                        <Icon name={ind.icon} size={13} className="text-pink" />
+                        {ind.name}
+                      </li>
+                    ))}
+                  </ul>
+                  <h4 className="mt-6 text-xs font-semibold tracking-widest text-pink uppercase">
+                    Locations
+                  </h4>
+                  <ul className="mt-3 flex flex-wrap gap-2">
+                    {CLIENT_LOCATIONS.map((loc) => (
+                      <li key={loc} className="chip inline-flex items-center gap-1.5">
+                        <MapPin size={13} className="text-pink" aria-hidden="true" />
+                        {loc}
+                      </li>
+                    ))}
+                  </ul>
+                  <h4 className="mt-6 text-xs font-semibold tracking-widest text-pink uppercase">
+                    Service scope
+                  </h4>
+                  <ul className="mt-3 space-y-2">
+                    {SERVICE_SCOPE.map((sc) => (
+                      <li
+                        key={sc.label}
+                        className="flex items-center justify-between gap-3 rounded-xl border border-violet/15 px-3 py-2 text-sm">
+                        <span className="text-violet">{sc.label}</span>
+                        <span className="text-white font-semibold tabular-nums">{sc.count}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </Reveal>
           </div>

@@ -46,6 +46,7 @@ type RevealProps = {
   delay?: number;
   variant?: 'up' | 'left' | 'right' | 'scale';
   id?: string;
+  'aria-labelledby'?: string;
 };
 
 // Content is server-rendered and visible without JS; the hidden start state
@@ -56,7 +57,8 @@ export function Reveal({
   className = '',
   delay = 0,
   variant = 'up',
-  id
+  id,
+  'aria-labelledby': labelledBy
 }: RevealProps): JSX.Element {
   const [ref, inView] = useInView<HTMLElement>();
   const style: CSSProperties = delay ? { transitionDelay: `${delay}ms` } : undefined;
@@ -64,9 +66,9 @@ export function Reveal({
     <Tag
       ref={ref}
       id={id}
+      aria-labelledby={labelledBy}
       style={style}
-      className={`reveal reveal-${variant} ${inView ? 'is-visible' : ''} ${className}`}
-    >
+      className={`reveal reveal-${variant} ${inView ? 'is-visible' : ''} ${className}`}>
       {children}
     </Tag>
   );

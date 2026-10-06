@@ -365,6 +365,18 @@ export const EXPERIENCE: Role[] = [
     startDate: 'Aug 2025',
     location: 'Gurugram, Haryana | Remote',
     kind: 'seo',
+    tags: [
+      'Google Search Console',
+      'GA4',
+      'SEMrush',
+      'PageSpeed Insights',
+      'Rank Math',
+      'Yoast SEO',
+      'HTML',
+      'WordPress',
+      'Shopify',
+      'Wix'
+    ],
     responsibilities: [
       'Manage end-to-end technical SEO across 24 active Australian business websites on HTML, WordPress, Shopify and Wix, covering technical audits, on-page optimization, indexing, website structure and organic search performance.',
       'Increased indexed pages from approximately 164 to 1,190+ for a client website by resolving crawl and indexability issues, optimizing XML sitemaps and internal linking, and implementing technical SEO improvements.',
@@ -384,6 +396,14 @@ export const EXPERIENCE: Role[] = [
     endDate: 'Aug 2025',
     location: 'Gurugram, Haryana',
     kind: 'seo',
+    tags: [
+      'Social media',
+      'Content planning',
+      'Local SEO',
+      'Business listings',
+      'Competitor research',
+      'Performance reporting'
+    ],
     responsibilities: [
       'Managed social media accounts, content planning, posting and marketing creatives while maintaining brand consistency across client businesses.',
       'Managed Local SEO, business listings, website updates, competitor research, product listings and digital performance reporting for client businesses.'
@@ -396,6 +416,7 @@ export const EXPERIENCE: Role[] = [
     endDate: 'Oct 2024',
     location: 'Remote',
     kind: 'development',
+    tags: ['HTML', 'CSS', 'JavaScript', 'REST APIs', 'Git'],
     responsibilities: [
       'Developed responsive web interfaces using HTML, CSS and JavaScript, integrated REST APIs, collaborated with backend developers and used Git for version control.'
     ]

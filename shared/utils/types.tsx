@@ -29,6 +29,7 @@ export interface Role {
   endDate?: string;
   location: string;
   kind: 'seo' | 'development';
+  tags?: string[];
   responsibilities: string[];
 }
 
