@@ -1157,7 +1157,49 @@ aside[aria-label='Social links'] {
 
 /* ---------- Hero keyword globe ---------- */
 .globe-stage {
-  height: 400px;
+  height: 360px;
+}
+@media (min-height: 860px) {
+  .globe-stage {
+    height: 400px;
+  }
+}
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #232946;
+  background: linear-gradient(135deg, #eebbc3, #b8c1ec);
+}
+.hero-focus {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #eebbc3;
+}
+.hero-focus li:not(:last-child)::after {
+  content: '•';
+  margin: 0 0.5rem;
+  color: rgba(184, 193, 236, 0.6);
+}
+.hero-platform {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.875rem;
+  color: #fffffe;
+}
+.hero-platform img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
 }
 /* The canvas is wider than its column so long terms at the sphere's edge
    aren't clipped. */

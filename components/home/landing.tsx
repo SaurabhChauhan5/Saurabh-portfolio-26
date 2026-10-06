@@ -14,60 +14,6 @@ const AUDIT_CHECKS = [
   'Core Web Vitals'
 ];
 
-function AuditCard(): JSX.Element {
-  return (
-    <div
-      className="audit-card card card-glow relative w-full max-w-md mx-auto shadow-violet-5xl"
-      aria-hidden="true">
-      <div className="flex items-center gap-2 px-5 py-3 border-b border-violet/20">
-        <span className="w-3 h-3 rounded-full bg-pink/80" />
-        <span className="w-3 h-3 rounded-full bg-violet/60" />
-        <span className="w-3 h-3 rounded-full bg-violet/30" />
-        <span className="ml-3 text-xs text-violet tracking-wide">Technical SEO audit</span>
-      </div>
-      <div className="relative px-5 py-4 overflow-hidden">
-        <span className="audit-scan" />
-        <ul className="space-y-2.5">
-          {AUDIT_CHECKS.map((item, i) => (
-            <li
-              key={item}
-              className="audit-row flex items-center justify-between text-sm text-white"
-              style={{ animationDelay: `${500 + i * 140}ms` }}>
-              <span className="flex items-center gap-3">
-                <span className="audit-check">
-                  <svg viewBox="0 0 16 16" width="12" height="12" fill="none">
-                    <path
-                      d="M3 8.5l3 3 7-7"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </span>
-                {item}
-              </span>
-              <span className="h-1.5 rounded-full bg-violet/20 w-16 sm:w-24 overflow-hidden">
-                <span
-                  className="audit-bar block h-full bg-gradient-to-r from-pink to-violet"
-                  style={{ animationDelay: `${600 + i * 140}ms` }}
-                />
-              </span>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className="px-5 py-3 border-t border-violet/20 flex flex-wrap gap-2">
-        {['HTML', 'WordPress', 'Shopify', 'Wix'].map((p) => (
-          <span key={p} className="chip">
-            {p}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 function AuditBadge(): JSX.Element {
   return (
     <div className="audit-badge card card-glow shadow-violet-5xl" aria-hidden="true">
@@ -100,6 +46,14 @@ function AuditBadge(): JSX.Element {
     </div>
   );
 }
+
+const BR = '/images/brands';
+const HERO_PLATFORMS = [
+  { name: 'HTML', icon: `${BR}/html5.svg` },
+  { name: 'WordPress', icon: `${BR}/wordpress.svg` },
+  { name: 'Shopify', icon: `${BR}/shopify.svg` },
+  { name: 'Wix', icon: `${BR}/wix.svg` }
+];
 
 const GLOBE_WORDS = [
   'Crawlability',
@@ -158,7 +112,7 @@ const TOOLS = [
 function ToolsMarquee(): JSX.Element {
   return (
     <div
-      className="marquee relative mt-14 lg:mt-20 border-y border-violet/10 py-4"
+      className="marquee relative mt-12 lg:mt-14 border-y border-violet/10 py-4"
       aria-label="Tools and platforms I use">
       <ul className="marquee-track">
         {/* The second copy only exists for the seamless loop. */}
@@ -181,7 +135,7 @@ function ToolsMarquee(): JSX.Element {
 
 export default function Landing(): JSX.Element {
   return (
-    <section aria-labelledby="hero-title" className="relative overflow-hidden pt-28 lg:pt-36">
+    <section aria-labelledby="hero-title" className="relative overflow-hidden pt-28 lg:pt-32">
       <div className="hero-glow" aria-hidden="true" />
       <div className="grid-bg" aria-hidden="true" />
       <span
@@ -209,21 +163,19 @@ export default function Landing(): JSX.Element {
         />
       </span>
 
-      <div className="relative max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-12 gap-12 items-center">
+      <div className="relative max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
         <div className="lg:col-span-7">
           <p className="availability hero-anim">
             <span className="pulse-dot" aria-hidden="true" />
             {PROFILE.credibility}
           </p>
           <h1 id="hero-title" className="mt-6 font-extrabold text-white leading-none">
-            <span className="block text-2xl sm:text-3xl text-violet font-semibold mb-3">
+            <span className="flex flex-wrap items-center gap-3 text-xl sm:text-2xl text-violet font-semibold mb-3">
               {PROFILE.name}
+              <span className="hero-tag">Technical SEO</span>
             </span>
             <span className="block text-5xl sm:text-6xl xl:text-7xl tracking-tight">
               SEO <span className="shimmer-text">Specialist</span>
-            </span>
-            <span className="block mt-3 text-xl sm:text-2xl text-violet font-semibold tracking-wide">
-              Technical SEO
             </span>
           </h1>
           <p
@@ -232,40 +184,27 @@ export default function Landing(): JSX.Element {
             I make websites{' '}
             <RotatingWord
               className="serif-accent text-pink"
-              words={['crawlable.', 'indexable.', 'faster.', 'easier to find.', 'locally visible.']}
+              words={['indexable.', 'crawlable.', 'faster.', 'easier to find.', 'locally visible.']}
             />
           </p>
           <ul
-            className="mt-6 flex flex-wrap gap-2 hero-anim"
+            className="hero-focus mt-5 hero-anim"
             style={{ animationDelay: '120ms' }}
             aria-label="Focus areas">
             {PROFILE.focusAreas.map((area) => (
-              <li key={area} className="focus-pill">
-                {area}
-              </li>
+              <li key={area}>{area}</li>
             ))}
           </ul>
           <p
-            className="mt-6 text-base sm:text-lg text-violet leading-relaxed max-w-xl hero-anim"
+            className="mt-5 text-base sm:text-lg text-violet leading-relaxed max-w-xl hero-anim"
             style={{ animationDelay: '200ms' }}>
-            {PROFILE.summary}
-          </p>
-          <p
-            className="mt-4 flex items-start gap-3 text-sm sm:text-base text-white max-w-xl hero-anim"
-            style={{ animationDelay: '260ms' }}>
-            <span
-              className="mt-2 w-2 h-2 rounded-full bg-violet flex-shrink-0"
-              aria-hidden="true"
-            />
-            <span>
-              B.Tech in Computer Science with a front-end development background, so I speak your
-              developers&apos; language.
-            </span>
+            {PROFILE.summary} With a B.Tech in Computer Science and a front-end development
+            background, I speak your developers&apos; language.
           </p>
 
           <div
-            className="mt-8 flex flex-wrap items-center gap-4 hero-anim"
-            style={{ animationDelay: '340ms' }}>
+            className="mt-7 flex flex-wrap items-center gap-4 hero-anim"
+            style={{ animationDelay: '280ms' }}>
             <Button href="/case-studies">View SEO Work</Button>
             <Button href="/connect" type="outlined">
               Contact Me
@@ -278,6 +217,22 @@ export default function Landing(): JSX.Element {
               Download Resume
             </a>
           </div>
+
+          <div
+            className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3 hero-anim"
+            style={{ animationDelay: '340ms' }}>
+            <span className="text-xs font-semibold tracking-widest text-violet/80 uppercase">
+              Platforms
+            </span>
+            <ul className="flex flex-wrap items-center gap-x-5 gap-y-2" aria-label="Platforms">
+              {HERO_PLATFORMS.map((p) => (
+                <li key={p.name} className="hero-platform">
+                  <img src={p.icon} alt="" width={20} height={20} />
+                  {p.name}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         <div className="lg:col-span-5 hero-anim" style={{ animationDelay: '300ms' }}>
@@ -286,13 +241,13 @@ export default function Landing(): JSX.Element {
             <div className="relative w-full globe-stage">
               <KeywordGlobe words={GLOBE_WORDS} className="hero-globe" />
             </div>
-            <div className="float-slow mt-2">
+            <div className="float-slow -mt-2">
               <AuditBadge />
             </div>
           </div>
-          {/* Phones and tablets: the full audit card (no globe). */}
-          <div className="lg:hidden float-slow">
-            <AuditCard />
+          {/* Phones and tablets: the compact audit badge (no globe). */}
+          <div className="lg:hidden flex justify-center float-slow">
+            <AuditBadge />
           </div>
         </div>
       </div>
