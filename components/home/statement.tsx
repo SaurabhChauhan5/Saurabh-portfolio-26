@@ -5,7 +5,7 @@ export default function Statement(): JSX.Element {
   return (
     <section
       aria-label="What I do, in one sentence"
-      className="statement relative overflow-hidden py-24 lg:py-36">
+      className="statement relative overflow-hidden py-20 lg:py-28">
       <div className="statement-rings" aria-hidden="true" />
       <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <ScrollLit

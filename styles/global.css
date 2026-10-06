@@ -95,8 +95,8 @@ a {
 }
 @media (min-width: 1024px) {
   .section {
-    padding-top: 7rem;
-    padding-bottom: 7rem;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
   }
 }
 

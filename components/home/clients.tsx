@@ -43,8 +43,7 @@ export default function Clients(): JSX.Element {
         <div className="grid lg:grid-cols-12 gap-6 items-stretch">
           <Reveal
             variant="scale"
-            className="lg:col-span-4 card card-glow spotlight p-8 flex flex-col justify-center text-center"
-          >
+            className="lg:col-span-4 card card-glow spotlight p-8 flex flex-col justify-center text-center">
             <p className="text-6xl sm:text-7xl font-extrabold gradient-text leading-none">
               <CountUp end={ACTIVE_WEBSITES} />
             </p>
@@ -55,8 +54,7 @@ export default function Clients(): JSX.Element {
                 href={AGENCY.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-pink hover:underline"
-              >
+                className="text-pink hover:underline">
                 {AGENCY.name}
               </a>{' '}
               agency website
@@ -65,8 +63,7 @@ export default function Clients(): JSX.Element {
               {SERVICE_SCOPE.map((sc) => (
                 <li
                   key={sc.label}
-                  className="flex items-center justify-between gap-3 card-inner px-3 py-2"
-                >
+                  className="flex items-center justify-between gap-3 card-inner px-3 py-2">
                   <span className="text-violet">{sc.label}</span>
                   <span className="text-white font-semibold tabular-nums">{sc.count}</span>
                 </li>
@@ -95,8 +92,7 @@ export default function Clients(): JSX.Element {
                 as="li"
                 key={ind.name}
                 delay={i * 60}
-                className="card spotlight p-4 sm:p-5 hover-lift"
-              >
+                className="card spotlight p-4 sm:p-5 hover-lift">
                 <div className="flex items-center gap-3">
                   <span className="icon-tile icon-tile-sm">
                     <Icon name={ind.icon} size={18} />
@@ -110,8 +106,7 @@ export default function Clients(): JSX.Element {
                 </div>
                 <span
                   className="mt-3 block h-1 rounded-full bg-violet/10 overflow-hidden"
-                  aria-hidden="true"
-                >
+                  aria-hidden="true">
                   <span
                     className="grow-bar block h-full rounded-full bg-gradient-to-r from-violet to-pink"
                     style={{ width: `${(ind.count / max) * 100}%` }}

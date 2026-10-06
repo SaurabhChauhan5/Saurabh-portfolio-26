@@ -1,7 +1,7 @@
 import { CSSProperties } from 'react';
 import { Icon, Reveal, SectionHeading } from '@shared-components';
-import StickyStack from '../../shared/components/sticky-stack';
 import { EXPERTISE } from '@utils/data';
+import StickyStack from '../../shared/components/sticky-stack';
 
 export default function Expertise(): JSX.Element {
   return (
@@ -36,8 +36,7 @@ export default function Expertise(): JSX.Element {
             <li
               key={group.title}
               className="stack-card card p-6 sm:p-8"
-              style={{ '--i': i } as CSSProperties}
-            >
+              style={{ '--i': i } as CSSProperties}>
               <div className="flex items-center justify-between gap-4">
                 <div className="flex items-center gap-4">
                   <span className="icon-tile">
@@ -47,8 +46,7 @@ export default function Expertise(): JSX.Element {
                 </div>
                 <span
                   className="text-4xl font-extrabold text-transparent stack-num"
-                  aria-hidden="true"
-                >
+                  aria-hidden="true">
                   {String(i + 1).padStart(2, '0')}
                 </span>
               </div>

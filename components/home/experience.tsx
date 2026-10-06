@@ -2,17 +2,17 @@
 import Link from 'next/link';
 import { ArrowRight } from 'react-feather';
 import { Reveal, SectionHeading } from '@shared-components';
-import ScrollTimeline from '../../shared/components/scroll-timeline';
 import { EXPERIENCE } from '@utils/data';
 import { Role } from '@utils/types';
+import ScrollTimeline from '../../shared/components/scroll-timeline';
 
-const PREVIEW_BULLETS = 4;
+const PREVIEW_BULLETS = 3;
 
 function RoleCard({ role, preview }: { role: Role; preview: boolean }): JSX.Element {
   const isSeo = role.kind === 'seo';
   const current = !role.endDate;
   const bullets = preview
-    ? role.responsibilities.slice(0, isSeo ? PREVIEW_BULLETS : 2)
+    ? role.responsibilities.slice(0, current ? PREVIEW_BULLETS : 1)
     : role.responsibilities;
   const hidden = role.responsibilities.length - bullets.length;
 
@@ -25,8 +25,7 @@ function RoleCard({ role, preview }: { role: Role; preview: boolean }): JSX.Elem
       <Reveal
         as="article"
         variant="left"
-        className={`card spotlight timeline-card ${isSeo ? 'p-6 sm:p-8' : 'p-5 sm:p-6'}`}
-      >
+        className={`card spotlight timeline-card ${isSeo ? 'p-6 sm:p-8' : 'p-5 sm:p-6'}`}>
         <div className="flex flex-wrap items-start justify-between gap-x-6 gap-y-3">
           <div>
             {current && <p className="badge-live mb-3">Current role</p>}
@@ -39,8 +38,7 @@ function RoleCard({ role, preview }: { role: Role; preview: boolean }): JSX.Elem
                   href={role.companyUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:underline"
-                >
+                  className="hover:underline">
                   {role.company}
                 </a>
               ) : (
@@ -59,8 +57,7 @@ function RoleCard({ role, preview }: { role: Role; preview: boolean }): JSX.Elem
         <ul
           className={`mt-5 grid gap-2 ${
             !preview && isSeo && role.responsibilities.length > 6 ? 'md:grid-cols-2 md:gap-x-8' : ''
-          }`}
-        >
+          }`}>
           {bullets.map((r) => (
             <li key={r} className="flex items-start gap-2 text-sm text-violet leading-relaxed">
               <span
@@ -94,12 +91,11 @@ export default function Experience({
     <section
       id="experience"
       aria-labelledby="experience-title"
-      className={headingLevel === 'page' ? 'pb-20' : 'section'}
-    >
+      className={headingLevel === 'page' ? 'pb-20' : 'section'}>
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {headingLevel === 'section' && (
           <SectionHeading
-            index="07"
+            index="06"
             id="experience-title"
             eyebrow="Career"
             title={

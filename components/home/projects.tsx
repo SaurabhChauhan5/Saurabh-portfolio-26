@@ -6,12 +6,12 @@ import { PROJECTS } from '@utils/data';
 
 export default function Projects(): JSX.Element {
   const featured = PROJECTS.find((p) => p.featured);
-  const others = PROJECTS.filter((p) => p !== featured).slice(0, 3);
+  const others = PROJECTS.filter((p) => p !== featured).slice(0, 2);
   return (
     <section id="projects" aria-labelledby="projects-title" className="section bg-navy/60">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          index="08"
+          index="07"
           id="projects-title"
           eyebrow="Academic / personal projects"
           title={
@@ -67,9 +67,9 @@ export default function Projects(): JSX.Element {
             </div>
           </Reveal>
         )}
-        <div className="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="mt-6 grid sm:grid-cols-2 gap-6">
           {others.map((project, i) => (
-            <Reveal key={project.slug} delay={(i % 3) * 100} className="h-full">
+            <Reveal key={project.slug} delay={i * 100} className="h-full">
               <ProjectCard project={project} compact />
             </Reveal>
           ))}

@@ -4,13 +4,13 @@ import { useEffect, useRef } from 'react';
 import { ArrowRight, ExternalLink } from 'react-feather';
 import { CLIENT_GROUPS, ACTIVE_WEBSITES } from '@utils/data';
 
-// One site from each industry first, then the rest, so the strip shows variety.
+// Six featured sites, one from each industry first, so the strip shows variety.
 const ordered = (() => {
   const firsts = CLIENT_GROUPS.map((g) => ({ ...g.sites[0], industry: g.industry }));
   const rest = CLIENT_GROUPS.flatMap((g) =>
     g.sites.slice(1).map((s) => ({ ...s, industry: g.industry }))
   );
-  return [...firsts, ...rest].slice(0, 10);
+  return [...firsts, ...rest].slice(0, 6);
 })();
 
 // "Pinned horizontal" section from aaadigital.com.au: on desktop the section
@@ -81,7 +81,7 @@ export default function ClientFlow(): JSX.Element {
             <div className="flex items-center">
               <span className="eyebrow-line mr-3" aria-hidden="true" />
               <p className="font-medium gradient-text text-sm md:text-base tracking-wide uppercase">
-                Recent work
+                Featured websites
               </p>
             </div>
             <h2

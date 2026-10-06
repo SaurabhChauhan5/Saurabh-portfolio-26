@@ -6,7 +6,7 @@ export default function Foundation(): JSX.Element {
     <section aria-labelledby="foundation-title" className="section">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          index="09"
+          index="08"
           id="foundation-title"
           eyebrow="Technical foundation"
           title="Technical skills that support my SEO work."

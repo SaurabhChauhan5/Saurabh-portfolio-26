@@ -7,7 +7,6 @@ import Platforms from './platforms';
 import CaseStudies from './case-studies';
 import Clients from './clients';
 import ClientFlow from './client-flow';
-import PlatformExperience from './platform-experience';
 import Experience from './experience';
 import Projects from './projects';
 import Foundation from './foundation';
@@ -25,7 +24,6 @@ const HomePage = (): JSX.Element => {
       <CaseStudies preview />
       <Clients />
       <ClientFlow />
-      <PlatformExperience />
       <Experience preview />
       <Projects />
       <Foundation />
