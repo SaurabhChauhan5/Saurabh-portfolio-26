@@ -224,6 +224,30 @@ a {
 .nav-link.is-active::after {
   transform: scaleX(1);
 }
+.nav-link.is-active::after {
+  height: 7px;
+  bottom: -0.1rem;
+  border-radius: 0;
+  background: linear-gradient(90deg, #eebbc3, #b8c1ec);
+  -webkit-mask: url('/images/vectors/nav-active.png') center / 100% 100% no-repeat;
+  mask: url('/images/vectors/nav-active.png') center / 100% 100% no-repeat;
+}
+.not-found-art {
+  -webkit-mask-image: radial-gradient(ellipse 60% 55% at 62% 50%, #000 60%, transparent 100%);
+  mask-image: radial-gradient(ellipse 60% 55% at 62% 50%, #000 60%, transparent 100%);
+}
+/* Dark wordmark logos need flipping to show on the navy background. */
+img[src$='nextjs.svg'],
+img[src$='express.svg'] {
+  filter: invert(1) brightness(1.1);
+}
+.flow-chevrons {
+  animation: chevron-nudge 1.6s ease-in-out infinite;
+}
+@keyframes chevron-nudge {
+  0%, 100% { transform: translateX(0); opacity: 0.6; }
+  50% { transform: translateX(8px); opacity: 1; }
+}
 
 .scroll-progress {
   position: absolute;

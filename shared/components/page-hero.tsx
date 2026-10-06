@@ -8,14 +8,43 @@ type Props = {
   lead?: ReactNode;
   crumbs: { name: string; href?: string }[];
   children?: ReactNode;
+  art?: ReactNode;
 };
 
 // Shared header for inner pages: breadcrumb, H1 and lead, over the hero glow.
-export default function PageHero({ eyebrow, title, lead, crumbs, children }: Props): JSX.Element {
+export default function PageHero({
+  eyebrow,
+  title,
+  lead,
+  crumbs,
+  children,
+  art
+}: Props): JSX.Element {
   return (
     <header className="page-hero relative overflow-hidden pt-32 pb-14 lg:pt-40 lg:pb-20">
       <div className="hero-glow" aria-hidden="true" />
       <div className="grid-bg" aria-hidden="true" />
+      {art && (
+        <div
+          className="absolute right-0 lg:right-[6%] top-24 w-72 xl:w-96 hidden lg:block pointer-events-none float-slow"
+          aria-hidden="true">
+          {art}
+        </div>
+      )}
+      <span
+        data-parallax="0.12"
+        className={`absolute right-0 top-24 w-1/2 lg:w-1/3 pointer-events-none hidden sm:block ${
+          art ? 'lg:hidden' : ''
+        }`}
+        aria-hidden="true">
+        <img
+          src="/images/vectors/l-vector.svg"
+          alt=""
+          width={567}
+          height={381}
+          className="w-full opacity-70"
+        />
+      </span>
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <nav aria-label="Breadcrumb" className="text-sm text-violet mb-8 hero-anim">
           <ol className="flex flex-wrap items-center gap-2">
@@ -47,8 +76,7 @@ export default function PageHero({ eyebrow, title, lead, crumbs, children }: Pro
         {lead && (
           <p
             className="mt-5 max-w-2xl text-base sm:text-lg text-violet leading-relaxed hero-anim"
-            style={{ animationDelay: '140ms' }}
-          >
+            style={{ animationDelay: '140ms' }}>
             {lead}
           </p>
         )}

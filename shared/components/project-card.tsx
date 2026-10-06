@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Project } from '@utils/types';
+import TechTag from './tech-tag';
 
 type Props = {
   project: Project;
@@ -17,8 +18,7 @@ const ProjectCard = ({ project, headingLevel = 'h3', compact = false }: Props): 
         href={`/project/${project.slug}`}
         className="block overflow-hidden"
         tabIndex={-1}
-        aria-hidden="true"
-      >
+        aria-hidden="true">
         <Image
           src={project.img}
           alt={project.imgAlt}
@@ -39,9 +39,7 @@ const ProjectCard = ({ project, headingLevel = 'h3', compact = false }: Props): 
         </p>
         <ul className="mt-4 flex flex-wrap gap-2" aria-label="Technologies">
           {(compact ? project.tags.slice(0, 3) : project.tags).map((t) => (
-            <li key={t} className="chip">
-              {t}
-            </li>
+            <TechTag key={t} name={t} />
           ))}
         </ul>
       </div>

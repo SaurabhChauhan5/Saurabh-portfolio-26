@@ -586,6 +586,48 @@ export const TECH_FOUNDATION: { group: string; items: { name: string; icon?: str
   }
 ];
 
+// Logos shown next to technology tags on project cards and project pages.
+const SK = '/images/skills';
+export const TECH_ICONS: Record<string, string> = {
+  ReactJS: `${SK}/react.svg`,
+  'React.js': `${SK}/react.svg`,
+  'Node.js': `${SK}/node.svg`,
+  'Express.js': `${SK}/express.svg`,
+  MongoDB: `${SK}/mongodb.svg`,
+  Cloudinary: `${SK}/cloudinary.png`,
+  HTML: `${SK}/html.svg`,
+  HTML5: `${SK}/html.svg`,
+  CSS: `${SK}/css.svg`,
+  JavaScript: `${SK}/js.svg`,
+  Python: `${SK}/python.svg`,
+  Streamlit: `${SK}/streamlit.png`,
+  'Content-Based Filtering': `${SK}/content-based.png`,
+  ESP32: `${SK}/esp32.png`,
+  'Deepgram API': `${SK}/deepgram.png`,
+  'Gemini AI': `${SK}/gemini.png`,
+  'Google TTS': `${SK}/googletts.png`,
+  IoT: `${SK}/iot.png`,
+  Tableau: `${SK}/tableau.png`,
+  'Data Visualization': `${SK}/dataviz.png`,
+  'Business Intelligence': `${SK}/businessintelligence.png`,
+  'Sales Analytics': `${SK}/salesanalytics.png`
+};
+
+// From the original portfolio's skills list. Shown only on the Projects page,
+// clearly labelled, and kept out of the resume-aligned skills section.
+export const ALSO_EXPLORED = [
+  { name: 'Next.js', icon: `${SK}/nextjs.svg` },
+  { name: 'Angular', icon: `${SK}/angular.svg` },
+  { name: 'React Native', icon: `${SK}/react-native.svg` },
+  { name: 'Figma', icon: `${SK}/figma.svg` }
+];
+
+// Stack this portfolio itself is built with (footer).
+export const BUILT_WITH = [
+  { name: 'Next.js', icon: `${SK}/nextjs.svg` },
+  { name: 'TypeScript', icon: `${SK}/ts.svg` }
+];
+
 export const EDUCATION = [
   {
     school: 'Amity University Online',

@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { Linkedin, Mail, MapPin, Phone, FileText } from 'react-feather';
 import { Button, Icon } from '@shared-components';
 import { EXPERTISE, PROFILE, RESUME_PATH } from '@utils/data';
@@ -35,6 +36,17 @@ export default function Connect(): JSX.Element {
         }
         lead="Looking for an SEO Specialist who understands both search engines and the technology behind websites? Reach out directly by email, phone or LinkedIn."
         crumbs={[{ name: 'Home', href: '/' }, { name: 'Contact' }]}
+        art={
+          <Image
+            src="/images/vectors/contact.png"
+            alt=""
+            width={640}
+            height={640}
+            sizes="384px"
+            priority
+            className="w-full h-auto"
+          />
+        }
       />
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
         <div className="grid lg:grid-cols-12 gap-10">

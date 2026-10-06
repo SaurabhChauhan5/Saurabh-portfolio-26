@@ -90,14 +90,25 @@ export default function ClientFlow(): JSX.Element {
               Websites I <span className="text-pink">work on</span>
             </h2>
           </div>
-          <Link href="/clients" className="btn-link group">
-            All {ACTIVE_WEBSITES} websites
-            <ArrowRight
-              size={18}
+          <div className="flex items-center gap-5">
+            <img
+              src="/images/vectors/arrows-right.svg"
+              alt=""
               aria-hidden="true"
-              className="transition-transform group-hover:translate-x-1"
+              width={111}
+              height={51}
+              loading="lazy"
+              className="flow-chevrons hidden lg:block w-16 h-auto"
             />
-          </Link>
+            <Link href="/clients" className="btn-link group">
+              All {ACTIVE_WEBSITES} websites
+              <ArrowRight
+                size={18}
+                aria-hidden="true"
+                className="transition-transform group-hover:translate-x-1"
+              />
+            </Link>
+          </div>
         </div>
 
         <div className="flow-viewport">

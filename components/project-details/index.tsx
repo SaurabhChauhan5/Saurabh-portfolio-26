@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ArrowLeft } from 'react-feather';
 import { Button, Reveal } from '@shared-components';
 import { Project } from '@utils/types';
+import TechTag from '../../shared/components/tech-tag';
 
 type Props = {
   project: Project;
@@ -91,9 +92,7 @@ export default function ProjectDetailedPage({ project }: Props): JSX.Element {
             </h2>
             <ul className="mt-5 flex flex-wrap gap-2">
               {project.tags.map((t) => (
-                <li key={t} className="chip chip-lg">
-                  {t}
-                </li>
+                <TechTag key={t} name={t} large />
               ))}
             </ul>
           </Reveal>
@@ -102,8 +101,7 @@ export default function ProjectDetailedPage({ project }: Props): JSX.Element {
         <div className="mt-12">
           <Link
             href="/projects"
-            className="inline-flex items-center gap-2 text-violet hover:text-pink font-medium transition-colors"
-          >
+            className="inline-flex items-center gap-2 text-violet hover:text-pink font-medium transition-colors">
             <ArrowLeft size={18} aria-hidden="true" /> All projects
           </Link>
         </div>

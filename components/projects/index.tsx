@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ProjectCard } from '@shared-components';
-import { PROJECT_CATEGORIES, PROJECTS } from '@utils/data';
+import { ALSO_EXPLORED, PROJECT_CATEGORIES, PROJECTS } from '@utils/data';
 import PageHero from '../../shared/components/page-hero';
 
 const ProjectsPage = (): JSX.Element => {
@@ -47,6 +47,31 @@ const ProjectsPage = (): JSX.Element => {
             </li>
           ))}
         </ul>
+
+        <section aria-labelledby="explored-title" className="mt-16 card p-6 sm:p-8">
+          <h2 id="explored-title" className="text-xl font-bold text-white">
+            Also explored during my studies
+          </h2>
+          <p className="mt-1 text-sm text-violet">
+            Technologies from my original developer portfolio. They are not part of my current SEO
+            skill set or client work.
+          </p>
+          <ul className="mt-5 flex flex-wrap gap-2.5">
+            {ALSO_EXPLORED.map((t) => (
+              <li key={t.name} className="chip chip-lg inline-flex items-center gap-2">
+                <img
+                  src={t.icon}
+                  alt=""
+                  width={18}
+                  height={18}
+                  loading="lazy"
+                  className="w-4 h-4 object-contain"
+                />
+                {t.name}
+              </li>
+            ))}
+          </ul>
+        </section>
       </div>
     </>
   );

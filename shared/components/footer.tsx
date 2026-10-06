@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { NAV_LINKS, PROFILE, RESUME_PATH } from '@utils/data';
+import { BUILT_WITH, NAV_LINKS, PROFILE, RESUME_PATH } from '@utils/data';
 
 export default function Footer(): JSX.Element {
   return (
@@ -24,9 +24,8 @@ export default function Footer(): JSX.Element {
               <a
                 href={RESUME_PATH}
                 target="_blank"
-                rel="noopener"
-                className="hover:text-pink transition-colors"
-              >
+                rel="noopener noreferrer"
+                className="hover:text-pink transition-colors">
                 Resume
               </a>
             </li>
@@ -38,8 +37,7 @@ export default function Footer(): JSX.Element {
             <li>
               <a
                 href={`mailto:${PROFILE.email}`}
-                className="hover:text-pink transition-colors break-words"
-              >
+                className="hover:text-pink transition-colors break-words">
                 {PROFILE.email}
               </a>
             </li>
@@ -53,16 +51,14 @@ export default function Footer(): JSX.Element {
                 href={PROFILE.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-pink transition-colors"
-              >
+                className="hover:text-pink transition-colors">
                 LinkedIn
               </a>
               <a
                 href={PROFILE.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-pink transition-colors"
-              >
+                className="hover:text-pink transition-colors">
                 GitHub
               </a>
             </li>
@@ -70,9 +66,27 @@ export default function Footer(): JSX.Element {
         </div>
       </div>
       <div className="border-t border-violet/10">
-        <p className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5 text-xs text-violet/80">
-          © {new Date().getFullYear()} {PROFILE.name}. All rights reserved.
-        </p>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-wrap items-center justify-between gap-3 text-xs text-violet/80">
+          <p>
+            © {new Date().getFullYear()} {PROFILE.name}. All rights reserved.
+          </p>
+          <p className="inline-flex items-center gap-2">
+            Built with
+            {BUILT_WITH.map((t) => (
+              <span key={t.name} className="inline-flex items-center gap-1.5 text-violet">
+                <img
+                  src={t.icon}
+                  alt=""
+                  width={14}
+                  height={14}
+                  loading="lazy"
+                  className="w-3.5 h-3.5 object-contain"
+                />
+                {t.name}
+              </span>
+            ))}
+          </p>
+        </div>
       </div>
     </footer>
   );

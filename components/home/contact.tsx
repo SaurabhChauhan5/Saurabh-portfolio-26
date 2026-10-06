@@ -17,6 +17,19 @@ export default function Contact(): JSX.Element {
         loading="lazy"
         className="absolute -left-20 -bottom-20 w-2/3 md:w-1/3 opacity-50 pointer-events-none"
       />
+      <span
+        data-parallax="0.1"
+        className="absolute right-0 top-10 w-1/3 md:w-1/5 pointer-events-none"
+        aria-hidden="true">
+        <img
+          src="/images/vectors/heart.svg"
+          alt=""
+          width={663}
+          height={840}
+          loading="lazy"
+          className="w-full opacity-80"
+        />
+      </span>
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <Reveal variant="scale" className="card spotlight contact-card p-8 sm:p-12 text-center">
           <div className="flex items-center justify-center">
