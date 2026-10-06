@@ -36,7 +36,10 @@ export const PROFILE = {
   phone: '+91 8445076426',
   phoneHref: 'tel:+918445076426',
   github: 'https://github.com/SaurabhChauhan5',
-  linkedin: 'https://www.linkedin.com/in/saurabhchauhaan/'
+  linkedin: 'https://www.linkedin.com/in/saurabhchauhaan/',
+  // Professional photo for the About section. Leave empty until the file is in
+  // /public/images (e.g. '/images/saurabh-chauhan.jpg'); nothing renders while empty.
+  photo: ''
 };
 
 export const SEO_DEFAULTS = {

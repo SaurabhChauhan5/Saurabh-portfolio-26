@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { Activity, Award, BookOpen, Briefcase, List, MapPin, Search, Tool } from 'react-feather';
 import { Reveal, SectionHeading } from '@shared-components';
 import { ACTIVE_WEBSITES, AGENCY, PROFILE } from '@utils/data';
@@ -142,7 +143,29 @@ export default function About(): JSX.Element {
             </Reveal>
           </div>
 
-          <div className="lg:col-span-5 lg:sticky lg:top-28">
+          <div className={`lg:col-span-5 ${PROFILE.photo ? '' : 'lg:sticky lg:top-28'}`}>
+            {PROFILE.photo && (
+              <Reveal variant="scale" className="about-photo mb-6">
+                <div className="about-photo-frame">
+                  <Image
+                    src={PROFILE.photo}
+                    alt={`${PROFILE.name}, SEO Specialist`}
+                    fill
+                    sizes="(min-width: 1024px) 420px, 90vw"
+                    className="object-cover object-top"
+                  />
+                </div>
+                <div className="about-photo-badge">
+                  <span className="pulse-dot" aria-hidden="true" />
+                  <span>
+                    <span className="block text-white font-semibold leading-tight">
+                      {PROFILE.name}
+                    </span>
+                    <span className="block text-xs text-violet">{PROFILE.title}</span>
+                  </span>
+                </div>
+              </Reveal>
+            )}
             <Reveal variant="right" className="card spotlight card-glow p-6 sm:p-8">
               <h3 className="text-white font-bold text-lg">How I work with dev teams</h3>
               <p className="mt-1 text-sm text-violet">

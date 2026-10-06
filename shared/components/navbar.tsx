@@ -4,30 +4,21 @@ import { useRouter } from 'next/router';
 import { ArrowUpRight, Download, GitHub, Linkedin, Mail, Menu, Phone, X } from 'react-feather';
 import { NAV_LINKS, PROFILE, RESUME_PATH } from '@utils/data';
 
-// Tracks scroll position for the glass background, the progress bar and the
-// hide-on-scroll-down / show-on-scroll-up behaviour.
+// Tracks scroll position for the glass background and the progress bar.
 function useScrollState(): {
   scrolled: boolean;
-  hidden: boolean;
   progressRef: React.RefObject<HTMLDivElement>;
 } {
   const [scrolled, setScrolled] = useState(false);
-  const [hidden, setHidden] = useState(false);
   const progressRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let frame = 0;
-    let lastY = window.scrollY;
     const update = () => {
       frame = 0;
       const { scrollY } = window;
       const max = document.documentElement.scrollHeight - window.innerHeight;
       setScrolled(scrollY > 40);
-      const delta = scrollY - lastY;
-      if (Math.abs(delta) > 6) {
-        setHidden(delta > 0 && scrollY > 320);
-        lastY = scrollY;
-      }
       if (progressRef.current) {
         progressRef.current.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`;
       }
@@ -45,7 +36,7 @@ function useScrollState(): {
     };
   }, []);
 
-  return { scrolled, hidden, progressRef };
+  return { scrolled, progressRef };
 }
 
 // Highlights the nav item for the section that crosses the line 45% down the
@@ -97,13 +88,12 @@ const Navbar = (): JSX.Element => {
   const router = useRouter();
   const isHome = router.pathname === '/';
   const [open, setOpen] = useState(false);
-  const { scrolled, hidden, progressRef } = useScrollState();
+  const { scrolled, progressRef } = useScrollState();
   const activeSection = useActiveSection(isHome);
   const isActive = (item: (typeof NAV_LINKS)[number]): boolean =>
     item.section
       ? isHome && activeSection === item.section
       : router.pathname === item.href || (item.match || []).includes(router.pathname);
-  const isHidden = hidden && !open;
 
   useEffect(() => {
     const close = () => setOpen(false);
@@ -114,11 +104,6 @@ const Navbar = (): JSX.Element => {
       router.events.off('hashChangeStart', close);
     };
   }, [router.events]);
-
-  // Let sticky elements (e.g. the clients filter bar) follow the header.
-  useEffect(() => {
-    document.documentElement.classList.toggle('nav-hidden', isHidden);
-  }, [isHidden]);
 
   // Lock page scroll and close on Escape while the mobile menu is open.
   useEffect(() => {
@@ -135,7 +120,7 @@ const Navbar = (): JSX.Element => {
 
   return (
     <header
-      className={`site-header fixed top-0 inset-x-0 z-40 ${isHidden ? 'is-hidden' : ''} ${
+      className={`site-header fixed top-0 inset-x-0 z-40 ${
         scrolled || open ? 'nav-glass shadow-2xl' : 'bg-transparent'
       }`}>
       <a href="#main" className="skip-link">
