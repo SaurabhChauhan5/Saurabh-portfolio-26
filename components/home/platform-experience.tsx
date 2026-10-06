@@ -17,8 +17,7 @@ function SiteItem({ site }: { site: ClientSite }): JSX.Element {
           href={site.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-white font-medium hover:text-pink transition-colors"
-        >
+          className="inline-flex items-center gap-1.5 text-white font-medium hover:text-pink transition-colors">
           {site.name}
           <ExternalLink size={14} aria-hidden="true" />
           <span className="sr-only">(opens in a new tab)</span>
@@ -46,7 +45,7 @@ export default function PlatformExperience(): JSX.Element {
               Shopify, WordPress &amp; <span className="text-pink">Wix</span> SEO
             </>
           }
-          lead="Hands-on SEO on real client websites, carried out as part of my role at I Market & Manage (AAA Digital)."
+          lead="Hands-on SEO work on real client websites, carried out as part of my role at I Market & Manage (AAA Digital)."
         />
         <div className="grid lg:grid-cols-3 gap-6">
           {PLATFORM_EXPERIENCE.map((p, i) => (
@@ -54,8 +53,7 @@ export default function PlatformExperience(): JSX.Element {
               as="article"
               key={p.platform}
               delay={i * 120}
-              className="card spotlight p-6 sm:p-7 flex flex-col"
-            >
+              className="card spotlight p-6 sm:p-7 flex flex-col">
               <h3 className="text-xl font-bold text-white">{p.heading}</h3>
               <p className="mt-2 text-sm text-violet leading-relaxed">{p.intro}</p>
               <ul className="mt-4 flex flex-wrap gap-2" aria-label={`${p.platform} SEO work`}>

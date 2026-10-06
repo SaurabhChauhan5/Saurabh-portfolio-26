@@ -13,7 +13,7 @@ import {
 
 export const SITE_URL = 'https://sorab.vercel.app';
 
-// Replace this file in /public with the latest SEO Specialist resume.
+// Copy of SaurabhChauhanResume.pdf (Oct 2026), the source of truth for career facts.
 export const RESUME_PATH = '/Saurabh_Chauhan_Resume.pdf';
 
 export const AGENCY = { name: 'AAA Digital', url: 'https://aaadigital.com.au/' };
@@ -21,13 +21,13 @@ export const AGENCY = { name: 'AAA Digital', url: 'https://aaadigital.com.au/' }
 export const PROFILE = {
   name: 'Saurabh Chauhan',
   title: 'SEO Specialist',
-  positioning: 'SEO Specialist | Technical SEO | Web Performance',
-  focusAreas: ['Technical SEO', 'Local SEO', 'eCommerce SEO', 'Web Performance'],
+  positioning: 'SEO Specialist | Technical SEO',
+  focusAreas: ['Technical SEO', 'Local SEO', 'eCommerce SEO', 'On-Page SEO'],
   summary:
-    'I optimize websites for better crawlability, indexability, search visibility, performance, and organic growth across HTML, WordPress, Shopify, and Wix.',
+    'I improve crawlability, indexability, website structure and organic search performance for Australian businesses across HTML, WordPress, Shopify and Wix.',
   credibility: 'Managing SEO across 24 active Australian business websites',
   differentiator:
-    'SEO Specialist with a Computer Science and Front-End Development background, combining technical SEO expertise with hands-on web development knowledge.',
+    'SEO Specialist with a Computer Science and front-end development background, combining technical SEO expertise with web development knowledge.',
   location: 'Gurugram, Haryana, India',
   locality: 'Gurugram',
   region: 'Haryana',
@@ -40,7 +40,7 @@ export const PROFILE = {
 };
 
 export const SEO_DEFAULTS = {
-  title: 'Saurabh Chauhan | SEO Specialist · Technical SEO & Web Performance',
+  title: 'Saurabh Chauhan | SEO Specialist | Technical SEO',
   description:
     'SEO Specialist in Gurugram, India, managing SEO for 24 active Australian business websites: technical, local and eCommerce SEO across HTML, WordPress, Shopify and Wix.'
 };
@@ -74,16 +74,21 @@ export const STATS = [
   {
     value: 1190,
     suffix: '+',
-    label: 'Indexed Pages Achieved',
-    note: 'from approximately 164 previously'
+    label: 'Indexed Pages on a Client Website',
+    note: 'up from approximately 164'
   },
   {
     value: 4,
     suffix: '',
-    label: 'Web Platforms Worked With',
+    label: 'Website Platforms',
     note: 'HTML • WordPress • Shopify • Wix'
   },
-  { value: 1, suffix: '+', label: 'Year of Professional SEO Experience' }
+  {
+    value: 5,
+    suffix: '',
+    label: 'SEO Areas',
+    note: 'Technical • On-Page • Off-Page • Local • eCommerce'
+  }
 ];
 
 export const ABOUT_AREAS = [
@@ -95,13 +100,14 @@ export const ABOUT_AREAS = [
   'Schema / structured data',
   'Internal linking',
   'Core Web Vitals',
-  'PageSpeed optimization',
+  'PageSpeed Insights',
   'Google Search Console',
   'GA4',
   'SEMrush',
   'Local SEO',
-  'Google Business Profiles',
+  'Google Business Profile (GBP)',
   'Link building / off-page SEO',
+  'Rank Math',
   'WordPress',
   'Shopify',
   'Wix',
@@ -122,35 +128,31 @@ export const EXPERTISE: ExpertiseGroup[] = [
       'Schema Markup',
       'Structured Data',
       'Internal Linking',
-      'Website Architecture',
+      'Website Structure',
       'Core Web Vitals',
-      'PageSpeed Optimization',
-      'Technical Issue Resolution'
+      'PageSpeed Insights'
     ]
   },
   {
     title: 'On-Page SEO',
     icon: 'file',
     items: [
-      'Title Tags',
-      'Meta Descriptions',
-      'Heading Structure',
-      'Semantic HTML',
+      'Metadata (Titles and Descriptions)',
+      'Semantic Structure',
       'Internal Linking',
-      'Content Optimization',
-      'Keyword Optimization',
-      'SEO-friendly Landing Pages'
+      'Structured Data',
+      'SEO-Friendly HTML Landing Pages',
+      'Keyword Visibility'
     ]
   },
   {
     title: 'Local SEO',
     icon: 'pin',
     items: [
-      'Google Business Profiles',
+      'Google Business Profile (GBP)',
       'Local Citations',
       'Business Listings',
-      'Australian Local Directories',
-      'Local Search Optimization'
+      'Major Australian Directories'
     ]
   },
   {
@@ -158,12 +160,12 @@ export const EXPERTISE: ExpertiseGroup[] = [
     icon: 'bag',
     items: [
       'Shopify SEO',
-      'Product/Collection Optimization',
+      'WordPress Customization',
       'Website Structure',
       'Metadata',
       'Internal Linking',
-      'Indexing',
-      'Technical Optimization'
+      'Structured Data',
+      'Indexing'
     ]
   },
   {
@@ -185,8 +187,8 @@ export const EXPERTISE: ExpertiseGroup[] = [
       'GA4',
       'SEMrush',
       'PageSpeed Insights',
-      'Rank Math',
-      'Git/GitHub'
+      'Core Web Vitals',
+      'Rank Math'
     ]
   }
 ];
@@ -241,23 +243,24 @@ export const CASE_STUDIES: CaseStudy[] = [
     title: 'Multi-Platform Technical SEO',
     context: 'Client websites built on HTML, WordPress, Shopify and Wix',
     work: [
-      'Technical SEO audits adapted to the constraints of each platform',
-      'Metadata, website structure and internal linking',
-      'Indexing checks, XML sitemaps and robots.txt',
-      'Schema markup and performance optimization, where the platform allows'
+      'Technical SEO audits',
+      'Crawlability and indexability checks',
+      'XML sitemap and robots.txt review',
+      'Canonical tags and schema/structured data',
+      'Metadata, internal linking and website structure',
+      'Core Web Vitals and PageSpeed performance checks'
     ]
   },
   {
     id: 'local-seo',
     number: '03',
     title: 'Local SEO & Australian Business Optimization',
-    context: 'Australian local and service businesses',
+    context: 'Australian local businesses',
     work: [
-      'Google Business Profile management and optimization',
-      'Local citations and business listings',
-      'Australian business directories',
-      'Local on-page optimization',
-      'Website optimization to support local search visibility'
+      'Google Business Profile optimization',
+      'Local citations',
+      'Business listings and optimization across major Australian directories',
+      'Supporting on-page website improvements'
     ]
   }
 ];
@@ -303,8 +306,7 @@ export const PLATFORM_EXPERIENCE: PlatformExperience[] = [
   {
     platform: 'Shopify',
     heading: 'Shopify & eCommerce SEO',
-    intro:
-      'I have hands-on Shopify/eCommerce SEO experience across active and previous client projects.',
+    intro: 'Shopify and eCommerce SEO across active and previous client projects.',
     sites: [
       { name: 'Deesarina', url: 'https://deesarina.com', status: 'current' },
       { name: 'INCIA Australia', status: 'previous' },
@@ -324,8 +326,7 @@ export const PLATFORM_EXPERIENCE: PlatformExperience[] = [
   {
     platform: 'WordPress',
     heading: 'WordPress SEO',
-    intro:
-      'I have hands-on WordPress SEO experience across client websites, covering the areas below.',
+    intro: 'WordPress SEO across client websites, covering the areas below.',
     sites: [
       { name: 'HSK Blind', url: 'https://hskblind.com.au/', status: 'current' },
       { name: 'SydCity Glass', url: 'https://sydcityglass.com.au/', status: 'current' }
@@ -344,7 +345,7 @@ export const PLATFORM_EXPERIENCE: PlatformExperience[] = [
   {
     platform: 'Wix',
     heading: 'Wix SEO',
-    intro: 'I carry out SEO work on Wix client websites, focused on the areas below.',
+    intro: 'SEO work on Wix client websites, focused on the areas below.',
     sites: [
       { name: 'Ettinka', status: 'previous' },
       { name: 'Maria Projects', status: 'previous' }
@@ -362,17 +363,13 @@ export const EXPERIENCE: Role[] = [
     location: 'Gurugram, Haryana | Remote',
     kind: 'seo',
     responsibilities: [
-      'Manage end-to-end SEO across 24 active Australian business websites.',
-      'Work across HTML, WordPress, Shopify and Wix websites.',
-      'Conduct technical SEO audits covering crawlability, indexability, XML sitemaps, robots.txt, canonical tags, schema markup, Core Web Vitals and PageSpeed performance.',
-      'Build and optimize SEO-friendly HTML landing pages.',
-      'Customize WordPress and Shopify websites for SEO and performance.',
-      'Manage Local SEO and Google Business Profiles.',
-      'Work on local citations and Australian business directories.',
-      'Monitor organic search performance, indexing and keyword visibility using Google Search Console, GA4, SEMrush and PageSpeed Insights.',
-      'Perform on-page and off-page SEO, including link-building activities.',
-      'Guide developers and teammates on technical SEO requirements, implementation priorities and website optimization fixes.',
-      'Use AI-assisted workflows for SEO metadata and repetitive optimization tasks.'
+      'Manage end-to-end technical SEO across 24 active Australian business websites on HTML, WordPress, Shopify and Wix, covering technical audits, on-page optimization, indexing, website structure and organic search performance.',
+      'Increased indexed pages from approximately 164 to 1,190+ for a client website by resolving crawl and indexability issues, optimizing XML sitemaps and internal linking, and implementing technical SEO improvements.',
+      'Conduct technical SEO audits covering XML sitemaps, robots.txt, canonical tags, schema markup, crawlability, indexability, Core Web Vitals and PageSpeed performance.',
+      'Build SEO-friendly HTML landing pages and customize WordPress and Shopify websites for eCommerce SEO, implementing semantic structure, metadata, internal linking, structured data and technical improvements.',
+      'Manage Local SEO and Google Business Profile (GBP) optimization, including local citations and business listings across major Australian directories.',
+      'Perform off-page SEO and link building, including backlink research, competitor backlink analysis, link opportunities and citation building.',
+      'Monitor organic search performance, keyword visibility, indexing and technical health using Google Search Console, GA4, SEMrush and PageSpeed Insights, and guide developers and teammates on implementation priorities and website optimization fixes.'
     ]
   },
   {
@@ -384,11 +381,8 @@ export const EXPERIENCE: Role[] = [
     location: 'Gurugram, Haryana',
     kind: 'seo',
     responsibilities: [
-      'Managed Local SEO and business listings.',
-      'Updated websites and product listings.',
-      'Conducted competitor research.',
-      'Supported digital marketing and performance reporting.',
-      'Worked with website/content teams on optimization requirements.'
+      'Managed social media accounts, content planning, posting and marketing creatives while maintaining brand consistency across client businesses.',
+      'Managed Local SEO, business listings, website updates, competitor research, product listings and digital performance reporting for client businesses.'
     ]
   },
   {
@@ -399,10 +393,7 @@ export const EXPERIENCE: Role[] = [
     location: 'Remote',
     kind: 'development',
     responsibilities: [
-      'Developed responsive interfaces using HTML, CSS and JavaScript.',
-      'Integrated REST APIs.',
-      'Collaborated with backend developers.',
-      'Used Git for version control.'
+      'Developed responsive web interfaces using HTML, CSS and JavaScript, integrated REST APIs, collaborated with backend developers and used Git for version control.'
     ]
   }
 ];
@@ -422,7 +413,7 @@ export const PROJECTS: Project[] = [
     name: 'AMart Store',
     tagline: 'Full-stack grocery web application',
     description:
-      'Full-stack grocery web application with responsive UI, REST APIs, JWT authentication, MongoDB and Cloudinary media integration.',
+      'Built a full-stack grocery web application with responsive UI, REST APIs, JWT authentication, MongoDB and Cloudinary media integration.',
     highlights: [
       'Complete product management — add, retrieve and update products.',
       'Cloudinary for image hosting and JWT for user authentication.',
@@ -503,7 +494,7 @@ export const PROJECTS: Project[] = [
     name: 'Data-Driven Deals: Unveiling Sales Insights with Tableau',
     tagline: 'Business intelligence dashboard',
     description:
-      'Designed a Tableau dashboard to analyze sales trends for business goods. The dashboard clearly presents the business’s sales trends, helping users understand the data and make informed decisions. It could help increase revenue by at least 7% in the next quarter.',
+      'Designed a Tableau dashboard to analyze sales trends for business goods. The dashboard presents the business’s sales trends clearly, helping users understand the data and make informed decisions.',
     highlights: [
       'Interactive Tableau dashboard of business sales trends.',
       'Visualizations designed to support data-informed decisions.'
@@ -523,7 +514,7 @@ export const PROJECTS: Project[] = [
     name: 'FlashQuiz',
     tagline: 'Interactive quiz application',
     description:
-      'FlashQuiz is a simple, responsive web-based quiz application built with HTML, CSS and JavaScript. It features trivia questions from an API, an interactive UI and a real-time scoring system.',
+      'FlashQuiz is a simple, responsive web-based quiz application built with HTML, CSS and JavaScript. It retrieves trivia questions from an API and provides an interactive interface with real-time scoring.',
     highlights: [
       'Trivia questions fetched from an API.',
       'Interactive, responsive UI.',
@@ -540,53 +531,73 @@ export const PROJECTS: Project[] = [
   }
 ];
 
-// Everything from the original portfolio is kept, plus the stack from the SEO brief.
+// Mirrors the Technical Skills section of the resume. Project-specific tools
+// (Streamlit, Tableau, ESP32 and so on) appear only on their project cards.
 export const TECH_FOUNDATION: { group: string; items: { name: string; icon?: string }[] }[] = [
   {
-    group: 'Web & Front-End',
+    group: 'Technical SEO',
+    items: [
+      { name: 'Google Search Console' },
+      { name: 'Google Business Profile (GBP)' },
+      { name: 'GA4' },
+      { name: 'SEMrush' },
+      { name: 'PageSpeed Insights' },
+      { name: 'Core Web Vitals' },
+      { name: 'Schema Markup' },
+      { name: 'XML Sitemaps' },
+      { name: 'robots.txt' },
+      { name: 'Canonical Tags' },
+      { name: 'Crawlability' },
+      { name: 'Indexability' },
+      { name: 'Structured Data' },
+      { name: 'Local SEO' },
+      { name: 'On-Page SEO' },
+      { name: 'Off-Page SEO' },
+      { name: 'Link Building' },
+      { name: 'Rank Math' }
+    ]
+  },
+  {
+    group: 'Web Technologies & CMS',
     items: [
       { name: 'HTML5', icon: '/images/skills/html.svg' },
       { name: 'CSS3', icon: '/images/skills/css.svg' },
-      { name: 'JavaScript ES6+', icon: '/images/skills/js.svg' },
+      { name: 'JavaScript (ES6+)', icon: '/images/skills/js.svg' },
+      { name: 'WordPress' },
+      { name: 'Shopify' },
+      { name: 'Wix' },
       { name: 'ReactJS', icon: '/images/skills/react.svg' },
-      { name: 'Next.js', icon: '/images/skills/nextjs.svg' },
-      { name: 'Angular', icon: '/images/skills/angular.svg' },
-      { name: 'React Native', icon: '/images/skills/react-native.svg' },
       { name: 'Bootstrap' }
     ]
   },
   {
-    group: 'Back-End & Data',
+    group: 'Development & Data',
     items: [
+      { name: 'Git', icon: '/images/skills/git.svg' },
+      { name: 'GitHub', icon: '/images/icons/github.svg' },
       { name: 'Node.js', icon: '/images/skills/node.svg' },
       { name: 'Express.js', icon: '/images/skills/express.svg' },
       { name: 'MongoDB', icon: '/images/skills/mongodb.svg' },
       { name: 'SQL', icon: '/images/skills/mysql.png' },
-      { name: 'Python', icon: '/images/skills/python.svg' },
-      { name: 'Cloudinary', icon: '/images/skills/cloudinary.svg' },
-      { name: 'Streamlit', icon: '/images/skills/streamlit.svg' },
-      { name: 'Tableau', icon: '/images/skills/tableau.png' }
-    ]
-  },
-  {
-    group: 'CMS, Tools & Hardware',
-    items: [
-      { name: 'WordPress' },
-      { name: 'Shopify' },
-      { name: 'Git', icon: '/images/skills/git.svg' },
-      { name: 'GitHub', icon: '/images/icons/github.svg' },
-      { name: 'Figma', icon: '/images/skills/figma.svg' },
-      { name: 'ESP32 / IoT', icon: '/images/skills/esp32.png' }
+      { name: 'Python', icon: '/images/skills/python.svg' }
     ]
   }
 ];
 
-export const EDUCATION = {
-  school: 'Graphic Era Hill University',
-  degree: 'B.Tech in Computer Science & Engineering',
-  dates: 'Jul 2021 – Jun 2025',
-  grade: 'CGPA: 7.6/10'
-};
+export const EDUCATION = [
+  {
+    school: 'Amity University Online',
+    degree: 'MBA, Dual Specialization in Business Analytics & Digital Marketing',
+    dates: 'Jul 2026 – Present',
+    grade: 'Online, pursuing'
+  },
+  {
+    school: 'Graphic Era Hill University',
+    degree: 'B.Tech in Computer Science & Engineering',
+    dates: 'Jul 2021 – Jun 2025',
+    grade: 'CGPA: 7.63/10'
+  }
+];
 
 // ---------- Client websites (from the client master register, Oct 2026) ----------
 // Only business name, website and suburb/city are published — no phone numbers or notes.

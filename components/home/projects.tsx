@@ -13,25 +13,23 @@ export default function Projects(): JSX.Element {
         <SectionHeading
           index="08"
           id="projects-title"
-          eyebrow="Development background"
+          eyebrow="Academic / personal projects"
           title={
             <>
               Development <span className="text-pink">Projects</span>
             </>
           }
-          lead="Projects from my web development background — the hands-on experience behind my technical SEO work."
+          lead="Academic and personal projects from my web development background. They are not client work, but they are why I understand how websites are built."
         />
         {featured && (
           <Reveal
             as="article"
-            className="card spotlight card-glow overflow-hidden grid md:grid-cols-2 items-center"
-          >
+            className="card spotlight card-glow overflow-hidden grid md:grid-cols-2 items-center">
             <Link
               href={`/project/${featured.slug}`}
               className="block overflow-hidden group"
               tabIndex={-1}
-              aria-hidden="true"
-            >
+              aria-hidden="true">
               <Image
                 src={featured.img}
                 alt={featured.imgAlt}
@@ -48,8 +46,7 @@ export default function Projects(): JSX.Element {
               <h3 className="mt-2 text-2xl font-extrabold text-white">
                 <Link
                   href={`/project/${featured.slug}`}
-                  className="hover:text-pink transition-colors"
-                >
+                  className="hover:text-pink transition-colors">
                   {featured.name}
                 </Link>
               </h3>

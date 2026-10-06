@@ -8,8 +8,7 @@ export default function Platforms(): JSX.Element {
       <span
         data-parallax="0.15"
         className="absolute -right-24 top-10 w-64 md:w-80 pointer-events-none"
-        aria-hidden="true"
-      >
+        aria-hidden="true">
         <img
           src="/images/vectors/circle-spin.svg"
           alt=""
@@ -29,7 +28,7 @@ export default function Platforms(): JSX.Element {
               Platforms I <span className="text-pink">work with</span>
             </>
           }
-          lead="Each platform has its own SEO constraints, so I adapt the technical approach to fit."
+          lead="I adapt the SEO approach to the technical constraints and structure of each platform."
         />
         <ul className="border-t border-violet/20">
           {PLATFORMS.map((p, i) => (

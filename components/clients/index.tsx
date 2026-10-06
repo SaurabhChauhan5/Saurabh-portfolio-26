@@ -183,7 +183,7 @@ export default function ClientsPage(): JSX.Element {
             Websites I <span className="shimmer-text">Work On</span>
           </>
         }
-        lead="Australian local-business websites I manage SEO for at AAA Digital, grouped by industry. Filter by industry, or click any card to visit the live site."
+        lead="Hands-on SEO work across Australian business websites and multiple industries, grouped by industry. Filter by industry, or click any card to visit the live site."
         crumbs={[{ name: 'Home', href: '/' }, { name: 'Clients' }]}>
         <dl className="client-stats">
           {heroStats.map((st) => (
@@ -332,8 +332,9 @@ export default function ClientsPage(): JSX.Element {
         )}
 
         <p className="text-xs text-violet/80">
-          Screenshots of each homepage captured in October 2026. All businesses belong to their
-          respective owners and are listed only to show the websites I have done SEO work on.
+          Client names and sensitive analytics data are withheld where required. Work shown reflects
+          responsibilities performed as part of my role at AAA Digital. Homepage screenshots were
+          captured in October 2026; all businesses belong to their respective owners.
         </p>
       </div>
     </>

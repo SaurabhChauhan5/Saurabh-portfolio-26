@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useRef } from 'react';
-import { ArrowRight, ExternalLink } from 'react-feather';
+import { useEffect, useRef, useState } from 'react';
+import { ArrowLeft, ArrowRight, ExternalLink } from 'react-feather';
 import { CLIENT_GROUPS, ACTIVE_WEBSITES } from '@utils/data';
 
 // One site from each industry first, then the rest, so the strip shows variety.
@@ -13,68 +13,39 @@ const ordered = (() => {
   return [...firsts, ...rest].slice(0, 10);
 })();
 
-// "Pinned horizontal" section from aaadigital.com.au: on desktop the section
-// pins while vertical scrolling slides the client screenshots sideways. On
-// small screens (or reduced motion) it is a normal swipeable row.
+// Horizontal strip of client screenshots. It scrolls sideways on its own
+// (swipe, trackpad or the arrow buttons) rather than pinning the page, so it
+// never adds empty scroll height to the home page.
 export default function ClientFlow(): JSX.Element {
-  const outerRef = useRef<HTMLElement>(null);
-  const trackRef = useRef<HTMLUListElement>(null);
+  const viewportRef = useRef<HTMLDivElement>(null);
+  const [edge, setEdge] = useState({ start: true, end: false });
 
   useEffect(() => {
-    const outer = outerRef.current;
-    const track = trackRef.current;
-    if (!outer || !track) return undefined;
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const wide = window.matchMedia('(min-width: 1024px)');
-    let distance = 0;
-    let frame = 0;
-
-    const paint = () => {
-      frame = 0;
-      if (!outer.classList.contains('is-pinned')) return;
-      const r = outer.getBoundingClientRect();
-      const span = Math.max(1, r.height - window.innerHeight);
-      const p = Math.min(Math.max(-r.top / span, 0), 1);
-      track.style.transform = `translate3d(${(-p * distance).toFixed(1)}px, 0, 0)`;
-      outer.style.setProperty('--flow-p', p.toFixed(3));
-      document.documentElement.classList.toggle(
-        'flow-active',
-        r.top <= 1 && r.bottom >= window.innerHeight - 1
-      );
-    };
-    const size = () => {
-      const pin = wide.matches && !reduce;
-      outer.classList.toggle('is-pinned', pin);
-      if (!pin) {
-        outer.style.height = '';
-        track.style.transform = '';
-        return;
-      }
-      const viewport = track.parentElement as HTMLElement;
-      const pad = parseFloat(getComputedStyle(viewport).paddingLeft) || 0;
-      distance = Math.max(0, track.scrollWidth - (viewport.clientWidth - pad * 2));
-      outer.style.height = `${Math.round(distance + window.innerHeight)}px`;
-      paint();
-    };
-    const onScroll = () => {
-      if (!frame) frame = requestAnimationFrame(paint);
-    };
-
-    size();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', size);
-    window.addEventListener('load', size);
+    const vp = viewportRef.current;
+    if (!vp) return undefined;
+    const update = () =>
+      setEdge({
+        start: vp.scrollLeft <= 4,
+        end: vp.scrollLeft + vp.clientWidth >= vp.scrollWidth - 4
+      });
+    update();
+    vp.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
     return () => {
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', size);
-      window.removeEventListener('load', size);
-      cancelAnimationFrame(frame);
-      document.documentElement.classList.remove('flow-active');
+      vp.removeEventListener('scroll', update);
+      window.removeEventListener('resize', update);
     };
   }, []);
 
+  const step = (dir: 1 | -1) => {
+    const vp = viewportRef.current;
+    if (!vp) return;
+    const card = vp.querySelector('.flow-card') as HTMLElement | null;
+    vp.scrollBy({ left: dir * ((card?.offsetWidth || 400) + 24), behavior: 'smooth' });
+  };
+
   return (
-    <section ref={outerRef} aria-labelledby="flow-title" className="client-flow relative">
+    <section aria-labelledby="flow-title" className="client-flow relative">
       <div className="flow-panel">
         <div className="max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-end justify-between gap-6 mb-8 lg:mb-12">
           <div>
@@ -86,31 +57,47 @@ export default function ClientFlow(): JSX.Element {
             </div>
             <h2
               id="flow-title"
-              className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight"
-            >
+              className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight">
               Websites I <span className="text-pink">work on</span>
             </h2>
           </div>
-          <Link href="/clients" className="btn-link group">
-            All {ACTIVE_WEBSITES} websites
-            <ArrowRight
-              size={18}
-              aria-hidden="true"
-              className="transition-transform group-hover:translate-x-1"
-            />
-          </Link>
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              className="flow-arrow"
+              onClick={() => step(-1)}
+              disabled={edge.start}
+              aria-label="Previous websites">
+              <ArrowLeft size={18} aria-hidden="true" />
+            </button>
+            <button
+              type="button"
+              className="flow-arrow"
+              onClick={() => step(1)}
+              disabled={edge.end}
+              aria-label="Next websites">
+              <ArrowRight size={18} aria-hidden="true" />
+            </button>
+            <Link href="/clients" className="btn-link group ml-2">
+              All {ACTIVE_WEBSITES} websites
+              <ArrowRight
+                size={18}
+                aria-hidden="true"
+                className="transition-transform group-hover:translate-x-1"
+              />
+            </Link>
+          </div>
         </div>
 
-        <div className="flow-viewport">
-          <ul ref={trackRef} className="flow-track">
+        <div ref={viewportRef} className="flow-viewport">
+          <ul className="flow-track">
             {ordered.map((site) => (
               <li key={site.domain} className="flow-card">
                 <a
                   href={`https://${site.domain}/`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="card spotlight group block overflow-hidden h-full"
-                >
+                  className="card spotlight group block overflow-hidden h-full">
                   <div className="browser-bar" aria-hidden="true">
                     <span className="browser-dot" />
                     <span className="browser-dot" />
@@ -146,8 +133,7 @@ export default function ClientFlow(): JSX.Element {
             <li className="flow-card flow-card-end">
               <Link
                 href="/clients"
-                className="card card-glow h-full flex flex-col items-center justify-center text-center p-8 group"
-              >
+                className="card card-glow h-full flex flex-col items-center justify-center text-center p-8 group">
                 <span className="text-5xl font-extrabold gradient-text">{ACTIVE_WEBSITES}</span>
                 <span className="mt-2 text-white font-semibold">active websites</span>
                 <span className="mt-6 btn-link">
@@ -161,12 +147,6 @@ export default function ClientFlow(): JSX.Element {
               </Link>
             </li>
           </ul>
-        </div>
-        <div
-          className="flow-progress max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-8"
-          aria-hidden="true"
-        >
-          <span className="flow-progress-bar" />
         </div>
       </div>
     </section>

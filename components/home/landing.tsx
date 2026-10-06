@@ -1,7 +1,7 @@
 import { Button } from '@shared-components';
+import { PROFILE, RESUME_PATH } from '@utils/data';
 import RotatingWord from '../../shared/components/rotating-word';
 import KeywordGlobe from '../../shared/components/keyword-globe';
-import { PROFILE, RESUME_PATH } from '@utils/data';
 
 const AUDIT_CHECKS = [
   'Crawlability',
@@ -18,8 +18,7 @@ function AuditCard(): JSX.Element {
   return (
     <div
       className="audit-card card card-glow relative w-full max-w-md mx-auto shadow-violet-5xl"
-      aria-hidden="true"
-    >
+      aria-hidden="true">
       <div className="flex items-center gap-2 px-5 py-3 border-b border-violet/20">
         <span className="w-3 h-3 rounded-full bg-pink/80" />
         <span className="w-3 h-3 rounded-full bg-violet/60" />
@@ -33,8 +32,7 @@ function AuditCard(): JSX.Element {
             <li
               key={item}
               className="audit-row flex items-center justify-between text-sm text-white"
-              style={{ animationDelay: `${500 + i * 140}ms` }}
-            >
+              style={{ animationDelay: `${500 + i * 140}ms` }}>
               <span className="flex items-center gap-3">
                 <span className="audit-check">
                   <svg viewBox="0 0 16 16" width="12" height="12" fill="none">
@@ -83,8 +81,7 @@ function AuditBadge(): JSX.Element {
           <li
             key={item}
             className="audit-row flex items-center gap-2 text-xs text-white"
-            style={{ animationDelay: `${500 + i * 120}ms` }}
-          >
+            style={{ animationDelay: `${500 + i * 120}ms` }}>
             <span className="audit-check audit-check-sm">
               <svg viewBox="0 0 16 16" width="9" height="9" fill="none">
                 <path
@@ -162,17 +159,17 @@ function ToolsMarquee(): JSX.Element {
   return (
     <div
       className="marquee relative mt-14 lg:mt-20 border-y border-violet/10 py-4"
-      aria-label="Tools and platforms I use"
-    >
+      aria-label="Tools and platforms I use">
       <ul className="marquee-track">
-        {[...TOOLS, ...TOOLS].map((tool, i) => (
-          // The second copy only exists for the seamless loop.
-          // eslint-disable-next-line react/no-array-index-key
+        {/* The second copy only exists for the seamless loop. */}
+        {[
+          ...TOOLS.map((t) => ({ tool: t, copy: false })),
+          ...TOOLS.map((t) => ({ tool: t, copy: true }))
+        ].map(({ tool, copy }) => (
           <li
-            key={`${tool}-${i}`}
-            aria-hidden={i >= TOOLS.length ? 'true' : undefined}
-            className="marquee-item"
-          >
+            key={`${tool}${copy ? '-copy' : ''}`}
+            aria-hidden={copy ? 'true' : undefined}
+            className="marquee-item">
             <span className="marquee-dot" aria-hidden="true" />
             {tool}
           </li>
@@ -190,8 +187,7 @@ export default function Landing(): JSX.Element {
       <span
         data-parallax="-0.12"
         className="absolute right-0 bottom-0 w-2/3 md:w-1/2 lg:w-1/3 pointer-events-none"
-        aria-hidden="true"
-      >
+        aria-hidden="true">
         <img
           src="/images/vectors/ellipse.svg"
           alt=""
@@ -203,8 +199,7 @@ export default function Landing(): JSX.Element {
       <span
         data-parallax="0.2"
         className="absolute left-1/2 top-28 hidden sm:block pointer-events-none"
-        aria-hidden="true"
-      >
+        aria-hidden="true">
         <img
           src="/images/vectors/triangle.svg"
           alt=""
@@ -227,11 +222,13 @@ export default function Landing(): JSX.Element {
             <span className="block text-5xl sm:text-6xl xl:text-7xl tracking-tight">
               SEO <span className="shimmer-text">Specialist</span>
             </span>
+            <span className="block mt-3 text-xl sm:text-2xl text-violet font-semibold tracking-wide">
+              Technical SEO
+            </span>
           </h1>
           <p
             className="mt-5 text-2xl sm:text-3xl font-semibold text-white hero-anim"
-            style={{ animationDelay: '80ms' }}
-          >
+            style={{ animationDelay: '80ms' }}>
             I make websites{' '}
             <RotatingWord
               className="serif-accent text-pink"
@@ -241,8 +238,7 @@ export default function Landing(): JSX.Element {
           <ul
             className="mt-6 flex flex-wrap gap-2 hero-anim"
             style={{ animationDelay: '120ms' }}
-            aria-label="Focus areas"
-          >
+            aria-label="Focus areas">
             {PROFILE.focusAreas.map((area) => (
               <li key={area} className="focus-pill">
                 {area}
@@ -251,14 +247,12 @@ export default function Landing(): JSX.Element {
           </ul>
           <p
             className="mt-6 text-base sm:text-lg text-violet leading-relaxed max-w-xl hero-anim"
-            style={{ animationDelay: '200ms' }}
-          >
+            style={{ animationDelay: '200ms' }}>
             {PROFILE.summary}
           </p>
           <p
             className="mt-4 flex items-start gap-3 text-sm sm:text-base text-white max-w-xl hero-anim"
-            style={{ animationDelay: '260ms' }}
-          >
+            style={{ animationDelay: '260ms' }}>
             <span
               className="mt-2 w-2 h-2 rounded-full bg-violet flex-shrink-0"
               aria-hidden="true"
@@ -271,8 +265,7 @@ export default function Landing(): JSX.Element {
 
           <div
             className="mt-8 flex flex-wrap items-center gap-4 hero-anim"
-            style={{ animationDelay: '340ms' }}
-          >
+            style={{ animationDelay: '340ms' }}>
             <Button href="/case-studies">View SEO Work</Button>
             <Button href="/connect" type="outlined">
               Contact Me
@@ -280,9 +273,8 @@ export default function Landing(): JSX.Element {
             <a
               href={RESUME_PATH}
               target="_blank"
-              rel="noopener"
-              className="link-underline text-violet hover:text-pink transition-colors px-1 py-2"
-            >
+              rel="noopener noreferrer"
+              className="link-underline text-violet hover:text-pink transition-colors px-1 py-2">
               Download Resume
             </a>
           </div>

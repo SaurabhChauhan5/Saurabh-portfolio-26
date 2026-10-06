@@ -32,8 +32,8 @@ export default function About(): JSX.Element {
           <Reveal className="lg:col-span-7 space-y-5 text-violet text-base sm:text-lg leading-relaxed">
             <p>
               I am an <strong className="text-white font-semibold">SEO Specialist</strong> with
-              hands-on experience managing technical, on-page, local, eCommerce, and off-page SEO
-              across Australian business websites.
+              experience in technical, on-page, off-page, local and eCommerce SEO for Australian
+              businesses across HTML, WordPress, Shopify and Wix.
             </p>
             <p>
               I currently manage SEO across{' '}
@@ -45,8 +45,7 @@ export default function About(): JSX.Element {
                 href="https://aaadigital.com.au/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-pink hover:underline"
-              >
+                className="text-pink hover:underline">
                 AAA Digital
               </a>
               ), Australia.
@@ -55,7 +54,8 @@ export default function About(): JSX.Element {
               I also have a B.Tech in Computer Science &amp; Engineering and a front-end development
               background, so I understand HTML, CSS, JavaScript, website structure, performance and
               developer implementation requirements. That lets me communicate with developers on
-              their terms and guide technical SEO fixes through to implementation.
+              their terms and guide technical SEO fixes through to implementation. I am currently
+              pursuing an MBA in Business Analytics &amp; Digital Marketing.
             </p>
             <div className="pt-2">
               <h3 className="text-white font-semibold text-base mb-3">My work spans</h3>

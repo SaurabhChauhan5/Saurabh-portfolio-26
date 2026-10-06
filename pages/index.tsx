@@ -1,7 +1,7 @@
 import { Seo } from '@shared-components';
+import { EDUCATION, EXPERIENCE, EXPERTISE, PROFILE, SEO_DEFAULTS, SITE_URL } from '@utils/data';
 import { PERSON_ID, WEBSITE_ID, OG_IMAGE } from '../shared/components/seo';
 import HomePage from '../components/home/index';
-import { EDUCATION, EXPERIENCE, EXPERTISE, PROFILE, SEO_DEFAULTS, SITE_URL } from '@utils/data';
 
 const knowsAbout = Array.from(new Set(EXPERTISE.flatMap((g) => [g.title, ...g.items.slice(0, 4)])));
 
@@ -28,7 +28,7 @@ const personLd = {
   },
   alumniOf: {
     '@type': 'CollegeOrUniversity',
-    name: EDUCATION.school
+    name: EDUCATION[EDUCATION.length - 1].school
   },
   hasOccupation: {
     '@type': 'Occupation',

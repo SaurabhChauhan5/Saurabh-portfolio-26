@@ -16,8 +16,7 @@ function WorkList({ items }: { items: string[] }): JSX.Element {
             width="14"
             height="14"
             fill="none"
-            aria-hidden="true"
-          >
+            aria-hidden="true">
             <path
               d="M3 8.5l3 3 7-7"
               stroke="currentColor"
@@ -102,8 +101,7 @@ function TeaserCard({ cs, delay }: { cs: CaseStudy; delay: number }): JSX.Elemen
     <Reveal
       as="article"
       delay={delay}
-      className="card spotlight hover-lift p-6 sm:p-8 flex flex-col"
-    >
+      className="card spotlight hover-lift p-6 sm:p-8 flex flex-col">
       <CaseHeader cs={cs} />
       <ul className="mt-5 space-y-2 flex-1">
         {cs.work.slice(0, 3).map((w) => (
@@ -140,8 +138,7 @@ export default function CaseStudies({ preview = false }: Props): JSX.Element {
       id="case-studies"
       aria-labelledby={preview ? 'case-studies-title' : undefined}
       aria-label={preview ? undefined : 'Case studies'}
-      className={`section ${preview ? 'bg-navy/60' : 'pt-4'}`}
-    >
+      className={`section ${preview ? 'bg-navy/60' : 'pt-4'}`}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {preview && (
           <SectionHeading
@@ -153,7 +150,7 @@ export default function CaseStudies({ preview = false }: Props): JSX.Element {
                 SEO <span className="text-pink">Case Studies</span>
               </>
             }
-            lead="Real work from client projects, described as it happened and without inflated numbers."
+            lead="Technical, multi-platform and local SEO work from real client projects, presented factually and without inflated claims."
           />
         )}
 
@@ -161,8 +158,7 @@ export default function CaseStudies({ preview = false }: Props): JSX.Element {
         <Reveal
           as="article"
           className="card spotlight card-glow overflow-hidden grid lg:grid-cols-2"
-          id={indexation.id}
-        >
+          id={indexation.id}>
           <div className="p-6 sm:p-10">
             <CaseHeader cs={indexation} />
             <h4 className="mt-6 text-white font-semibold">Problem</h4>
@@ -188,8 +184,7 @@ export default function CaseStudies({ preview = false }: Props): JSX.Element {
               as="article"
               variant="left"
               className="card spotlight p-6 sm:p-8"
-              id={multiPlatform.id}
-            >
+              id={multiPlatform.id}>
               <CaseHeader cs={multiPlatform} />
               <div className="mt-6">
                 <WorkList items={multiPlatform.work} />
@@ -213,8 +208,7 @@ export default function CaseStudies({ preview = false }: Props): JSX.Element {
               variant="right"
               delay={120}
               className="card spotlight p-6 sm:p-8"
-              id={local.id}
-            >
+              id={local.id}>
               <CaseHeader cs={local} />
               <div className="mt-6">
                 <WorkList items={local.work} />

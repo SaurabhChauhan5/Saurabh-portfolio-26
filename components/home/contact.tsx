@@ -7,8 +7,7 @@ export default function Contact(): JSX.Element {
     <section
       id="contact"
       aria-labelledby="contact-title"
-      className="section relative overflow-hidden"
-    >
+      className="section relative overflow-hidden">
       <img
         src="/images/vectors/ellipse.svg"
         alt=""
@@ -27,13 +26,12 @@ export default function Contact(): JSX.Element {
           </div>
           <h2
             id="contact-title"
-            className="mt-4 text-3xl sm:text-5xl font-extrabold text-white leading-tight"
-          >
+            className="mt-4 text-3xl sm:text-5xl font-extrabold text-white leading-tight">
             Let&apos;s Improve Your <span className="gradient-text">Search Performance</span>
           </h2>
           <p className="mt-5 text-base sm:text-lg text-violet max-w-2xl mx-auto leading-relaxed">
             Looking for an SEO Specialist who understands both search engines and the technology
-            behind the website? Let&apos;s connect.
+            behind websites? Let&apos;s connect.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Button href={`mailto:${PROFILE.email}`}>

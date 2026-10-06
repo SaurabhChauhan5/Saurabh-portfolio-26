@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ProjectCard } from '@shared-components';
-import PageHero from '../../shared/components/page-hero';
 import { PROJECT_CATEGORIES, PROJECTS } from '@utils/data';
+import PageHero from '../../shared/components/page-hero';
 
 const ProjectsPage = (): JSX.Element => {
   const [active, setActive] = useState('all');
@@ -10,21 +10,20 @@ const ProjectsPage = (): JSX.Element => {
   return (
     <>
       <PageHero
-        eyebrow="Development background"
+        eyebrow="Academic / personal projects"
         title={
           <>
             Development <span className="shimmer-text">Projects</span>
           </>
         }
-        lead="Full-stack, front-end, data and IoT projects built during my Computer Science degree and front-end development work. They form the technical foundation behind my SEO practice."
+        lead="Academic and personal projects built during my Computer Science degree and front-end development work. They are not professional client work; they form the technical foundation behind my SEO practice."
         crumbs={[{ name: 'Home', href: '/' }, { name: 'Projects' }]}
       />
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
         <div
           role="group"
           aria-label="Filter projects by category"
-          className="flex flex-wrap gap-3 mb-10"
-        >
+          className="flex flex-wrap gap-3 mb-10">
           {PROJECT_CATEGORIES.map((c) => (
             <button
               key={c.value}
@@ -35,8 +34,7 @@ const ProjectsPage = (): JSX.Element => {
                 active === c.value
                   ? 'bg-pink text-blue border-pink'
                   : 'text-white border-violet/40 hover:border-pink hover:text-pink'
-              }`}
-            >
+              }`}>
               {c.label}
             </button>
           ))}

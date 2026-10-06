@@ -9,8 +9,8 @@ export default function Foundation(): JSX.Element {
           index="09"
           id="foundation-title"
           eyebrow="Technical foundation"
-          title="Technical knowledge that supports my SEO work."
-          lead="The development stack I learned and built with — the reason I understand how websites are built and can work through SEO fixes with developers."
+          title="Technical skills that support my SEO work."
+          lead="My development background helps me understand how websites are built and collaborate effectively with developers on technical SEO fixes."
         />
         <div className="grid lg:grid-cols-12 gap-6">
           <div className="lg:col-span-8 grid sm:grid-cols-2 gap-6">
@@ -18,10 +18,7 @@ export default function Foundation(): JSX.Element {
               <Reveal
                 key={g.group}
                 delay={gi * 100}
-                className={`card spotlight p-6 ${
-                  gi === TECH_FOUNDATION.length - 1 ? 'sm:col-span-2' : ''
-                }`}
-              >
+                className={`card spotlight p-6 ${gi === 0 ? 'sm:col-span-2' : ''}`}>
                 <h3 className="text-white font-bold">{g.group}</h3>
                 <ul className="mt-4 flex flex-wrap gap-2.5">
                   {g.items.map((t) => (
@@ -47,16 +44,21 @@ export default function Foundation(): JSX.Element {
             <Reveal variant="right" as="article" className="card spotlight p-6 sm:p-8 h-full">
               <h2
                 id="education-title"
-                className="text-xs font-semibold tracking-widest text-pink uppercase"
-              >
+                className="text-xs font-semibold tracking-widest text-pink uppercase">
                 Education
               </h2>
-              <h3 className="mt-3 text-xl font-bold text-white">{EDUCATION.school}</h3>
-              <p className="mt-1 text-violet">{EDUCATION.degree}</p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                <span className="chip">{EDUCATION.dates}</span>
-                <span className="chip">{EDUCATION.grade}</span>
-              </div>
+              <ul className="mt-2 divide-y divide-violet/20">
+                {EDUCATION.map((ed) => (
+                  <li key={ed.school} className="py-5 last:pb-0">
+                    <h3 className="text-xl font-bold text-white">{ed.school}</h3>
+                    <p className="mt-1 text-violet">{ed.degree}</p>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      <span className="chip">{ed.dates}</span>
+                      <span className="chip">{ed.grade}</span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </Reveal>
           </div>
         </div>

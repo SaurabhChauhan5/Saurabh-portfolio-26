@@ -1,11 +1,11 @@
 import { Button, Seo } from '@shared-components';
+import { CASE_STUDIES, PROFILE, SITE_URL } from '@utils/data';
 import { breadcrumbLd, PERSON_ID } from '../shared/components/seo';
 import PageHero from '../shared/components/page-hero';
 import CaseStudies from '../components/home/case-studies';
 import Clients from '../components/home/clients';
 import PlatformExperience from '../components/home/platform-experience';
 import Contact from '../components/home/contact';
-import { CASE_STUDIES, PROFILE, SITE_URL } from '@utils/data';
 
 const itemListLd = {
   '@context': 'https://schema.org',
@@ -45,7 +45,7 @@ const CaseStudiesPage = (): JSX.Element => (
           SEO <span className="shimmer-text">Case Studies</span>
         </>
       }
-      lead="Technical, multi-platform and local SEO work from client projects, described as it happened and without inflated numbers."
+      lead="Technical, multi-platform and local SEO work from real client projects, presented factually and without inflated claims."
       crumbs={[{ name: 'Home', href: '/' }, { name: 'Case Studies' }]}>
       <Button href="/connect">Discuss your website</Button>
     </PageHero>

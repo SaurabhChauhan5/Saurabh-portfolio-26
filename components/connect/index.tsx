@@ -1,7 +1,7 @@
-import PageHero from '../../shared/components/page-hero';
 import { Linkedin, Mail, MapPin, Phone, FileText } from 'react-feather';
 import { Button, Icon } from '@shared-components';
 import { EXPERTISE, PROFILE, RESUME_PATH } from '@utils/data';
+import PageHero from '../../shared/components/page-hero';
 
 const ITEMS = [
   { icon: Mail, label: 'Email', value: PROFILE.email, href: `mailto:${PROFILE.email}` },
@@ -33,7 +33,7 @@ export default function Connect(): JSX.Element {
             Let&apos;s Improve Your <span className="shimmer-text">Search Performance</span>
           </>
         }
-        lead="Looking for an SEO Specialist who understands both search engines and the technology behind the website? Reach out directly by email, phone or LinkedIn."
+        lead="Looking for an SEO Specialist who understands both search engines and the technology behind websites? Reach out directly by email, phone or LinkedIn."
         crumbs={[{ name: 'Home', href: '/' }, { name: 'Contact' }]}
       />
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
@@ -59,8 +59,7 @@ export default function Connect(): JSX.Element {
                       <a
                         href={href}
                         className="card spotlight p-4 flex items-center gap-4 hover-lift"
-                        {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                      >
+                        {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>
                         {content}
                       </a>
                     ) : (

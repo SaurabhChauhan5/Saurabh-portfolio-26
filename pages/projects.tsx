@@ -1,7 +1,7 @@
 import { Seo } from '@shared-components';
+import { PROFILE, PROJECTS, SITE_URL } from '@utils/data';
 import { breadcrumbLd, PERSON_ID } from '../shared/components/seo';
 import ProjectsPage from '../components/projects/index';
-import { PROFILE, PROJECTS, SITE_URL } from '@utils/data';
 
 const itemListLd = {
   '@context': 'https://schema.org',
@@ -20,7 +20,7 @@ const Projects = (): JSX.Element => (
   <>
     <Seo
       title={`Development Projects | ${PROFILE.name}, SEO Specialist`}
-      description="Full-stack, front-end, data and IoT projects by Saurabh Chauhan — the web development background behind his technical SEO work."
+      description="Academic and personal development projects by Saurabh Chauhan, including AMart Store, a full-stack grocery app: the web development background behind his technical SEO work."
       path="/projects"
       jsonLd={[
         breadcrumbLd([
