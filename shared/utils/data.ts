@@ -655,12 +655,6 @@ export const ALSO_EXPLORED = [
   { name: 'Figma', icon: `${SK}/figma.svg` }
 ];
 
-// Stack this portfolio itself is built with (footer).
-export const BUILT_WITH = [
-  { name: 'Next.js', icon: `${SK}/nextjs.svg` },
-  { name: 'TypeScript', icon: `${SK}/ts.svg` }
-];
-
 export const EDUCATION = [
   {
     school: 'Amity University Online',

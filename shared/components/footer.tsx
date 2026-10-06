@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { ArrowUp, Clock, GitHub, Linkedin, Mail, MapPin, Phone } from 'react-feather';
-import { BUILT_WITH, EXPERTISE, NAV_LINKS, PROFILE, RESUME_PATH } from '@utils/data';
+import { EXPERTISE, NAV_LINKS, PROFILE, RESUME_PATH } from '@utils/data';
 import Icon from './icon';
 
 const SOCIAL = [
@@ -150,22 +150,6 @@ export default function Footer(): JSX.Element {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-wrap items-center justify-between gap-4 text-xs text-violet/80">
           <p>
             © {new Date().getFullYear()} {PROFILE.name}. All rights reserved.
-          </p>
-          <p className="inline-flex items-center gap-2">
-            Built with
-            {BUILT_WITH.map((t) => (
-              <span key={t.name} className="inline-flex items-center gap-1.5 text-violet">
-                <img
-                  src={t.icon}
-                  alt=""
-                  width={14}
-                  height={14}
-                  loading="lazy"
-                  className="w-3.5 h-3.5 object-contain"
-                />
-                {t.name}
-              </span>
-            ))}
           </p>
           <button type="button" onClick={toTop} className="back-to-top">
             Back to top
