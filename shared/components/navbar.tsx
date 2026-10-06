@@ -35,37 +35,39 @@ function useScrollState(): { scrolled: boolean; progressRef: React.RefObject<HTM
   return { scrolled, progressRef };
 }
 
-// Highlights the nav item for the section currently in the middle of the viewport.
+// Highlights the nav item for the section that crosses the line 45% down the
+// viewport. Recomputed on every scroll frame so fast (smooth) scrolling can't
+// leave a stale highlight behind.
 function useActiveSection(enabled: boolean): string {
   const [active, setActive] = useState('');
   useEffect(() => {
-    if (!enabled || !('IntersectionObserver' in window)) return undefined;
-    // Watch every home section so the highlight clears in sections without a menu item.
+    if (!enabled) return undefined;
     const navIds = NAV_LINKS.filter((l) => l.section).map((l) => l.section);
-    const sections = Array.from(document.querySelectorAll('main section'));
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (window.scrollY < window.innerHeight * 0.5) {
-          setActive('');
-          return;
-        }
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActive(navIds.includes(entry.target.id) ? entry.target.id : '');
-          }
-        });
-      },
-      { rootMargin: '-45% 0px -50% 0px' }
-    );
-    sections.forEach((s) => observer.observe(s));
-    // Clear the highlight when scrolling back up to the hero.
-    const onScroll = () => {
-      if (window.scrollY < window.innerHeight * 0.5) setActive('');
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      if (window.scrollY < window.innerHeight * 0.5) {
+        setActive('');
+        return;
+      }
+      const line = window.innerHeight * 0.45;
+      const sections = Array.from(document.querySelectorAll<HTMLElement>('main section[id]'));
+      const current = sections.find((el) => {
+        const r = el.getBoundingClientRect();
+        return r.top <= line && r.bottom > line;
+      });
+      setActive(current && navIds.includes(current.id) ? current.id : '');
     };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
     window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
     return () => {
-      observer.disconnect();
       window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      if (frame) cancelAnimationFrame(frame);
     };
   }, [enabled]);
   return active;
@@ -96,8 +98,7 @@ const Navbar = (): JSX.Element => {
     <header
       className={`fixed top-0 inset-x-0 z-40 transition-all duration-300 ${
         scrolled || open ? 'nav-glass shadow-2xl' : 'bg-transparent'
-      }`}
-    >
+      }`}>
       <a href="#main" className="skip-link">
         Skip to content
       </a>
@@ -105,8 +106,7 @@ const Navbar = (): JSX.Element => {
         aria-label="Main"
         className={`max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between transition-all duration-300 ${
           scrolled ? 'h-16' : 'h-20'
-        }`}
-      >
+        }`}>
         <Link href="/" className="flex items-center gap-3 group">
           <img
             src="/images/logo-light.svg"
@@ -124,15 +124,15 @@ const Navbar = (): JSX.Element => {
         <ul className="hidden lg:flex items-center gap-1">
           {NAV_LINKS.map((item) => {
             const active = isActive(item);
+            const currentType = item.section ? 'location' : 'page';
             return (
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  aria-current={active ? (item.section ? 'location' : 'page') : undefined}
+                  aria-current={active ? currentType : undefined}
                   className={`nav-link px-3 py-2 text-sm font-medium transition-colors ${
                     active ? 'text-pink is-active' : 'text-white hover:text-violet'
-                  }`}
-                >
+                  }`}>
                   {item.title}
                 </Link>
               </li>
@@ -142,9 +142,8 @@ const Navbar = (): JSX.Element => {
             <a
               href={RESUME_PATH}
               target="_blank"
-              rel="noopener"
-              className="inline-flex px-4 py-2 rounded-md border-2 border-pink text-pink text-sm font-medium hover:bg-pink hover:text-blue transition-colors"
-            >
+              rel="noopener noreferrer"
+              className="inline-flex px-4 py-2 rounded-md border-2 border-pink text-pink text-sm font-medium hover:bg-pink hover:text-blue transition-colors">
               Resume
             </a>
           </li>
@@ -156,16 +155,14 @@ const Navbar = (): JSX.Element => {
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label={open ? 'Close menu' : 'Open menu'}
-          onClick={() => setOpen(!open)}
-        >
+          onClick={() => setOpen(!open)}>
           {open ? <X size={24} aria-hidden="true" /> : <Menu size={24} aria-hidden="true" />}
         </button>
       </nav>
 
       <div
         id="mobile-menu"
-        className={`lg:hidden ${open ? 'block' : 'hidden'} border-t border-violet/20`}
-      >
+        className={`lg:hidden ${open ? 'block' : 'hidden'} border-t border-violet/20`}>
         <ul className="max-w-6xl mx-auto px-4 sm:px-6 py-4 space-y-1">
           {NAV_LINKS.map((item) => (
             <li key={item.href}>
@@ -175,8 +172,7 @@ const Navbar = (): JSX.Element => {
                 aria-current={isActive(item) ? 'page' : undefined}
                 className={`block py-3 text-lg font-medium border-b border-violet/10 ${
                   isActive(item) ? 'text-pink' : 'text-white'
-                }`}
-              >
+                }`}>
                 {item.title}
               </Link>
             </li>
@@ -185,9 +181,8 @@ const Navbar = (): JSX.Element => {
             <a
               href={RESUME_PATH}
               target="_blank"
-              rel="noopener"
-              className="inline-flex px-5 py-3 rounded-md bg-pink text-blue font-medium"
-            >
+              rel="noopener noreferrer"
+              className="inline-flex px-5 py-3 rounded-md bg-pink text-blue font-medium">
               Download Resume
             </a>
           </li>

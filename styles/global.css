@@ -236,6 +236,27 @@ a {
   -webkit-mask-image: radial-gradient(ellipse 60% 55% at 62% 50%, #000 60%, transparent 100%);
   mask-image: radial-gradient(ellipse 60% 55% at 62% 50%, #000 60%, transparent 100%);
 }
+.logo-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.85rem 0.45rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  color: #fffffe;
+  background: rgba(184, 193, 236, 0.06);
+  border: 1px solid rgba(184, 193, 236, 0.18);
+  transition: border-color 0.2s, transform 0.2s;
+}
+.logo-pill:hover {
+  border-color: rgba(238, 187, 195, 0.6);
+  transform: translateY(-2px);
+}
+.logo-pill img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
 .edu-logo {
   flex-shrink: 0;
   display: inline-flex;
