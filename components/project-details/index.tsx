@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft } from 'react-feather';
+import { ArrowLeft, CheckCircle } from 'react-feather';
 import { Button, Reveal } from '@shared-components';
 import { Project } from '@utils/types';
 import TechTag from '../../shared/components/tech-tag';
@@ -75,9 +75,10 @@ export default function ProjectDetailedPage({ project }: Props): JSX.Element {
             {project.highlights.length > 0 && (
               <ul className="mt-6 space-y-2">
                 {project.highlights.map((h) => (
-                  <li key={h} className="flex items-start gap-2 text-violet">
-                    <span
-                      className="mt-2 w-1.5 h-1.5 rounded-full bg-pink flex-shrink-0"
+                  <li key={h} className="flex items-start gap-2.5 text-violet">
+                    <CheckCircle
+                      size={16}
+                      className="mt-1 flex-shrink-0 text-pink"
                       aria-hidden="true"
                     />
                     {h}

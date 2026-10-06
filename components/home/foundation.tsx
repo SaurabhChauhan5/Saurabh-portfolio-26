@@ -1,5 +1,6 @@
 import { Icon, Reveal, SectionHeading } from '@shared-components';
 import { EDUCATION, TECH_FOUNDATION } from '@utils/data';
+import { Award, Calendar } from 'react-feather';
 
 export default function Foundation(): JSX.Element {
   return (
@@ -59,8 +60,14 @@ export default function Foundation(): JSX.Element {
                     </div>
                     <p className="mt-2 text-violet">{ed.degree}</p>
                     <div className="mt-3 flex flex-wrap gap-2">
-                      <span className="chip">{ed.dates}</span>
-                      <span className="chip">{ed.grade}</span>
+                      <span className="chip inline-flex items-center gap-1.5">
+                        <Calendar size={12} className="text-pink" aria-hidden="true" />
+                        {ed.dates}
+                      </span>
+                      <span className="chip inline-flex items-center gap-1.5">
+                        <Award size={12} className="text-pink" aria-hidden="true" />
+                        {ed.grade}
+                      </span>
                     </div>
                   </li>
                 ))}

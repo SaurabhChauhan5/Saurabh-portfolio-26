@@ -2,6 +2,7 @@ import { Button } from '@shared-components';
 import { PROFILE, RESUME_PATH } from '@utils/data';
 import RotatingWord from '../../shared/components/rotating-word';
 import KeywordGlobe from '../../shared/components/keyword-globe';
+import TopicIcon from '../../shared/components/topic-icon';
 
 const AUDIT_CHECKS = [
   'Crawlability',
@@ -192,7 +193,10 @@ export default function Landing(): JSX.Element {
             style={{ animationDelay: '120ms' }}
             aria-label="Focus areas">
             {PROFILE.focusAreas.map((area) => (
-              <li key={area}>{area}</li>
+              <li key={area} className="inline-flex items-center gap-1">
+                <TopicIcon label={area} size={13} />
+                {area}
+              </li>
             ))}
           </ul>
           <p

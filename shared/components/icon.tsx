@@ -1,6 +1,7 @@
 /* eslint-disable react/require-default-props */
 import {
   Activity,
+  Archive,
   BarChart2,
   Bookmark,
   Code,
@@ -46,7 +47,8 @@ const ICONS = {
   crawl: Search,
   index: Database,
   code: Code,
-  external: ExternalLink
+  external: ExternalLink,
+  archive: Archive
 };
 
 type Props = { name: string; size?: number; className?: string };

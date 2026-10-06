@@ -2,6 +2,7 @@ import { CSSProperties } from 'react';
 import { Icon, Reveal, SectionHeading } from '@shared-components';
 import { EXPERTISE } from '@utils/data';
 import StickyStack from '../../shared/components/sticky-stack';
+import TopicIcon from '../../shared/components/topic-icon';
 
 export default function Expertise(): JSX.Element {
   return (
@@ -24,6 +25,7 @@ export default function Expertise(): JSX.Element {
               {EXPERTISE.map((g, i) => (
                 <li key={g.title} className="flex items-center gap-3">
                   <span className="hover-list-num">{String(i + 1).padStart(2, '0')}</span>
+                  <Icon name={g.icon} size={15} className="text-pink" />
                   {g.title}
                 </li>
               ))}
@@ -52,7 +54,8 @@ export default function Expertise(): JSX.Element {
               </div>
               <ul className="mt-6 flex flex-wrap gap-2">
                 {group.items.map((item) => (
-                  <li key={item} className="chip chip-lg">
+                  <li key={item} className="chip chip-lg inline-flex items-center gap-2">
+                    <TopicIcon label={item} />
                     {item}
                   </li>
                 ))}

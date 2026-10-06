@@ -2,6 +2,7 @@ import { ExternalLink } from 'react-feather';
 import { Reveal, SectionHeading } from '@shared-components';
 import { PLATFORM_EXPERIENCE } from '@utils/data';
 import { ClientSite } from '@utils/types';
+import TopicIcon from '../../shared/components/topic-icon';
 
 const STATUS_LABEL: Record<ClientSite['status'], string> = {
   current: 'Current',
@@ -54,11 +55,17 @@ export default function PlatformExperience(): JSX.Element {
               key={p.platform}
               delay={i * 120}
               className="card spotlight p-6 sm:p-7 flex flex-col">
-              <h3 className="text-xl font-bold text-white">{p.heading}</h3>
+              <h3 className="text-xl font-bold text-white flex items-center gap-3">
+                <span className="brand-tile">
+                  <TopicIcon label={p.platform} size={22} />
+                </span>
+                {p.heading}
+              </h3>
               <p className="mt-2 text-sm text-violet leading-relaxed">{p.intro}</p>
               <ul className="mt-4 flex flex-wrap gap-2" aria-label={`${p.platform} SEO work`}>
                 {p.work.map((w) => (
-                  <li key={w} className="chip">
+                  <li key={w} className="chip inline-flex items-center gap-1.5">
+                    <TopicIcon label={w} size={13} />
                     {w}
                   </li>
                 ))}

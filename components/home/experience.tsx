@@ -1,6 +1,6 @@
 /* eslint-disable react/require-default-props */
 import Link from 'next/link';
-import { ArrowRight } from 'react-feather';
+import { ArrowRight, Calendar, MapPin } from 'react-feather';
 import { Reveal, SectionHeading } from '@shared-components';
 import { EXPERIENCE } from '@utils/data';
 import { Role } from '@utils/types';
@@ -47,10 +47,14 @@ function RoleCard({ role, preview }: { role: Role; preview: boolean }): JSX.Elem
             </p>
           </div>
           <div className="text-sm text-violet sm:text-right">
-            <p className="font-semibold text-white">
+            <p className="font-semibold text-white inline-flex items-center gap-1.5">
+              <Calendar size={14} className="text-pink" aria-hidden="true" />
               <time>{role.startDate}</time> – {current ? 'Present' : <time>{role.endDate}</time>}
             </p>
-            <p>{role.location}</p>
+            <p className="flex items-center gap-1.5 sm:justify-end">
+              <MapPin size={14} className="text-pink" aria-hidden="true" />
+              {role.location}
+            </p>
           </div>
         </div>
         {!isSeo && <p className="mt-3 chip inline-block">Development background</p>}

@@ -154,16 +154,19 @@ export default function ClientsPage(): JSX.Element {
     {
       id: 'all',
       label: 'All',
+      icon: 'grid',
       count: withSites + PREVIOUS_CLIENT_SITES.length + PREVIOUS_CLIENTS_NO_WEBSITE.length
     },
     ...CLIENT_GROUPS.map((g) => ({
       id: slugify(g.industry),
       label: g.industry,
+      icon: g.icon,
       count: g.sites.length
     })),
     {
       id: PREVIOUS,
       label: 'Previous clients',
+      icon: 'archive',
       count: PREVIOUS_CLIENT_SITES.length + PREVIOUS_CLIENTS_NO_WEBSITE.length
     }
   ];
@@ -218,6 +221,7 @@ export default function ClientsPage(): JSX.Element {
                 select(f.id);
               }}
               className={`jump-chip flex-shrink-0 ${filter === f.id ? 'is-active' : ''}`}>
+              <Icon name={f.icon} size={14} />
               {f.label}
               <span className="jump-count">{f.count}</span>
             </button>

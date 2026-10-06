@@ -4,27 +4,14 @@ import { ArrowRight } from 'react-feather';
 import { CountUp, Reveal, SectionHeading } from '@shared-components';
 import { CASE_STUDIES, INDEXATION, MULTI_PLATFORM_EXAMPLES } from '@utils/data';
 import { CaseStudy } from '@utils/types';
+import TopicIcon from '../../shared/components/topic-icon';
 
 function WorkList({ items }: { items: string[] }): JSX.Element {
   return (
     <ul className="space-y-2">
       {items.map((w) => (
         <li key={w} className="flex items-start gap-3 text-sm sm:text-base text-violet">
-          <svg
-            className="mt-1 flex-shrink-0 text-pink"
-            viewBox="0 0 16 16"
-            width="14"
-            height="14"
-            fill="none"
-            aria-hidden="true">
-            <path
-              d="M3 8.5l3 3 7-7"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          <TopicIcon label={w} size={16} className="mt-1" />
           {w}
         </li>
       ))}
@@ -106,10 +93,7 @@ function TeaserCard({ cs, delay }: { cs: CaseStudy; delay: number }): JSX.Elemen
       <ul className="mt-5 space-y-2 flex-1">
         {cs.work.slice(0, 3).map((w) => (
           <li key={w} className="flex items-start gap-2 text-sm text-violet">
-            <span
-              className="mt-2 w-1.5 h-1.5 rounded-full bg-pink flex-shrink-0"
-              aria-hidden="true"
-            />
+            <TopicIcon label={w} size={14} className="mt-0.5" />
             {w}
           </li>
         ))}

@@ -1,6 +1,7 @@
 import { ArrowRight } from 'react-feather';
 import { Reveal, SectionHeading } from '@shared-components';
 import { PLATFORMS } from '@utils/data';
+import TopicIcon from '../../shared/components/topic-icon';
 
 export default function Platforms(): JSX.Element {
   return (
@@ -35,8 +36,8 @@ export default function Platforms(): JSX.Element {
             <Reveal as="li" key={p.name} delay={i * 90} className="hover-list-row">
               <span className="hover-list-num">{String(i + 1).padStart(2, '0')}</span>
               <h3 className="text-2xl sm:text-3xl font-bold text-white flex items-center gap-4">
-                <span className="platform-badge platform-badge-sm" aria-hidden="true">
-                  {p.short}
+                <span className="brand-tile brand-tile-lg" aria-hidden="true">
+                  <TopicIcon label={p.name} size={28} />
                 </span>
                 {p.name}
               </h3>
