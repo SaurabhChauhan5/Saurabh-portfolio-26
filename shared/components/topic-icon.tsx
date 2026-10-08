@@ -51,6 +51,7 @@ const BRANDS: [RegExp, string][] = [
 ];
 
 const TOPICS: [RegExp, typeof Search][] = [
+  [/custom-built/i, Code],
   [/schema/i, Share2],
   [/social|media|creative/i, MessageCircle],
   [/content planning/i, Calendar],

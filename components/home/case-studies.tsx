@@ -194,7 +194,23 @@ export default function CaseStudies({ preview = false }: Props): JSX.Element {
                         <span>
                           <span className="block text-white font-semibold">{ex.platform}</span>
                           <span className="block mt-0.5 text-sm text-violet leading-snug">
-                            {ex.sites.join(' · ')}
+                            {ex.sites.map((st, k) => (
+                              <span key={st.name}>
+                                {k > 0 && <span aria-hidden="true"> · </span>}
+                                {st.url ? (
+                                  <a
+                                    href={st.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-violet underline decoration-violet/40 underline-offset-2 hover:text-pink hover:decoration-pink transition-colors">
+                                    {st.name}
+                                    <span className="sr-only"> (opens in a new tab)</span>
+                                  </a>
+                                ) : (
+                                  st.name
+                                )}
+                              </span>
+                            ))}
                           </span>
                         </span>
                       </li>

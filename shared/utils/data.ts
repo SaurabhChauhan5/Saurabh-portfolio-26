@@ -271,29 +271,46 @@ export const CASE_STUDIES: CaseStudy[] = [
   }
 ];
 
-export const MULTI_PLATFORM_EXAMPLES = [
+// Names link to the live sites (domains from the client master register).
+const u = (domain: string) => `https://${domain}/`;
+
+export const MULTI_PLATFORM_EXAMPLES: {
+  platform: string;
+  sites: { name: string; url?: string }[];
+}[] = [
   {
     platform: 'Shopify',
-    sites: ['Magic Sports', 'Deesarina', 'INCIA Australia', 'D’Olive Australia']
+    sites: [
+      { name: 'Magic Sports', url: u('magicsports.com.au') },
+      { name: 'Deesarina', url: 'https://deesarina.com' },
+      { name: 'INCIA Australia' },
+      { name: 'D’Olive Australia' }
+    ]
   },
-  { platform: 'Wix', sites: ['Ettinka', 'Maria Projects'] },
+  {
+    platform: 'Wix',
+    sites: [{ name: 'Ettinka', url: u('ettinka.com.au') }, { name: 'Maria Projects' }]
+  },
   {
     platform: 'WordPress',
     sites: [
-      'HSK Blind',
-      'SydCity Glass',
-      'Five Star Car Detailing',
-      'Brisbane City Glass',
-      'Other WordPress client websites'
+      { name: 'HSK Blind', url: u('hskblind.com.au') },
+      { name: 'SydCity Glass', url: u('sydcityglass.com.au') },
+      { name: 'Five Star Car Detailing', url: u('fivestarcardetailing.com.au') },
+      { name: 'Brisbane City Glass', url: u('brisbanecityglass.com.au') },
+      { name: 'Other WordPress client websites' }
     ]
   },
   {
-    platform: 'HTML',
+    platform: 'Custom-built',
     sites: [
-      'SEO-friendly custom landing pages',
-      'Custom-built sites such as State to State Removals and Olympus Glass'
+      { name: 'State to State Removals', url: u('statetostateremovals.com.au') },
+      { name: 'Olympus Glass', url: u('olympusglass.com.au') },
+      { name: 'ARS Roofing Services', url: u('arsroofingservices.com.au') },
+      { name: 'Other custom-built client websites' }
     ]
-  }
+  },
+  { platform: 'HTML', sites: [{ name: 'SEO-friendly custom landing pages' }] }
 ];
 
 // From the client master register (Oct 2026): 24 active websites = 23 client
@@ -329,7 +346,7 @@ export const PLATFORM_EXPERIENCE: PlatformExperience[] = [
     heading: 'Shopify & eCommerce SEO',
     intro: 'Shopify and eCommerce SEO across active and previous client projects.',
     sites: [
-      { name: 'Magic Sports', url: 'https://magicsports.com.au/', status: 'current' },
+      { name: 'Magic Sports', url: u('magicsports.com.au'), status: 'current' },
       { name: 'Deesarina', url: 'https://deesarina.com', status: 'current' },
       { name: 'INCIA Australia', status: 'previous' },
       { name: 'D’Olive Australia', status: 'previous' }
@@ -346,22 +363,30 @@ export const PLATFORM_EXPERIENCE: PlatformExperience[] = [
     ]
   },
   {
+    platform: 'Wix',
+    heading: 'Wix SEO',
+    intro: 'SEO work on Wix client websites, focused on the areas below.',
+    sites: [
+      { name: 'Ettinka', url: u('ettinka.com.au'), status: 'previous' },
+      { name: 'Maria Projects', status: 'previous' }
+    ],
+    work: ['SEO optimization', 'Website structure', 'Metadata', 'On-page improvements']
+  },
+  {
     platform: 'WordPress',
     heading: 'WordPress SEO',
-    intro: 'WordPress SEO across client websites, covering the areas below.',
+    intro:
+      'WordPress SEO across client websites, including sites that combine WordPress with custom pages.',
     sites: [
-      { name: 'HSK Blind', url: 'https://hskblind.com.au/', status: 'current' },
-      { name: 'SydCity Glass', url: 'https://sydcityglass.com.au/', status: 'current' },
-      {
-        name: 'Five Star Car Detailing',
-        url: 'https://fivestarcardetailing.com.au/',
-        status: 'current'
-      },
-      {
-        name: 'Brisbane City Glass',
-        url: 'https://brisbanecityglass.com.au/',
-        status: 'current'
-      }
+      { name: 'HSK Blind', url: u('hskblind.com.au'), status: 'current' },
+      { name: 'SydCity Glass', url: u('sydcityglass.com.au'), status: 'current' },
+      { name: 'Five Star Car Detailing', url: u('fivestarcardetailing.com.au'), status: 'current' },
+      { name: 'Brisbane City Glass', url: u('brisbanecityglass.com.au'), status: 'current' },
+      { name: 'Mighty Glass', url: u('mightyglass.com.au'), status: 'current' },
+      { name: 'Alpha Glazier', url: u('alphaglazier.com.au'), status: 'current' },
+      { name: 'Glass Squad', url: u('glasssquad.com.au'), status: 'current' },
+      { name: 'Easy Choice Electrical', url: u('easychoiceelectrical.com.au'), status: 'current' },
+      { name: 'GoStruction', url: u('gostruction.com.au'), status: 'current' }
     ],
     othersNote: 'Other WordPress client websites',
     work: [
@@ -375,14 +400,39 @@ export const PLATFORM_EXPERIENCE: PlatformExperience[] = [
     ]
   },
   {
-    platform: 'Wix',
-    heading: 'Wix SEO',
-    intro: 'SEO work on Wix client websites, focused on the areas below.',
+    platform: 'Custom-built',
+    heading: 'Custom-built website SEO',
+    intro: 'SEO on custom-coded client websites, where fixes go straight into the HTML.',
     sites: [
-      { name: 'Ettinka', status: 'previous' },
-      { name: 'Maria Projects', status: 'previous' }
+      { name: 'State to State Removals', url: u('statetostateremovals.com.au'), status: 'current' },
+      { name: 'Olympus Glass', url: u('olympusglass.com.au'), status: 'current' },
+      {
+        name: 'Alpha Emergency Glass Repairs',
+        url: u('alphaemergencyglassrepairs.com.au'),
+        status: 'current'
+      },
+      {
+        name: 'Fixit Emergency Glass Repairs',
+        url: u('fixitemergencyglassrepairs.com.au'),
+        status: 'current'
+      },
+      { name: 'ARS Roofing Services', url: u('arsroofingservices.com.au'), status: 'current' },
+      { name: 'Campsie Removals', url: u('campsieremovals.com.au'), status: 'current' },
+      { name: 'Blacktown Removals', url: u('blacktownremovals.com.au'), status: 'current' },
+      { name: 'Casula Movers', url: u('casulamovers.com.au'), status: 'current' },
+      { name: 'Parramatta Removals', url: u('parramattaremovals.com.au'), status: 'current' },
+      { name: 'Auburn Removals', url: u('auburnremovals.com.au'), status: 'current' },
+      { name: 'Desi Removals', url: u('desiremovals.com.au'), status: 'current' }
     ],
-    work: ['SEO optimization', 'Website structure', 'Metadata', 'On-page improvements']
+    work: [
+      'Technical SEO',
+      'SEO-friendly HTML landing pages',
+      'Metadata',
+      'Semantic structure',
+      'Internal linking',
+      'Structured data',
+      'Indexing'
+    ]
   }
 ];
 

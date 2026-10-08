@@ -4,31 +4,25 @@ import { PLATFORM_EXPERIENCE } from '@utils/data';
 import { ClientSite } from '@utils/types';
 import TopicIcon from '../../shared/components/topic-icon';
 
-const STATUS_LABEL: Record<ClientSite['status'], string> = {
-  current: 'Current',
-  previous: 'Previous',
-  example: 'Client'
-};
-
-function SiteItem({ site }: { site: ClientSite }): JSX.Element {
+function SiteChip({ site }: { site: ClientSite }): JSX.Element {
+  const prev = site.status === 'previous';
+  const cls = `site-chip ${prev ? 'is-previous' : ''}`;
+  const label = prev ? <span className="sr-only"> (previous client)</span> : null;
   return (
-    <li className="flex items-center justify-between gap-3 py-2.5 border-b border-violet/10 last:border-0">
+    <li>
       {site.url ? (
-        <a
-          href={site.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-white font-medium hover:text-pink transition-colors">
+        <a href={site.url} target="_blank" rel="noopener noreferrer" className={cls}>
           {site.name}
-          <ExternalLink size={14} aria-hidden="true" />
-          <span className="sr-only">(opens in a new tab)</span>
+          <ExternalLink size={12} aria-hidden="true" />
+          {label}
+          <span className="sr-only"> (opens in a new tab)</span>
         </a>
       ) : (
-        <span className="text-white font-medium">{site.name}</span>
+        <span className={cls}>
+          {site.name}
+          {label}
+        </span>
       )}
-      <span className={`status-pill ${site.status === 'current' ? 'status-current' : ''}`}>
-        {STATUS_LABEL[site.status]}
-      </span>
     </li>
   );
 }
@@ -43,48 +37,51 @@ export default function PlatformExperience(): JSX.Element {
           eyebrow="Platform experience"
           title={
             <>
-              Shopify, WordPress &amp; <span className="text-pink">Wix</span> SEO
+              Shopify, WordPress, Wix &amp; <span className="text-pink">Custom-built</span> SEO
             </>
           }
           lead="Hands-on SEO work on real client websites, carried out as part of my role at I Market & Manage (AAA Digital)."
         />
-        <div className="grid lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 gap-6">
           {PLATFORM_EXPERIENCE.map((p, i) => (
             <Reveal
               as="article"
               key={p.platform}
               delay={i * 120}
-              className="card spotlight p-6 sm:p-7 flex flex-col">
-              <h3 className="text-xl font-bold text-white flex items-center gap-3">
-                <span className="brand-tile">
-                  <TopicIcon label={p.platform} size={22} />
+              className="card spotlight p-5 sm:p-6 flex flex-col">
+              <h3 className="text-lg font-bold text-white flex items-center gap-3">
+                <span className="brand-tile brand-tile-sm">
+                  <TopicIcon label={p.platform} size={18} />
                 </span>
                 {p.heading}
               </h3>
               <p className="mt-2 text-sm text-violet leading-relaxed">{p.intro}</p>
-              <ul className="mt-4 flex flex-wrap gap-2" aria-label={`${p.platform} SEO work`}>
-                {p.work.map((w) => (
-                  <li key={w} className="chip inline-flex items-center gap-1.5">
-                    <TopicIcon label={w} size={13} />
+              <ul
+                className="mt-4 flex flex-wrap gap-x-3 gap-y-1.5"
+                aria-label={`${p.platform} SEO work`}>
+                {p.work.slice(0, 4).map((w) => (
+                  <li key={w} className="inline-flex items-center gap-1.5 text-xs text-violet">
+                    <TopicIcon label={w} size={12} />
                     {w}
                   </li>
                 ))}
               </ul>
-              <h4 className="mt-6 mb-1 text-sm font-semibold text-pink uppercase tracking-wider">
-                Websites
-              </h4>
-              <ul className="flex-1">
+              <ul
+                className="mt-5 pt-4 border-t border-violet/10 flex flex-wrap gap-2"
+                aria-label={`${p.platform} websites`}>
                 {p.sites.map((s) => (
-                  <SiteItem key={s.name} site={s} />
+                  <SiteChip key={s.name} site={s} />
                 ))}
-                {p.othersNote && <li className="py-2.5 text-sm text-violet">+ {p.othersNote}</li>}
+                {p.othersNote && (
+                  <li className="self-center text-xs text-violet">+ {p.othersNote}</li>
+                )}
               </ul>
             </Reveal>
           ))}
         </div>
         <Reveal as="p" className="mt-6 text-xs text-violet/80">
-          Client businesses belong to their respective owners. Names are listed only to show the
-          platforms and sites I have done SEO work on.
+          Dashed names are previous clients. Client businesses belong to their respective owners;
+          names are listed only to show the platforms and sites I have done SEO work on.
         </Reveal>
       </div>
     </section>
