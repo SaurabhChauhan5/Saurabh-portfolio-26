@@ -247,7 +247,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     id: 'multi-platform',
     number: '02',
     title: 'Multi-Platform Technical SEO',
-    context: 'Client websites built on HTML, WordPress, Shopify and Wix',
+    context: 'Client websites built on HTML/custom code, WordPress, Shopify and Wix',
     work: [
       'Technical SEO audits',
       'Crawlability and indexability checks',
@@ -307,15 +307,15 @@ export const MULTI_PLATFORM_EXAMPLES: {
     ]
   },
   {
-    platform: 'Custom-built',
+    platform: 'HTML & Custom-built',
     sites: [
+      { name: 'SEO-friendly HTML landing pages' },
       { name: 'State to State Removals', url: u('statetostateremovals.com.au') },
       { name: 'Olympus Glass', url: u('olympusglass.com.au') },
       { name: 'ARS Roofing Services', url: u('arsroofingservices.com.au') },
       { name: 'Other custom-built client websites' }
     ]
-  },
-  { platform: 'HTML', sites: [{ name: 'SEO-friendly custom landing pages' }] }
+  }
 ];
 
 // From the client master register plus the user's list of past websites (Oct 2026):
