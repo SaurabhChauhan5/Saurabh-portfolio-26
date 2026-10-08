@@ -2697,57 +2697,35 @@ html.theme-anim *::after {
 
 /* ---------- Footer signature ---------- */
 .footer-wordmark {
-  --wm-a: #8ab4f8;
-  --wm-b: #c7d2fe;
-  --wm-glow: rgba(99, 132, 255, 0.2);
-  position: relative;
+  --wm-top: #e2e8f0;
+  --wm-bottom: rgba(226, 232, 240, 0.35);
   max-width: 72rem;
   margin: 0 auto;
-  padding: 1.25rem 1rem 2rem;
-  font-size: min(9.6vw, 7rem);
-  font-weight: 800;
+  padding: 1.25rem 1rem 1.75rem;
+  font-size: min(9vw, 6.5rem);
+  font-weight: 700;
   line-height: 1.05;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.035em;
   text-align: center;
   white-space: nowrap;
   user-select: none;
   overflow: hidden;
 }
 [data-theme='dusk'] .footer-wordmark {
-  --wm-a: #eebbc3;
-  --wm-b: #b8c1ec;
-  --wm-glow: rgba(238, 187, 195, 0.16);
-}
-.footer-wordmark::before {
-  content: '';
-  position: absolute;
-  left: 20%;
-  right: 20%;
-  bottom: 20%;
-  height: 35%;
-  background: radial-gradient(50% 50% at 50% 50%, var(--wm-glow), transparent 70%);
-  filter: blur(24px);
-  pointer-events: none;
+  --wm-top: #fffffe;
+  --wm-bottom: rgba(184, 193, 236, 0.4);
 }
 .wm-word {
-  position: relative;
   display: inline-block;
   padding-bottom: 0.06em;
-  background-image: linear-gradient(90deg, var(--wm-a), var(--wm-b), var(--wm-a));
-  background-size: 200% 100%;
+  background-image: linear-gradient(180deg, var(--wm-top) 35%, var(--wm-bottom));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  animation: wm-sheen 12s linear infinite;
   transition: transform 1s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 1s ease;
 }
 .js .footer-wordmark:not(.is-in) .wm-word {
   opacity: 0;
-  transform: translateY(40%);
-}
-@keyframes wm-sheen {
-  to {
-    background-position: -200% 50%;
-  }
+  transform: translateY(30%);
 }
