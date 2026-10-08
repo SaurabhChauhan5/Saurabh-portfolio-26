@@ -30,12 +30,16 @@ const ExperiencePage = (): JSX.Element => (
       crumbs={[{ name: 'Home', href: '/' }, { name: 'Experience' }]}
       aside={
         <ol className="career-path" aria-label="Career progression">
-          {[...EXPERIENCE].reverse().map((role) => (
+          {EXPERIENCE.map((role, i) => (
             <li
               key={`${role.position}-${role.startDate}`}
-              className={`career-step ${role.endDate ? '' : 'is-current'}`}>
-              <p className="text-xs text-violet">
-                {role.startDate} – {role.endDate || 'Present'}
+              className={`career-step hero-anim ${role.endDate ? '' : 'is-current'}`}
+              style={{ animationDelay: `${260 + i * 140}ms` }}>
+              <p className="flex items-center justify-between gap-2 text-xs text-violet">
+                <span>
+                  {role.startDate} – {role.endDate || 'Present'}
+                </span>
+                {!role.endDate && <span className="badge-live">Current</span>}
               </p>
               <p className="mt-1 text-white font-semibold leading-snug">{role.position}</p>
               <p className="mt-0.5 text-xs text-pink">

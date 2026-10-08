@@ -435,7 +435,7 @@ a {
     top: 50%;
     width: 0.75rem;
     height: 2px;
-    background: linear-gradient(90deg, #b8c1ec, #eebbc3);
+    background: linear-gradient(90deg, #eebbc3, #b8c1ec);
   }
 }
 .site-header {
@@ -864,6 +864,26 @@ a.contact-item:hover {
 }
 .timeline-card {
   transition: border-color 0.5s ease, box-shadow 0.5s ease;
+}
+/* The current role stays highlighted, whatever the scroll position. */
+.timeline-dot-current {
+  background: #eebbc3;
+  border-color: #eebbc3;
+  box-shadow: 0 0 0 6px rgba(238, 187, 195, 0.2), 0 0 18px rgba(238, 187, 195, 0.6);
+}
+.timeline-dot-current::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+  border: 2px solid #eebbc3;
+  animation: ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+.timeline-card.timeline-card-current {
+  border-color: rgba(238, 187, 195, 0.55);
+  background: linear-gradient(160deg, rgba(238, 187, 195, 0.12), rgba(42, 49, 82, 0.92) 45%),
+    linear-gradient(160deg, rgba(42, 49, 82, 0.92), rgba(35, 41, 70, 0.92));
+  box-shadow: 0 0 0 1px rgba(238, 187, 195, 0.15), 0 24px 60px -28px rgba(238, 187, 195, 0.55);
 }
 .timeline-item.is-active .timeline-card {
   border-color: rgba(238, 187, 195, 0.4);
@@ -2202,7 +2222,7 @@ a.site-chip:hover svg {
     top: -0.75rem;
     width: 2px;
     height: 0.75rem;
-    background: linear-gradient(180deg, #b8c1ec, #eebbc3);
+    background: linear-gradient(180deg, #eebbc3, #b8c1ec);
   }
 }
 .client-sidebar-inner {

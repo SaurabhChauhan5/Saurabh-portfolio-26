@@ -28,7 +28,9 @@ function RoleCard({ role, preview }: { role: Role; preview: boolean }): JSX.Elem
       <Reveal
         as="article"
         variant="left"
-        className={`card spotlight timeline-card ${isSeo ? 'p-6 sm:p-8' : 'p-5 sm:p-6'}`}>
+        className={`card spotlight timeline-card ${current ? 'timeline-card-current' : ''} ${
+          isSeo ? 'p-6 sm:p-8' : 'p-5 sm:p-6'
+        }`}>
         <div className="flex flex-wrap items-start justify-between gap-x-6 gap-y-3">
           <div>
             {current && <p className="badge-live mb-3">Current role</p>}
