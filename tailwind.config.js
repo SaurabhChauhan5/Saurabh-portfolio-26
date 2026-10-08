@@ -18,8 +18,8 @@ module.exports = {
         navy: '#FFFFFF',
         surface: '#FFFFFF',
         pink: '#1A73E8',
-        violet: '#64748B',
-        white: '#1E293B'
+        violet: '#475569',
+        white: '#0F172A'
       },
       animation: {
         spin: 'spin 14s linear infinite',
