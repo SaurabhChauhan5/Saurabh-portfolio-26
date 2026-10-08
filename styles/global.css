@@ -2276,6 +2276,11 @@ a.site-chip:hover svg {
   color: #232946;
   background: rgba(255, 255, 254, 0.92);
 }
+@media (min-width: 400px) and (max-width: 639px) {
+  .cookie-row {
+    flex-wrap: nowrap;
+  }
+}
 .github-tile {
   display: flex;
   flex-direction: column;

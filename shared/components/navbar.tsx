@@ -174,7 +174,7 @@ const Navbar = (): JSX.Element => {
                 <Link
                   href={item.href}
                   aria-current={active ? currentType : undefined}
-                  className={`nav-link px-3 py-2 text-sm font-medium transition-colors ${
+                  className={`nav-link px-2 xl:px-3 py-2 text-sm font-medium whitespace-nowrap transition-colors ${
                     active ? 'text-pink is-active' : 'text-white hover:text-pink'
                   }`}>
                   {item.title}
@@ -189,9 +189,10 @@ const Navbar = (): JSX.Element => {
             href={RESUME_PATH}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full text-sm font-medium text-violet hover:text-pink transition-colors">
+            aria-label="Resume (PDF, opens in a new tab)"
+            className="inline-flex items-center gap-1.5 px-2.5 xl:px-3 py-2 rounded-full text-sm font-medium text-violet hover:text-pink transition-colors">
             <Download size={15} aria-hidden="true" />
-            Resume
+            <span className="hidden xl:inline">Resume</span>
           </a>
           <Link
             href="/connect"

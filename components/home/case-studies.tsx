@@ -252,7 +252,7 @@ export default function CaseStudies({ preview = false }: Props): JSX.Element {
                                     href={st.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-violet underline decoration-violet/40 underline-offset-2 hover:text-pink hover:decoration-pink transition-colors">
+                                    className="inline-block py-1 text-violet underline decoration-violet/40 underline-offset-2 hover:text-pink hover:decoration-pink transition-colors">
                                     {st.name}
                                     <span className="sr-only"> (opens in a new tab)</span>
                                   </a>
@@ -261,7 +261,7 @@ export default function CaseStudies({ preview = false }: Props): JSX.Element {
                           </span>
                           <Link
                             href={platformHref(ex.platform)}
-                            className="mt-1.5 inline-flex items-center gap-1 text-xs text-pink font-medium hover:underline">
+                            className="mt-1 inline-flex items-center gap-1 py-1.5 text-xs text-pink font-medium hover:underline">
                             View all {platformCount(ex.platform)}
                             <span className="sr-only"> {ex.platform} websites</span>
                             <span aria-hidden="true">→</span>
