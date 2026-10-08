@@ -156,7 +156,7 @@ function ShotMarquee(): JSX.Element {
 
 type FilterOption = { id: string; label: string; count: number; icon: ReactNode };
 
-// Bottom sheet with every filter option, used below the xl breakpoint where a
+// Bottom sheet with every filter option, used below the lg breakpoint where a
 // sideways-scrolling chip row hides most options.
 function FilterSheet({
   open,
@@ -198,7 +198,7 @@ function FilterSheet({
   if (!open) return null;
   const options = mode === 'platform' ? platform : industry;
   return (
-    <div className="filter-sheet-wrap xl:hidden" data-lenis-prevent>
+    <div className="filter-sheet-wrap lg:hidden" data-lenis-prevent>
       <button
         type="button"
         className="filter-sheet-backdrop"
@@ -374,8 +374,8 @@ export default function ClientsPage(): JSX.Element {
 
       <ShotMarquee />
 
-      <div className="filter-bar sticky top-16 z-30">
-        <div className="xl:hidden max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex items-center gap-2">
+      <div className="filter-bar sticky top-16 z-30 lg:hidden">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex items-center gap-2">
           <button
             type="button"
             onClick={() => setSheetOpen(true)}
@@ -402,72 +402,6 @@ export default function ClientsPage(): JSX.Element {
             </button>
           )}
         </div>
-        <div className="hidden xl:flex items-start max-w-6xl mx-auto px-8 py-3 gap-2">
-          <div className="view-toggle flex-shrink-0" role="group" aria-label="Group websites by">
-            <button
-              type="button"
-              aria-pressed={!byPlatform}
-              onClick={() => select('all')}
-              className={!byPlatform ? 'is-active' : ''}>
-              <Icon name="grid" size={14} /> Industry
-            </button>
-            <button
-              type="button"
-              aria-pressed={byPlatform}
-              onClick={() => select(byPlatform ? filter : PLATFORM_FILTERS[0].id)}
-              className={byPlatform ? 'is-active' : ''}>
-              <Icon name="code" size={14} /> Platform
-            </button>
-          </div>
-          <span className="w-px self-stretch bg-violet/20 flex-shrink-0" aria-hidden="true" />
-          <div
-            role="group"
-            aria-label={
-              byPlatform
-                ? 'Filter client websites by platform'
-                : 'Filter client websites by industry'
-            }
-            className="flex flex-wrap gap-2 min-w-0">
-            {byPlatform
-              ? platformFilters.map((f) => (
-                  <button
-                    key={f.id}
-                    type="button"
-                    aria-pressed={filter === f.id}
-                    onClick={() => select(f.id)}
-                    className={`jump-chip flex-shrink-0 ${filter === f.id ? 'is-active' : ''}`}>
-                    {f.label === 'Custom-built' ? (
-                      <Code size={14} aria-hidden="true" />
-                    ) : (
-                      <TopicIcon label={f.label} size={14} />
-                    )}
-                    {f.label}
-                    <span className="jump-count">{f.count}</span>
-                  </button>
-                ))
-              : filters
-                  .filter((f) => f.id !== 'all')
-                  .map((f) => (
-                    <button
-                      key={f.id}
-                      type="button"
-                      aria-pressed={filter === f.id}
-                      onClick={(e) => {
-                        e.currentTarget.scrollIntoView({
-                          behavior: 'smooth',
-                          inline: 'center',
-                          block: 'nearest'
-                        });
-                        select(f.id);
-                      }}
-                      className={`jump-chip flex-shrink-0 ${filter === f.id ? 'is-active' : ''}`}>
-                      <Icon name={f.icon} size={14} />
-                      {f.label}
-                      <span className="jump-count">{f.count}</span>
-                    </button>
-                  ))}
-          </div>
-        </div>
       </div>
 
       <FilterSheet
@@ -489,163 +423,221 @@ export default function ClientsPage(): JSX.Element {
       </p>
       <div
         id="client-grid"
-        className="scroll-mt-28 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-20 space-y-14 sm:space-y-20">
-        {activePlatform && platformView && (
-          <section aria-labelledby="platform-view-title">
-            <Reveal className="flex flex-wrap items-center gap-3 sm:gap-4 mb-2">
-              <span className="brand-tile">
-                {activePlatform.label === 'Custom-built' ? (
-                  <Code size={20} className="text-blue" aria-hidden="true" />
-                ) : (
-                  <TopicIcon label={activePlatform.label} size={22} />
-                )}
-              </span>
-              <h2
-                id="platform-view-title"
-                className="text-xl sm:text-3xl font-extrabold text-white">
-                {activePlatform.label} websites
-              </h2>
-              <span className="jump-count text-sm">
-                {platformView.sites.length + platformView.offline.length}
-              </span>
-            </Reveal>
-            <p className="mb-6 sm:mb-8 text-sm sm:text-base text-violet">
-              {[
-                [platformView.sites.filter((x) => !x.previous).length, 'active'],
-                [
-                  platformView.sites.filter((x) => x.previous).length + platformView.offline.length,
-                  'previous'
-                ]
-              ]
-                .filter(([n]) => n)
-                .map(([n, l]) => `${n} ${l}`)
-                .join(' · ')}
-              . Each card shows the industry, and previous clients are marked.
+        className="scroll-mt-28 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-20 lg:grid lg:grid-cols-12 lg:gap-8 lg:items-start">
+        <aside
+          className="hidden lg:block lg:col-span-4 xl:col-span-3 lg:self-stretch client-sidebar"
+          aria-label="Filter client websites">
+          <div className="client-sidebar-inner" data-lenis-prevent>
+            <p className="text-xs font-semibold tracking-widest text-pink uppercase">
+              Filter websites
             </p>
-            <ul className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
-              {platformView.sites.map((x, i) => (
-                <SiteCard
-                  key={x.domain}
-                  site={x}
-                  delay={(i % 3) * 90}
-                  badge={x.previous ? `Previous · ${x.industry}` : x.industry}
-                />
-              ))}
-              {platformView.offline.map((x, i) => (
-                <OfflineSiteCard
-                  key={x.domain}
-                  site={x}
-                  delay={((platformView.sites.length + i) % 3) * 90}
-                />
+            <div className="view-toggle w-full mt-3" role="group" aria-label="Group websites by">
+              <button
+                type="button"
+                aria-pressed={!byPlatform}
+                onClick={() => select('all')}
+                className={`flex-1 justify-center ${!byPlatform ? 'is-active' : ''}`}>
+                <Icon name="grid" size={14} /> Industry
+              </button>
+              <button
+                type="button"
+                aria-pressed={byPlatform}
+                onClick={() => select(byPlatform ? filter : PLATFORM_FILTERS[0].id)}
+                className={`flex-1 justify-center ${byPlatform ? 'is-active' : ''}`}>
+                <Icon name="code" size={14} /> Platform
+              </button>
+            </div>
+            <ul
+              className="mt-3 space-y-1"
+              aria-label={
+                byPlatform
+                  ? 'Filter client websites by platform'
+                  : 'Filter client websites by industry'
+              }>
+              {(byPlatform ? platformOptions : industryOptions).map((o) => (
+                <li key={o.id}>
+                  <button
+                    type="button"
+                    aria-pressed={filter === o.id}
+                    onClick={() => select(o.id)}
+                    className={`side-option ${filter === o.id ? 'is-active' : ''}`}>
+                    <span className="side-option-icon">{o.icon}</span>
+                    <span className="flex-1 min-w-0 text-left truncate">{o.label}</span>
+                    <span className="jump-count">{o.count}</span>
+                  </button>
+                </li>
               ))}
             </ul>
-          </section>
-        )}
+            {filter !== 'all' && (
+              <button
+                type="button"
+                onClick={() => select('all')}
+                className="mt-3 w-full inline-flex items-center justify-center gap-1.5 text-sm text-violet hover:text-pink py-2">
+                <X size={14} aria-hidden="true" /> Show all websites
+              </button>
+            )}
+          </div>
+        </aside>
+        <div className="lg:col-span-8 xl:col-span-9 min-w-0 space-y-14 sm:space-y-20">
+          {activePlatform && platformView && (
+            <section aria-labelledby="platform-view-title">
+              <Reveal className="flex flex-wrap items-center gap-3 sm:gap-4 mb-2">
+                <span className="brand-tile">
+                  {activePlatform.label === 'Custom-built' ? (
+                    <Code size={20} className="text-blue" aria-hidden="true" />
+                  ) : (
+                    <TopicIcon label={activePlatform.label} size={22} />
+                  )}
+                </span>
+                <h2
+                  id="platform-view-title"
+                  className="text-xl sm:text-3xl font-extrabold text-white">
+                  {activePlatform.label} websites
+                </h2>
+                <span className="jump-count text-sm">
+                  {platformView.sites.length + platformView.offline.length}
+                </span>
+              </Reveal>
+              <p className="mb-6 sm:mb-8 text-sm sm:text-base text-violet">
+                {[
+                  [platformView.sites.filter((x) => !x.previous).length, 'active'],
+                  [
+                    platformView.sites.filter((x) => x.previous).length +
+                      platformView.offline.length,
+                    'previous'
+                  ]
+                ]
+                  .filter(([n]) => n)
+                  .map(([n, l]) => `${n} ${l}`)
+                  .join(' · ')}
+                . Each card shows the industry, and previous clients are marked.
+              </p>
+              <ul className="grid grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-5">
+                {platformView.sites.map((x, i) => (
+                  <SiteCard
+                    key={x.domain}
+                    site={x}
+                    delay={(i % 3) * 90}
+                    badge={x.previous ? `Previous · ${x.industry}` : x.industry}
+                  />
+                ))}
+                {platformView.offline.map((x, i) => (
+                  <OfflineSiteCard
+                    key={x.domain}
+                    site={x}
+                    delay={((platformView.sites.length + i) % 3) * 90}
+                  />
+                ))}
+              </ul>
+            </section>
+          )}
 
-        {CLIENT_GROUPS.map((group) => (
+          {CLIENT_GROUPS.map((group) => (
+            <section
+              key={group.industry}
+              id={slugify(group.industry)}
+              hidden={!show(slugify(group.industry))}
+              aria-labelledby={`${slugify(group.industry)}-title`}>
+              <Reveal className="flex items-center gap-3 sm:gap-4 mb-5 sm:mb-8">
+                <span className="icon-tile flex-shrink-0">
+                  <Icon name={group.icon} />
+                </span>
+                <h2
+                  id={`${slugify(group.industry)}-title`}
+                  className="text-xl sm:text-3xl font-extrabold text-white">
+                  {group.industry}
+                </h2>
+                <span className="jump-count text-sm">{group.sites.length}</span>
+                <span
+                  className="flex-1 h-px bg-gradient-to-r from-violet/30 to-transparent"
+                  aria-hidden="true"
+                />
+              </Reveal>
+              <ul className="grid grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-5">
+                {group.sites.map((s, i) => (
+                  <SiteCard key={s.domain} site={s} delay={(i % 3) * 90} />
+                ))}
+              </ul>
+            </section>
+          ))}
+
           <section
-            key={group.industry}
-            id={slugify(group.industry)}
-            hidden={!show(slugify(group.industry))}
-            aria-labelledby={`${slugify(group.industry)}-title`}>
-            <Reveal className="flex items-center gap-3 sm:gap-4 mb-5 sm:mb-8">
-              <span className="icon-tile flex-shrink-0">
-                <Icon name={group.icon} />
-              </span>
+            id="previous-clients"
+            aria-labelledby="previous-clients-title"
+            hidden={!show(PREVIOUS)}>
+            <Reveal className="flex items-center gap-4 mb-3">
               <h2
-                id={`${slugify(group.industry)}-title`}
-                className="text-xl sm:text-3xl font-extrabold text-white">
-                {group.industry}
+                id="previous-clients-title"
+                className="text-2xl sm:text-3xl font-extrabold text-white">
+                Previous clients
               </h2>
-              <span className="jump-count text-sm">{group.sites.length}</span>
               <span
                 className="flex-1 h-px bg-gradient-to-r from-violet/30 to-transparent"
                 aria-hidden="true"
               />
             </Reveal>
-            <ul className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
-              {group.sites.map((s, i) => (
-                <SiteCard key={s.domain} site={s} delay={(i % 3) * 90} />
+            <p className="mb-8 text-violet">
+              Businesses I worked on that are no longer active clients.
+            </p>
+            <ul className="grid grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-5">
+              {PREVIOUS_CLIENT_SITES.map((s, i) => (
+                <SiteCard key={s.domain} site={s} delay={i * 90} badge={s.industry} />
+              ))}
+              {PREVIOUS_CLIENTS_NO_WEBSITE.map((site, i) => (
+                <OfflineSiteCard
+                  key={site.domain}
+                  site={site}
+                  delay={((PREVIOUS_CLIENT_SITES.length + i) % 3) * 90}
+                />
               ))}
             </ul>
           </section>
-        ))}
 
-        <section
-          id="previous-clients"
-          aria-labelledby="previous-clients-title"
-          hidden={!show(PREVIOUS)}>
-          <Reveal className="flex items-center gap-4 mb-3">
-            <h2
-              id="previous-clients-title"
-              className="text-2xl sm:text-3xl font-extrabold text-white">
-              Previous clients
-            </h2>
-            <span
-              className="flex-1 h-px bg-gradient-to-r from-violet/30 to-transparent"
-              aria-hidden="true"
-            />
-          </Reveal>
-          <p className="mb-8 text-violet">
-            Businesses I worked on that are no longer active clients.
-          </p>
-          <ul className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
-            {PREVIOUS_CLIENT_SITES.map((s, i) => (
-              <SiteCard key={s.domain} site={s} delay={i * 90} badge={s.industry} />
-            ))}
-            {PREVIOUS_CLIENTS_NO_WEBSITE.map((site, i) => (
-              <OfflineSiteCard
-                key={site.domain}
-                site={site}
-                delay={((PREVIOUS_CLIENT_SITES.length + i) % 3) * 90}
-              />
-            ))}
-          </ul>
-        </section>
-
-        {filter === 'all' && (
-          <Reveal className="card card-glow p-6 sm:p-8 grid md:grid-cols-12 gap-6 items-center">
-            <div className="md:col-span-8">
-              <p className="text-xs font-semibold tracking-widest text-pink uppercase">
-                The agency
-              </p>
-              <h2 className="mt-2 text-2xl font-extrabold text-white">AAA Digital</h2>
-              <p className="mt-2 text-violet leading-relaxed">
-                All of this work is carried out at I Market &amp; Manage Private Limited (AAA
-                Digital), Australia, where I also manage SEO for the agency&apos;s own website. That
-                brings the total to {ACTIVE_WEBSITES} active websites: {withSites} client websites
-                shown above, {CLIENTS_WITHOUT_WEBSITE.length} active{' '}
-                {CLIENTS_WITHOUT_WEBSITE.length === 1 ? 'client' : 'clients'} without a public
-                website ({CLIENTS_WITHOUT_WEBSITE.join(' and ')}), and the agency site.
-              </p>
-              <div className="mt-5">
-                <Button href={`https://${AGENCY_SITE.domain}/`} type="outlined" external>
-                  Visit aaadigital.com.au
-                </Button>
+          {filter === 'all' && (
+            <Reveal className="card card-glow p-6 sm:p-8 grid md:grid-cols-12 gap-6 items-center">
+              <div className="md:col-span-8">
+                <p className="text-xs font-semibold tracking-widest text-pink uppercase">
+                  The agency
+                </p>
+                <h2 className="mt-2 text-2xl font-extrabold text-white">AAA Digital</h2>
+                <p className="mt-2 text-violet leading-relaxed">
+                  All of this work is carried out at I Market &amp; Manage Private Limited (AAA
+                  Digital), Australia, where I also manage SEO for the agency&apos;s own website.
+                  That brings the total to {ACTIVE_WEBSITES} active websites: {withSites} client
+                  websites shown above, {CLIENTS_WITHOUT_WEBSITE.length} active{' '}
+                  {CLIENTS_WITHOUT_WEBSITE.length === 1 ? 'client' : 'clients'} without a public
+                  website ({CLIENTS_WITHOUT_WEBSITE.join(' and ')}), and the agency site.
+                </p>
+                <div className="mt-5">
+                  <Button href={`https://${AGENCY_SITE.domain}/`} type="outlined" external>
+                    Visit aaadigital.com.au
+                  </Button>
+                </div>
               </div>
-            </div>
-            <a
-              href={`https://${AGENCY_SITE.domain}/`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="md:col-span-4 block rounded-xl overflow-hidden border border-violet/20 relative aspect-16-10"
-              aria-label="AAA Digital website homepage (opens in a new tab)">
-              <Image
-                src={AGENCY_SITE.img}
-                alt="AAA Digital website homepage"
-                fill
-                sizes="(min-width: 768px) 320px, 100vw"
-                className="object-cover object-top"
-              />
-            </a>
-          </Reveal>
-        )}
+              <a
+                href={`https://${AGENCY_SITE.domain}/`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="md:col-span-4 block rounded-xl overflow-hidden border border-violet/20 relative aspect-16-10"
+                aria-label="AAA Digital website homepage (opens in a new tab)">
+                <Image
+                  src={AGENCY_SITE.img}
+                  alt="AAA Digital website homepage"
+                  fill
+                  sizes="(min-width: 768px) 320px, 100vw"
+                  className="object-cover object-top"
+                />
+              </a>
+            </Reveal>
+          )}
 
-        <p className="text-xs text-violet/80">
-          Client names and sensitive analytics data are withheld where required. Work shown reflects
-          responsibilities performed as part of my role at AAA Digital. Homepage screenshots were
-          captured in October 2026; all businesses belong to their respective owners.
-        </p>
+          <p className="text-xs text-violet/80">
+            Client names and sensitive analytics data are withheld where required. Work shown
+            reflects responsibilities performed as part of my role at AAA Digital. Homepage
+            screenshots were captured in October 2026; all businesses belong to their respective
+            owners.
+          </p>
+        </div>
       </div>
     </>
   );

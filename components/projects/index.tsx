@@ -104,76 +104,120 @@ const ProjectsPage = (): JSX.Element => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 space-y-16">
         {featured && <FeaturedProject project={featured} headingLevel="h2" />}
 
-        <section aria-labelledby="all-projects-title">
-          <div className="flex flex-wrap items-end justify-between gap-4 mb-6">
-            <h2 id="all-projects-title" className="text-2xl sm:text-3xl font-extrabold text-white">
-              {active === 'all' ? 'More' : active} <span className="text-pink">projects</span>
-            </h2>
-            <p className="text-sm text-violet" aria-live="polite">
-              Showing {visible.length} of {PROJECTS.length}
-            </p>
-          </div>
-          <div className="filter-scroll overflow-x-auto sm:overflow-visible -mx-4 px-4 sm:mx-0 sm:px-0 mb-8">
-            <div
-              role="group"
-              aria-label="Filter projects by category"
-              className="flex sm:flex-wrap gap-2.5">
-              {PROJECT_CATEGORIES.map((c) => {
-                const CatIcon = CATEGORY_ICONS[c.value] || Grid;
-                const on = active === c.value;
-                return (
-                  <button
-                    key={c.value}
-                    type="button"
-                    aria-pressed={on}
-                    onClick={() => setActive(c.value)}
-                    className={`filter-chip ${on ? 'is-active' : ''}`}>
-                    <CatIcon size={15} aria-hidden="true" />
-                    {c.label}
-                    <span className="filter-count">{count(c.value)}</span>
-                  </button>
-                );
-              })}
+        <section
+          aria-labelledby="all-projects-title"
+          className="lg:grid lg:grid-cols-12 lg:gap-8 lg:items-start">
+          <aside
+            className="hidden lg:block lg:col-span-4 xl:col-span-3 lg:self-stretch client-sidebar"
+            aria-label="Filter projects">
+            <div className="client-sidebar-inner" data-lenis-prevent>
+              <p className="text-xs font-semibold tracking-widest text-pink uppercase">
+                Filter projects
+              </p>
+              <ul className="mt-3 space-y-1" aria-label="Filter projects by category">
+                {PROJECT_CATEGORIES.map((c) => {
+                  const CatIcon = CATEGORY_ICONS[c.value] || Grid;
+                  return (
+                    <li key={c.value}>
+                      <button
+                        type="button"
+                        aria-pressed={active === c.value}
+                        onClick={() => setActive(c.value)}
+                        className={`side-option ${active === c.value ? 'is-active' : ''}`}>
+                        <span className="side-option-icon">
+                          <CatIcon size={15} aria-hidden="true" />
+                        </span>
+                        <span className="flex-1 min-w-0 text-left truncate">{c.label}</span>
+                        <span className="jump-count">{count(c.value)}</span>
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+              <a
+                href={PROFILE.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 pt-4 border-t border-violet/15 flex items-center gap-2 text-sm text-violet hover:text-pink">
+                <GitHub size={15} aria-hidden="true" /> More code on GitHub
+                <ArrowUpRight size={14} aria-hidden="true" />
+                <span className="sr-only">(opens in a new tab)</span>
+              </a>
             </div>
-          </div>
+          </aside>
+          <div className="lg:col-span-8 xl:col-span-9 min-w-0">
+            <div className="flex flex-wrap items-end justify-between gap-4 mb-6">
+              <h2
+                id="all-projects-title"
+                className="text-2xl sm:text-3xl font-extrabold text-white">
+                {active === 'all' ? 'More' : active} <span className="text-pink">projects</span>
+              </h2>
+              <p className="text-sm text-violet" aria-live="polite">
+                Showing {visible.length} of {PROJECTS.length}
+              </p>
+            </div>
+            <div className="lg:hidden filter-scroll overflow-x-auto sm:overflow-visible -mx-4 px-4 sm:mx-0 sm:px-0 mb-8">
+              <div
+                role="group"
+                aria-label="Filter projects by category"
+                className="flex sm:flex-wrap gap-2.5">
+                {PROJECT_CATEGORIES.map((c) => {
+                  const CatIcon = CATEGORY_ICONS[c.value] || Grid;
+                  const on = active === c.value;
+                  return (
+                    <button
+                      key={c.value}
+                      type="button"
+                      aria-pressed={on}
+                      onClick={() => setActive(c.value)}
+                      className={`filter-chip ${on ? 'is-active' : ''}`}>
+                      <CatIcon size={15} aria-hidden="true" />
+                      {c.label}
+                      <span className="filter-count">{count(c.value)}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
 
-          <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {visible.map((project) => (
-              <li key={`${active}-${project.slug}`} className="fade-in">
-                <ProjectCard
-                  project={project}
-                  headingLevel="h3"
-                  index={PROJECTS.indexOf(project)}
-                />
-              </li>
-            ))}
-            {active === 'all' && (
-              <li className="fade-in">
-                <a
-                  href={PROFILE.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="github-tile group">
-                  <span className="icon-tile">
-                    <GitHub size={22} aria-hidden="true" />
-                  </span>
-                  <span className="text-white font-bold text-lg">More code on GitHub</span>
-                  <span className="text-sm text-violet">
-                    Repositories from my studies and front-end work.
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 text-sm text-pink font-medium">
-                    View profile
-                    <ArrowUpRight
-                      size={16}
-                      aria-hidden="true"
-                      className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                    />
-                  </span>
-                  <span className="sr-only">(opens in a new tab)</span>
-                </a>
-              </li>
-            )}
-          </ul>
+            <ul className="grid sm:grid-cols-2 gap-5 xl:gap-6">
+              {visible.map((project) => (
+                <li key={`${active}-${project.slug}`} className="fade-in">
+                  <ProjectCard
+                    project={project}
+                    headingLevel="h3"
+                    index={PROJECTS.indexOf(project)}
+                  />
+                </li>
+              ))}
+              {active === 'all' && (
+                <li className="fade-in">
+                  <a
+                    href={PROFILE.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="github-tile group">
+                    <span className="icon-tile">
+                      <GitHub size={22} aria-hidden="true" />
+                    </span>
+                    <span className="text-white font-bold text-lg">More code on GitHub</span>
+                    <span className="text-sm text-violet">
+                      Repositories from my studies and front-end work.
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 text-sm text-pink font-medium">
+                      View profile
+                      <ArrowUpRight
+                        size={16}
+                        aria-hidden="true"
+                        className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                      />
+                    </span>
+                    <span className="sr-only">(opens in a new tab)</span>
+                  </a>
+                </li>
+              )}
+            </ul>
+          </div>
         </section>
 
         <section aria-labelledby="seo-link-title">

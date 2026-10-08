@@ -2205,6 +2205,57 @@ a.site-chip:hover svg {
     background: linear-gradient(180deg, #b8c1ec, #eebbc3);
   }
 }
+.client-sidebar-inner {
+  position: sticky;
+  top: 6rem;
+  max-height: calc(100vh - 7.5rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  padding: 1rem;
+  border-radius: 1rem;
+  background: rgba(27, 32, 56, 0.6);
+  border: 1px solid rgba(184, 193, 236, 0.15);
+  transition: top 0.35s ease;
+}
+.nav-hidden .client-sidebar-inner {
+  top: 1.5rem;
+}
+.client-sidebar .view-toggle button {
+  padding-inline: 0.5rem;
+  font-size: 0.8125rem;
+}
+.side-option {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  min-height: 2.5rem;
+  padding: 0.35rem 0.5rem;
+  border-radius: 0.7rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #fffffe;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.side-option:hover {
+  background: rgba(184, 193, 236, 0.08);
+}
+.side-option.is-active {
+  background: #eebbc3;
+  color: #232946;
+}
+.side-option-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 0.5rem;
+  color: #232946;
+  background: rgba(255, 255, 254, 0.92);
+}
 .github-tile {
   display: flex;
   flex-direction: column;
