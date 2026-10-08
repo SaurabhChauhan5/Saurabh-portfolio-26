@@ -2730,21 +2730,6 @@ html.theme-anim *::after {
   transform: translateY(30%);
 }
 
-.made-heart {
-  display: inline-block;
-  animation: heartbeat 1.6s ease-in-out infinite;
-}
-@keyframes heartbeat {
-  0%,
-  60%,
-  100% {
-    transform: scale(1);
-  }
-  15%,
-  35% {
-    transform: scale(1.18);
-  }
-}
 
 /* ---------- Footer polish ---------- */
 .site-footer .footer-heading {
@@ -2797,4 +2782,34 @@ html.theme-anim *::after {
 }
 [data-theme='dusk'] .site-footer .social-btn:hover {
   color: #232946;
+}
+
+/* Footer sign-off: one line per theme. */
+.signoff {
+  display: none;
+}
+:root:not([data-theme]) .signoff-light,
+[data-theme='light'] .signoff-light,
+[data-theme='dark'] .signoff-dark,
+[data-theme='dusk'] .signoff-dusk {
+  display: block;
+}
+.site-footer .signoff-light {
+  color: #94a3b8;
+  letter-spacing: 0.01em;
+}
+.site-footer .signoff-dark code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+  color: #8ab4f8;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.35rem;
+  background: rgba(138, 180, 248, 0.08);
+  border: 1px solid rgba(138, 180, 248, 0.2);
+  display: inline-block;
+  max-width: 100%;
+  line-height: 1.6;
+}
+.site-footer .signoff-dusk {
+  color: #b8c1ec;
 }

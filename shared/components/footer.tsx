@@ -162,11 +162,23 @@ export default function Footer(): JSX.Element {
           <p>
             © {new Date().getFullYear()} {PROFILE.name}. All rights reserved.
           </p>
-          <p className="inline-flex items-center gap-1.5">
-            Made with
-            <span role="img" aria-label="love" className="made-heart">
-              ❤️
-            </span>
+          {/* One sign-off per theme; CSS shows the one matching [data-theme]. */}
+          <p className="signoff signoff-light">Designed &amp; Engineered with Care by Saurabh</p>
+          <p className="signoff signoff-dark">
+            <code>
+              const portfolio = {'{'} craftedWithCare: true {'}'};
+            </code>
+          </p>
+          <p className="signoff signoff-dusk">
+            Crafted with{' '}
+            <span role="img" aria-label="tools">
+              🛠️
+            </span>{' '}
+            &amp;{' '}
+            <span role="img" aria-label="code">
+              💻
+            </span>{' '}
+            by Saurabh
           </p>
           <button type="button" onClick={toTop} className="back-to-top">
             Back to top
