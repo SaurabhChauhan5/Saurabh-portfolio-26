@@ -115,7 +115,7 @@ const TOOLS = [
 function ToolsMarquee(): JSX.Element {
   return (
     <div
-      className="marquee relative mt-12 lg:mt-14 border-y border-violet/10 py-4"
+      className="marquee relative mt-8 lg:mt-10 border-y border-violet/10 py-3 sm:py-4"
       aria-label="Tools and platforms I use">
       <ul className="marquee-track">
         {/* The second copy only exists for the seamless loop. */}
@@ -138,7 +138,7 @@ function ToolsMarquee(): JSX.Element {
 
 export default function Landing(): JSX.Element {
   return (
-    <section aria-labelledby="hero-title" className="relative overflow-hidden pt-28 lg:pt-32">
+    <section aria-labelledby="hero-title" className="relative overflow-hidden pt-24 lg:pt-28">
       <div className="hero-glow" aria-hidden="true" />
       <div className="grid-bg" aria-hidden="true" />
       <span
@@ -166,14 +166,14 @@ export default function Landing(): JSX.Element {
         />
       </span>
 
-      <div className="relative max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-        <div className="lg:col-span-7">
+      <div className="relative max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-12 gap-6 lg:gap-8 items-center">
+        <div className="lg:col-span-8">
           <p className="availability hero-anim">
             <span className="pulse-dot" aria-hidden="true" />
             {PROFILE.credibility}
           </p>
-          <h1 id="hero-title" className="mt-6 font-extrabold text-white leading-none">
-            <span className="flex flex-wrap items-center gap-3 text-xl sm:text-2xl text-violet font-semibold mb-3">
+          <h1 id="hero-title" className="mt-4 sm:mt-6 font-extrabold text-white leading-none">
+            <span className="flex flex-wrap items-center gap-3 text-lg sm:text-2xl text-violet font-semibold mb-2 sm:mb-3">
               {PROFILE.name}
               <span className="hero-tag">Technical SEO</span>
             </span>
@@ -182,7 +182,7 @@ export default function Landing(): JSX.Element {
             </span>
           </h1>
           <p
-            className="mt-5 text-2xl sm:text-3xl font-semibold text-white hero-anim"
+            className="mt-3 sm:mt-5 text-xl sm:text-3xl font-semibold text-white hero-anim"
             style={{ animationDelay: '80ms' }}>
             I make websites{' '}
             <RotatingWord
@@ -191,7 +191,7 @@ export default function Landing(): JSX.Element {
             />
           </p>
           <ul
-            className="hero-focus mt-5 hero-anim"
+            className="hero-focus mt-3 sm:mt-5 hero-anim"
             style={{ animationDelay: '120ms' }}
             aria-label="Focus areas">
             {PROFILE.focusAreas.map((area) => (
@@ -202,30 +202,40 @@ export default function Landing(): JSX.Element {
             ))}
           </ul>
           <p
-            className="mt-5 text-base sm:text-lg text-violet leading-relaxed max-w-xl hero-anim"
+            className="mt-4 sm:mt-5 text-base sm:text-lg text-violet leading-relaxed max-w-2xl hero-anim"
             style={{ animationDelay: '200ms' }}>
-            {PROFILE.summary} With a B.Tech in Computer Science and a front-end development
-            background, I speak your developers&apos; language.
+            {PROFILE.summary}{' '}
+            <span className="hidden sm:inline">
+              With a B.Tech in Computer Science and a front-end development background, I speak your
+              developers&apos; language.
+            </span>
           </p>
 
           <div
-            className="mt-7 flex flex-wrap items-center gap-4 hero-anim"
+            className="mt-6 sm:mt-7 flex flex-wrap items-center gap-3 sm:gap-4 hero-anim"
             style={{ animationDelay: '280ms' }}>
-            <Button href="/case-studies">View SEO Work</Button>
-            <Button href="/connect" type="outlined">
+            <Button
+              href="/case-studies"
+              className="flex-1 sm:flex-none whitespace-nowrap text-sm sm:text-base">
+              View SEO Work
+            </Button>
+            <Button
+              href="/connect"
+              type="outlined"
+              className="flex-1 sm:flex-none whitespace-nowrap text-sm sm:text-base">
               Contact Me
             </Button>
             <a
               href={RESUME_PATH}
               target="_blank"
               rel="noopener noreferrer"
-              className="link-underline text-violet hover:text-pink transition-colors px-1 py-2">
+              className="w-full sm:w-auto text-center link-underline text-violet hover:text-pink transition-colors px-1 py-2">
               Download Resume
             </a>
           </div>
 
           <div
-            className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3 hero-anim"
+            className="mt-8 hidden sm:flex flex-wrap items-center gap-x-5 gap-y-3 hero-anim"
             style={{ animationDelay: '340ms' }}>
             <span className="text-xs font-semibold tracking-widest text-violet/80 uppercase">
               Platforms
@@ -241,7 +251,7 @@ export default function Landing(): JSX.Element {
           </div>
         </div>
 
-        <div className="lg:col-span-5 hero-anim" style={{ animationDelay: '300ms' }}>
+        <div className="lg:col-span-4 hero-anim" style={{ animationDelay: '300ms' }}>
           {/* Desktop: the keyword globe, with the compact audit badge underneath it. */}
           <div className="hidden lg:flex flex-col items-center">
             <div className="relative w-full globe-stage">
