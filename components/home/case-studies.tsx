@@ -28,13 +28,16 @@ function WorkList({ items }: { items: string[] }): JSX.Element {
   );
 }
 
-function CaseHeader({ cs }: { cs: CaseStudy }): JSX.Element {
+function CaseHeader({ cs, compact = false }: { cs: CaseStudy; compact?: boolean }): JSX.Element {
   return (
     <>
       <p className="text-xs font-semibold tracking-widest text-pink uppercase">
         Case study {cs.number}
       </p>
-      <h3 className="mt-2 text-2xl sm:text-3xl font-extrabold text-white leading-tight">
+      <h3
+        className={`mt-2 ${
+          compact ? 'text-xl sm:text-2xl' : 'text-2xl sm:text-3xl'
+        } font-extrabold text-white leading-tight`}>
         {cs.title}
       </h3>
       <p className="mt-2 text-sm text-violet">
@@ -44,19 +47,25 @@ function CaseHeader({ cs }: { cs: CaseStudy }): JSX.Element {
   );
 }
 
-function IndexationChart(): JSX.Element {
+function IndexationChart({ compact = false }: { compact?: boolean }): JSX.Element {
   const beforePct = (INDEXATION.before / INDEXATION.after) * 100;
   return (
-    <figure className="card-inner p-6 sm:p-8 h-full flex flex-col justify-center">
+    <figure
+      className={`card-inner ${
+        compact ? 'p-5 sm:p-6' : 'p-6 sm:p-8'
+      } h-full flex flex-col justify-center`}>
       <p className="text-sm text-violet">Indexed pages</p>
-      <p className="mt-1 text-5xl sm:text-7xl font-extrabold gradient-text leading-none">
+      <p
+        className={`mt-1 ${
+          compact ? 'text-5xl sm:text-6xl' : 'text-5xl sm:text-7xl'
+        } font-extrabold gradient-text leading-none`}>
         <CountUp end={INDEXATION.after} suffix="+" duration={2000} />
       </p>
       <p className="mt-2 text-sm text-violet">
         up from approximately <span className="text-white font-semibold">{INDEXATION.before}</span>
       </p>
 
-      <div className="mt-8 space-y-5">
+      <div className={compact ? 'mt-5 space-y-3' : 'mt-8 space-y-5'}>
         <div>
           <div className="flex justify-between text-xs text-violet mb-2">
             <span>Before</span>
@@ -84,7 +93,7 @@ function IndexationChart(): JSX.Element {
           </div>
         </div>
       </div>
-      <figcaption className="mt-6 text-xs text-violet/80 leading-relaxed">
+      <figcaption className={`${compact ? 'mt-4' : 'mt-6'} text-xs text-violet/80 leading-relaxed`}>
         Indexed page count as monitored in Google Search Console. This case study measures
         indexation only — not traffic or rankings.
       </figcaption>
@@ -97,17 +106,17 @@ function TeaserCard({ cs, delay }: { cs: CaseStudy; delay: number }): JSX.Elemen
     <Reveal
       as="article"
       delay={delay}
-      className="card spotlight hover-lift p-6 sm:p-8 flex flex-col">
-      <CaseHeader cs={cs} />
-      <ul className="mt-5 space-y-2 flex-1">
-        {cs.work.slice(0, 3).map((w) => (
+      className="card spotlight hover-lift p-5 sm:p-6 flex flex-col">
+      <CaseHeader cs={cs} compact />
+      <ul className="mt-4 space-y-1.5 flex-1">
+        {cs.work.slice(0, 2).map((w) => (
           <li key={w} className="flex items-start gap-2 text-sm text-violet">
             <TopicIcon label={w} size={14} className="mt-0.5" />
             {w}
           </li>
         ))}
       </ul>
-      <Link href={`/case-studies#${cs.id}`} className="btn-link group mt-6 self-start">
+      <Link href={`/case-studies#${cs.id}`} className="btn-link group mt-5 self-start">
         Read case study
         <span className="sr-only">: {cs.title}</span>
         <ArrowRight
@@ -152,22 +161,48 @@ export default function CaseStudies({ preview = false }: Props): JSX.Element {
           as="article"
           className="card spotlight card-glow overflow-hidden grid lg:grid-cols-2 scroll-mt-28"
           id={indexation.id}>
-          <div className="p-6 sm:p-10">
-            <CaseHeader cs={indexation} />
-            <h4 className="mt-6 text-white font-semibold">Problem</h4>
-            <p className="mt-1 text-violet">{indexation.problem}</p>
-            <h4 className="mt-6 mb-3 text-white font-semibold">Work performed</h4>
-            <WorkList items={indexation.work} />
-            <h4 className="mt-6 text-white font-semibold">Result</h4>
-            <p className="mt-1 text-pink font-medium">{indexation.result}</p>
-          </div>
-          <div className="p-4 sm:p-6 lg:p-8 lg:pl-0">
-            <IndexationChart />
+          {preview ? (
+            <div className="p-5 sm:p-8 flex flex-col">
+              <CaseHeader cs={indexation} compact />
+              <p className="mt-4 text-pink font-medium">{indexation.result}</p>
+              <ul className="mt-4 space-y-1.5">
+                {indexation.work.slice(0, 3).map((w) => (
+                  <li key={w} className="flex items-start gap-2 text-sm text-violet">
+                    <TopicIcon label={w} size={14} className="mt-0.5" />
+                    {w}
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href={`/case-studies#${indexation.id}`}
+                className="btn-link group mt-5 self-start">
+                Read case study
+                <span className="sr-only">: {indexation.title}</span>
+                <ArrowRight
+                  size={18}
+                  aria-hidden="true"
+                  className="transition-transform group-hover:translate-x-1"
+                />
+              </Link>
+            </div>
+          ) : (
+            <div className="p-6 sm:p-10">
+              <CaseHeader cs={indexation} />
+              <h4 className="mt-6 text-white font-semibold">Problem</h4>
+              <p className="mt-1 text-violet">{indexation.problem}</p>
+              <h4 className="mt-6 mb-3 text-white font-semibold">Work performed</h4>
+              <WorkList items={indexation.work} />
+              <h4 className="mt-6 text-white font-semibold">Result</h4>
+              <p className="mt-1 text-pink font-medium">{indexation.result}</p>
+            </div>
+          )}
+          <div className={preview ? 'p-4 sm:p-5 lg:pl-0' : 'p-4 sm:p-6 lg:p-8 lg:pl-0'}>
+            <IndexationChart compact={preview} />
           </div>
         </Reveal>
 
         {preview ? (
-          <div className="mt-6 grid md:grid-cols-2 gap-6">
+          <div className="mt-4 sm:mt-6 grid md:grid-cols-2 gap-4 sm:gap-6">
             <TeaserCard cs={multiPlatform} delay={0} />
             <TeaserCard cs={local} delay={120} />
           </div>
