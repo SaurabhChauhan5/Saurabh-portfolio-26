@@ -2697,8 +2697,8 @@ html.theme-anim *::after {
 
 /* ---------- Footer signature ---------- */
 .footer-wordmark {
-  --wm-top: #e2e8f0;
-  --wm-bottom: rgba(226, 232, 240, 0.35);
+  --wm-top: #f1f5f9;
+  --wm-bottom: #8ab4f8;
   max-width: 72rem;
   margin: 0 auto;
   padding: 1.25rem 1rem 1.75rem;
@@ -2713,7 +2713,7 @@ html.theme-anim *::after {
 }
 [data-theme='dusk'] .footer-wordmark {
   --wm-top: #fffffe;
-  --wm-bottom: rgba(184, 193, 236, 0.4);
+  --wm-bottom: #eebbc3;
 }
 .wm-word {
   display: inline-block;
