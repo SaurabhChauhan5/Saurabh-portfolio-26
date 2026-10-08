@@ -147,7 +147,7 @@ export default function Footer(): JSX.Element {
       </p>
 
       <div className="relative border-t border-violet/10">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-wrap items-center justify-between gap-4 text-xs text-violet/80">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-wrap items-center justify-between gap-4 text-xs text-violet">
           <p>
             © {new Date().getFullYear()} {PROFILE.name}. All rights reserved.
           </p>

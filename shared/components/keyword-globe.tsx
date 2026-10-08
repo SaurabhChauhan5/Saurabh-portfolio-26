@@ -62,8 +62,8 @@ export default function KeywordGlobe({ words, className = '' }: Props): JSX.Elem
         const size = (p.big ? 17 : 12.5) * p.scale;
         ctx.font = `${p.big ? 600 : 400} ${size.toFixed(1)}px ${font}`;
         ctx.fillStyle = p.big
-          ? `rgba(238, 187, 195, ${(0.18 + depth * 0.8).toFixed(3)})`
-          : `rgba(184, 193, 236, ${(0.1 + depth * 0.6).toFixed(3)})`;
+          ? `rgba(26, 115, 232, ${(0.18 + depth * 0.8).toFixed(3)})`
+          : `rgba(100, 116, 139, ${(0.1 + depth * 0.6).toFixed(3)})`;
         ctx.fillText(p.text, p.sx, p.sy);
       });
     };

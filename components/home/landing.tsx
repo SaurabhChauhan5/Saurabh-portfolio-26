@@ -227,7 +227,7 @@ export default function Landing(): JSX.Element {
           <div
             className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3 hero-anim"
             style={{ animationDelay: '340ms' }}>
-            <span className="text-xs font-semibold tracking-widest text-violet/80 uppercase">
+            <span className="text-xs font-semibold tracking-widest text-violet uppercase">
               Platforms
             </span>
             <ul className="flex flex-wrap items-center gap-x-5 gap-y-2" aria-label="Platforms">

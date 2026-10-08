@@ -90,7 +90,7 @@ function RoleCard({ role, preview }: { role: Role; preview: boolean }): JSX.Elem
           </ul>
         )}
         {preview && current && hidden > 0 && (
-          <p className="mt-3 text-xs text-violet/80">
+          <p className="mt-3 text-xs text-violet">
             + {hidden} more {hidden === 1 ? 'responsibility' : 'responsibilities'}
           </p>
         )}

@@ -63,7 +63,7 @@ export default function Contact(): JSX.Element {
                 </Button>
               </div>
               <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2">
-                <span className="text-xs font-semibold tracking-widest text-violet/80 uppercase">
+                <span className="text-xs font-semibold tracking-widest text-violet uppercase">
                   Platforms
                 </span>
                 {['HTML', 'WordPress', 'Shopify', 'Wix'].map((p) => (

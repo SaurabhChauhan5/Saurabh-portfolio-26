@@ -93,7 +93,7 @@ export default function PlatformExperience(): JSX.Element {
             );
           })}
         </div>
-        <Reveal as="p" className="mt-6 text-xs text-violet/80">
+        <Reveal as="p" className="mt-6 text-xs text-violet">
           Dashed names are previous clients. Client businesses belong to their respective owners;
           names are listed only to show the platforms and sites I have done SEO work on. See every
           site grouped by platform on the{' '}

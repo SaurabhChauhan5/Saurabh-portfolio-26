@@ -484,7 +484,7 @@ export default function ClientsPage(): JSX.Element {
               <Reveal className="flex flex-wrap items-center gap-3 sm:gap-4 mb-2">
                 <span className="brand-tile">
                   {activePlatform.label === 'Custom-built' ? (
-                    <Code size={20} className="text-blue" aria-hidden="true" />
+                    <Code size={20} className="text-white" aria-hidden="true" />
                   ) : (
                     <TopicIcon label={activePlatform.label} size={22} />
                   )}
@@ -631,7 +631,7 @@ export default function ClientsPage(): JSX.Element {
             </Reveal>
           )}
 
-          <p className="text-xs text-violet/80">
+          <p className="text-xs text-violet">
             Client names and sensitive analytics data are withheld where required. Work shown
             reflects responsibilities performed as part of my role at AAA Digital. Homepage
             screenshots were captured in October 2026; all businesses belong to their respective

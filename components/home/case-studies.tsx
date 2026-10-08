@@ -93,7 +93,7 @@ function IndexationChart({ compact = false }: { compact?: boolean }): JSX.Elemen
           </div>
         </div>
       </div>
-      <figcaption className={`${compact ? 'mt-4' : 'mt-6'} text-xs text-violet/80 leading-relaxed`}>
+      <figcaption className={`${compact ? 'mt-4' : 'mt-6'} text-xs text-violet leading-relaxed`}>
         Indexed page count as monitored in Google Search Console. This case study measures
         indexation only — not traffic or rankings.
       </figcaption>
@@ -270,7 +270,7 @@ export default function CaseStudies({ preview = false }: Props): JSX.Element {
                       </li>
                     ))}
                   </ul>
-                  <p className="mt-5 text-xs text-violet/80">
+                  <p className="mt-5 text-xs text-violet">
                     Listed as platform experience examples, not performance claims.
                   </p>
                 </div>
