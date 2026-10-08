@@ -1,6 +1,7 @@
+import Link from 'next/link';
 import { ArrowRight } from 'react-feather';
 import { Reveal, SectionHeading } from '@shared-components';
-import { PLATFORMS } from '@utils/data';
+import { PLATFORMS, platformCount, platformHref } from '@utils/data';
 import TopicIcon from '../../shared/components/topic-icon';
 
 export default function Platforms(): JSX.Element {
@@ -31,26 +32,36 @@ export default function Platforms(): JSX.Element {
           }
           lead="I adapt the SEO approach to the technical constraints and structure of each platform."
         />
-        <ul className="border-t border-violet/20">
-          {PLATFORMS.map((p, i) => (
-            <Reveal as="li" key={p.name} delay={i * 90} className="hover-list-row">
-              <span className="hover-list-num">{String(i + 1).padStart(2, '0')}</span>
-              <h3 className="text-2xl sm:text-3xl font-bold text-white flex items-center gap-4">
-                <span className="brand-tile brand-tile-lg" aria-hidden="true">
-                  <TopicIcon label={p.name} size={28} />
-                </span>
-                {p.name}
-              </h3>
-              <p className="col-start-2 md:col-start-auto text-sm sm:text-base text-violet leading-relaxed">
-                {p.description}
-              </p>
-              <ArrowRight
-                className="hover-list-arrow hidden md:block text-violet"
-                size={22}
-                aria-hidden="true"
-              />
-            </Reveal>
-          ))}
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {PLATFORMS.map((p, i) => {
+            const count = platformCount(p.name);
+            return (
+              <Reveal as="li" key={p.name} delay={i * 80} className="h-full">
+                <Link
+                  href={platformHref(p.name)}
+                  className="card spotlight hover-lift group h-full p-5 flex flex-col">
+                  <span className="flex items-center justify-between gap-3">
+                    <span className="brand-tile" aria-hidden="true">
+                      <TopicIcon label={p.name} size={22} />
+                    </span>
+                    <span className="jump-count text-xs">{count} sites</span>
+                  </span>
+                  <h3 className="mt-4 text-lg font-bold text-white group-hover:text-pink transition-colors">
+                    {p.name}
+                  </h3>
+                  <p className="mt-1.5 text-sm text-violet leading-relaxed">{p.description}</p>
+                  <span className="mt-auto pt-4 inline-flex items-center gap-1.5 text-sm text-pink font-medium">
+                    View {count} websites
+                    <ArrowRight
+                      size={15}
+                      aria-hidden="true"
+                      className="transition-transform group-hover:translate-x-1"
+                    />
+                  </span>
+                </Link>
+              </Reveal>
+            );
+          })}
         </ul>
       </div>
     </section>

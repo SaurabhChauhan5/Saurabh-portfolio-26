@@ -37,25 +37,25 @@ export default function Expertise(): JSX.Element {
           {EXPERTISE.map((group, i) => (
             <li
               key={group.title}
-              className="stack-card card p-6 sm:p-8"
+              className="stack-card card p-5 sm:p-6"
               style={{ '--i': i } as CSSProperties}>
               <div className="flex items-center justify-between gap-4">
                 <div className="flex items-center gap-4">
-                  <span className="icon-tile">
-                    <Icon name={group.icon} />
+                  <span className="icon-tile icon-tile-sm">
+                    <Icon name={group.icon} size={18} />
                   </span>
-                  <h3 className="text-xl sm:text-2xl font-bold text-white">{group.title}</h3>
+                  <h3 className="text-lg sm:text-xl font-bold text-white">{group.title}</h3>
                 </div>
                 <span
-                  className="text-4xl font-extrabold text-transparent stack-num"
+                  className="text-3xl font-extrabold text-transparent stack-num"
                   aria-hidden="true">
                   {String(i + 1).padStart(2, '0')}
                 </span>
               </div>
-              <ul className="mt-6 flex flex-wrap gap-2">
+              <ul className="mt-4 flex flex-wrap gap-1.5">
                 {group.items.map((item) => (
-                  <li key={item} className="chip chip-lg inline-flex items-center gap-2">
-                    <TopicIcon label={item} />
+                  <li key={item} className="chip inline-flex items-center gap-1.5">
+                    <TopicIcon label={item} size={13} />
                     {item}
                   </li>
                 ))}

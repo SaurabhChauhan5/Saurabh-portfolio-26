@@ -12,13 +12,15 @@ const PREVIEW_BULLETS = 3;
 function RoleCard({ role, preview }: { role: Role; preview: boolean }): JSX.Element {
   const isSeo = role.kind === 'seo';
   const current = !role.endDate;
+  // Homepage preview: the current role's top bullets only; earlier roles show title,
+  // company and dates, with the detail on /experience.
   const bullets = preview
-    ? role.responsibilities.slice(0, current ? PREVIEW_BULLETS : 1)
+    ? role.responsibilities.slice(0, current ? PREVIEW_BULLETS : 0)
     : role.responsibilities;
   const hidden = role.responsibilities.length - bullets.length;
 
   return (
-    <li className="timeline-item relative pl-12 sm:pl-16 pb-12 last:pb-0">
+    <li className={`timeline-item relative pl-12 sm:pl-16 ${preview ? 'pb-6' : 'pb-12'} last:pb-0`}>
       <span
         className={`timeline-dot ${current ? 'timeline-dot-current' : ''}`}
         aria-hidden="true"
@@ -59,18 +61,20 @@ function RoleCard({ role, preview }: { role: Role; preview: boolean }): JSX.Elem
           </div>
         </div>
         {!isSeo && <p className="mt-3 chip inline-block">Development background</p>}
-        <ul className="mt-5 space-y-3 max-w-3xl">
-          {bullets.map((r) => (
-            <li
-              key={r}
-              className="flex items-start gap-3 text-sm sm:text-base text-violet leading-relaxed">
-              <span className="bullet-icon">
-                <TopicIcon label={r.split(' ').slice(0, 4).join(' ')} size={14} />
-              </span>
-              {r}
-            </li>
-          ))}
-        </ul>
+        {bullets.length > 0 && (
+          <ul className="mt-5 space-y-3 max-w-3xl">
+            {bullets.map((r) => (
+              <li
+                key={r}
+                className="flex items-start gap-3 text-sm sm:text-base text-violet leading-relaxed">
+                <span className="bullet-icon">
+                  <TopicIcon label={r.split(' ').slice(0, 4).join(' ')} size={14} />
+                </span>
+                {r}
+              </li>
+            ))}
+          </ul>
+        )}
         {!preview && role.tags && (
           <ul
             className="mt-6 pt-5 border-t border-violet/15 flex flex-wrap gap-2"
@@ -83,7 +87,7 @@ function RoleCard({ role, preview }: { role: Role; preview: boolean }): JSX.Elem
             ))}
           </ul>
         )}
-        {preview && hidden > 0 && (
+        {preview && current && hidden > 0 && (
           <p className="mt-3 text-xs text-violet/80">
             + {hidden} more {hidden === 1 ? 'responsibility' : 'responsibilities'}
           </p>

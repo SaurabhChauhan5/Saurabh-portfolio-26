@@ -3,8 +3,6 @@ import { Activity, Award, BookOpen, Briefcase, List, MapPin, Search, Tool } from
 import { Reveal, SectionHeading } from '@shared-components';
 import { ACTIVE_WEBSITES, AGENCY, PROFILE } from '@utils/data';
 
-const BR = '/images/brands';
-
 const FACTS = [
   { icon: MapPin, label: 'Based in', value: 'Gurugram, India · remote' },
   { icon: Briefcase, label: 'Working with', value: 'Australian businesses' },
@@ -14,23 +12,6 @@ const FACTS = [
     label: 'Currently studying',
     value: 'MBA, Business Analytics & Digital Marketing'
   }
-];
-
-const TOOLS = [
-  { name: 'Google Search Console', icon: `${BR}/googlesearchconsole.svg` },
-  { name: 'GA4', icon: `${BR}/googleanalytics.svg` },
-  { name: 'SEMrush', icon: `${BR}/semrush.svg` },
-  { name: 'PageSpeed Insights', icon: `${BR}/pagespeedinsights.svg` },
-  { name: 'Rank Math', icon: `${BR}/rankmath.png` },
-  { name: 'Yoast SEO', icon: `${BR}/yoast.svg` },
-  { name: 'Google Business Profile', icon: `${BR}/google.png` }
-];
-
-const PLATFORMS = [
-  { name: 'HTML', icon: `${BR}/html5.svg` },
-  { name: 'WordPress', icon: `${BR}/wordpress.svg` },
-  { name: 'Shopify', icon: `${BR}/shopify.svg` },
-  { name: 'Wix', icon: `${BR}/wix.svg` }
 ];
 
 const WORKFLOW = [
@@ -55,28 +36,6 @@ const WORKFLOW = [
     text: 'Track indexing and visibility in Search Console, GA4 and SEMrush.'
   }
 ];
-
-function LogoRow({
-  title,
-  items
-}: {
-  title: string;
-  items: { name: string; icon: string }[];
-}): JSX.Element {
-  return (
-    <div>
-      <h3 className="text-xs font-semibold tracking-widest text-pink uppercase">{title}</h3>
-      <ul className="mt-3 flex flex-wrap gap-2">
-        {items.map((t) => (
-          <li key={t.name} className="logo-pill">
-            <img src={t.icon} alt="" width={18} height={18} loading="lazy" />
-            {t.name}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
 
 export default function About(): JSX.Element {
   return (
@@ -135,11 +94,6 @@ export default function About(): JSX.Element {
                   </div>
                 </div>
               ))}
-            </Reveal>
-
-            <Reveal delay={140} className="space-y-6">
-              <LogoRow title="Tools I use every day" items={TOOLS} />
-              <LogoRow title="Platforms" items={PLATFORMS} />
             </Reveal>
           </div>
 
