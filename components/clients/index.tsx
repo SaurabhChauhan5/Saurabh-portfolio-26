@@ -90,7 +90,7 @@ function SiteCard({
         <div className="relative overflow-hidden bg-navy aspect-16-10">
           <Image
             src={site.img}
-            alt={`${site.name} website homepage`}
+            alt={site.alt || `${site.name} website homepage`}
             fill
             sizes="(min-width: 1024px) 360px, 50vw"
             className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
@@ -622,7 +622,7 @@ export default function ClientsPage(): JSX.Element {
                 aria-label="AAA Digital website homepage (opens in a new tab)">
                 <Image
                   src={AGENCY_SITE.img}
-                  alt="AAA Digital website homepage"
+                  alt={AGENCY_SITE.alt}
                   fill
                   sizes="(min-width: 768px) 320px, 100vw"
                   className="object-cover object-top"

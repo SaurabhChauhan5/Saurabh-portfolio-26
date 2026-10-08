@@ -129,7 +129,7 @@ export default function ClientFlow(): JSX.Element {
                   <div className="relative aspect-16-10 overflow-hidden bg-navy">
                     <Image
                       src={site.img}
-                      alt={`${site.name} website homepage`}
+                      alt={site.alt || `${site.name} website homepage`}
                       fill
                       sizes="(min-width: 1024px) 440px, 80vw"
                       className="object-cover object-top transition-transform duration-700 group-hover:scale-105"

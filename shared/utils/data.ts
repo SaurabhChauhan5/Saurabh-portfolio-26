@@ -556,7 +556,8 @@ export const PROJECTS: Project[] = [
       'Robust error handling and input validation to keep data consistent.'
     ],
     img: '/images/projects/amart-store.webp',
-    imgAlt: 'AMart Store grocery web application home page',
+    imgAlt:
+      'AMart Store home page: full-stack grocery web app built with React, Node.js, Express and MongoDB',
     tags: ['ReactJS', 'Node.js', 'Express.js', 'MongoDB', 'Cloudinary'],
     category: ['Full Stack', 'Frontend'],
     github: 'https://github.com/SaurabhChauhan5/AMartClient',
@@ -576,7 +577,8 @@ export const PROJECTS: Project[] = [
       'Basic validation and localStorage for session persistence.'
     ],
     img: '/images/projects/ecommerce.webp',
-    imgAlt: 'E-commerce website design product listing page',
+    imgAlt:
+      'E-commerce website product listing page with shopping cart, built with HTML, CSS and JavaScript',
     tags: ['HTML', 'CSS', 'JavaScript'],
     category: ['Frontend'],
     github: 'https://github.com/SaurabhChauhan5/E-Commerce',
@@ -596,7 +598,8 @@ export const PROJECTS: Project[] = [
       'Data processing and algorithm design in Python.'
     ],
     img: '/images/projects/movie-recommender.webp',
-    imgAlt: 'Movie Recommender System Streamlit interface',
+    imgAlt:
+      'Movie Recommender System: content-based movie recommendation web app built with Python and Streamlit',
     tags: ['Python', 'Streamlit', 'Content-Based Filtering'],
     category: ['Machine Learning', 'Data Analysis'],
     github: 'https://github.com/SaurabhChauhan5/Movie-Recommender',
@@ -616,7 +619,8 @@ export const PROJECTS: Project[] = [
       'Contributed to R&D and planning within a 4-member team.'
     ],
     img: '/images/projects/iot-voice-companion.webp',
-    imgAlt: 'IoT voice companion device built with ESP32',
+    imgAlt:
+      'IoT voice assistant built on an ESP32 using Deepgram speech-to-text, Gemini AI and Google TTS',
     tags: ['ESP32', 'Deepgram API', 'Gemini AI', 'Google TTS', 'IoT'],
     category: ['IoT', 'Full Stack'],
     github: 'https://drive.google.com/file/d/1D3mgcx0_QH5aoi_YUj2Z4gfSnAbZjd2j/view?usp=share_link',
@@ -636,7 +640,8 @@ export const PROJECTS: Project[] = [
       'Visualizations designed to support data-informed decisions.'
     ],
     img: '/images/projects/tableau-dashboard.webp',
-    imgAlt: 'Tableau sales insights business dashboard',
+    imgAlt:
+      'Tableau sales insights dashboard showing business sales trends for data-driven decisions',
     tags: ['Tableau', 'Data Visualization', 'Business Intelligence', 'Sales Analytics'],
     category: ['Data Analysis'],
     github: 'https://drive.google.com/file/d/11gC7DXgxFm9O4l9VoDaXRm7ObMlkCOX9/view?usp=share_link',
@@ -657,7 +662,7 @@ export const PROJECTS: Project[] = [
       'Real-time scoring system.'
     ],
     img: '/images/projects/flashquiz.webp',
-    imgAlt: 'FlashQuiz trivia quiz application screen',
+    imgAlt: 'FlashQuiz trivia quiz web app with live scoring, built with React and a trivia API',
     tags: ['React.js', 'HTML5', 'JavaScript', 'CSS', 'Trivia API'],
     category: ['Frontend'],
     github: 'https://github.com/SaurabhChauhan5/FlashQuiz',
@@ -788,6 +793,7 @@ export interface ClientWebsite {
   img: string;
   location?: string;
   platform?: string;
+  alt?: string;
 }
 
 const site = (name: string, domain: string, extra: Partial<ClientWebsite> = {}): ClientWebsite => ({
@@ -796,6 +802,17 @@ const site = (name: string, domain: string, extra: Partial<ClientWebsite> = {}):
   img: `/images/clients/${domain.replace(/\.com\.au$/, '').replace(/\./g, '-')}.jpg`,
   ...extra
 });
+
+// Descriptive, keyword-rich alt text for a client screenshot:
+// "<Name> homepage: <industry> website in <location>, built on <platform>".
+export const clientAlt = (s: ClientWebsite, industry?: string): string => {
+  const where = s.location || (s.domain.endsWith('.au') ? 'Australia' : '');
+  const what = industry
+    ? `${industry.toLowerCase().replace(/&/g, 'and')} website`
+    : 'business website';
+  const built = s.platform ? `, built on ${s.platform.replace('Custom-built', 'custom code')}` : '';
+  return `${s.name} homepage: ${what}${where ? ` in ${where}` : ''}${built}`;
+};
 
 export const CLIENT_GROUPS: { industry: string; icon: string; sites: ClientWebsite[] }[] = [
   {
@@ -911,6 +928,10 @@ export const CLIENT_GROUPS: { industry: string; icon: string; sites: ClientWebsi
   }
 ];
 
+CLIENT_GROUPS.forEach((g) =>
+  g.sites.forEach((x) => Object.assign(x, { alt: clientAlt(x, g.industry) }))
+);
+
 export const PREVIOUS_CLIENT_SITES: (ClientWebsite & { industry: string })[] = [
   {
     ...site('Apollo Concrete', 'apolloconcrete.com.au', {
@@ -1007,6 +1028,8 @@ export const PREVIOUS_CLIENT_SITES: (ClientWebsite & { industry: string })[] = [
   }
 ];
 
+PREVIOUS_CLIENT_SITES.forEach((x) => Object.assign(x, { alt: clientAlt(x, x.industry) }));
+
 // Previous clients whose website no longer loads (domain not resolving, Oct 2026).
 // Move an entry to PREVIOUS_CLIENT_SITES with a screenshot if the site comes back.
 export const PREVIOUS_CLIENTS_NO_WEBSITE: {
@@ -1033,6 +1056,8 @@ export const AGENCY_SITE = site('AAA Digital', 'aaadigital.com.au', {
   location: 'Sydney, NSW',
   platform: 'Custom-built'
 });
+AGENCY_SITE.alt =
+  'AAA Digital homepage: Sydney digital marketing agency website, built on custom code';
 
 // Active clients that don't have a public website listed in the register.
 export const CLIENTS_WITHOUT_WEBSITE = ['a Google Business Profile-only client'];
