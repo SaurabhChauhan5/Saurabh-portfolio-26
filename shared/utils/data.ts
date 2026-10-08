@@ -622,7 +622,7 @@ export const PROJECTS: Project[] = [
     imgAlt:
       'IoT voice assistant built on an ESP32 using Deepgram speech-to-text, Gemini AI and Google TTS',
     tags: ['ESP32', 'Deepgram API', 'Gemini AI', 'Google TTS', 'IoT'],
-    category: ['IoT', 'Full Stack'],
+    category: ['IoT'],
     github: 'https://drive.google.com/file/d/1D3mgcx0_QH5aoi_YUj2Z4gfSnAbZjd2j/view?usp=share_link',
     githubLabel: 'View Report',
     url: 'https://docs.google.com/presentation/d/11bogiW8P_Focu_Rfzu3SuwjeNYxzPk52/edit?usp=share_link&ouid=112227338018658698252&rtpof=true&sd=true',
