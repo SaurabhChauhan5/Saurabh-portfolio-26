@@ -2703,3 +2703,25 @@ html.theme-anim *::after {
   border-radius: 999px;
   border: 1px solid rgb(var(--c-border));
 }
+.theme-toggle {
+  position: relative;
+}
+.theme-auto-dot {
+  position: absolute;
+  right: 0.35rem;
+  bottom: 0.35rem;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: rgb(var(--c-accent));
+  box-shadow: 0 0 0 2px rgb(var(--c-surface));
+}
+.theme-auto-row {
+  margin-bottom: 0.3rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid rgb(var(--c-border));
+}
+.theme-auto-row .theme-swatch {
+  color: rgb(var(--c-accent-text));
+  background: rgb(var(--c-tint));
+}

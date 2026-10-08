@@ -1,5 +1,6 @@
 /* eslint-disable react/no-danger */
 import { Html, Head, Main, NextScript } from 'next/document';
+import { THEME_BOOT_SCRIPT } from '../shared/utils/theme';
 
 export default function Document(): JSX.Element {
   return (
@@ -9,13 +10,8 @@ export default function Document(): JSX.Element {
         <script
           dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }}
         />
-        {/* Theme before first paint: saved choice, otherwise the device setting. */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html:
-              "(function(){var t;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='light'&&t!=='dark'&&t!=='dusk'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.dataset.theme=t})()"
-          }}
-        />
+        {/* Theme before first paint: saved choice, otherwise Auto (time of day + device setting). */}
+        <script dangerouslySetInnerHTML={{ __html: THEME_BOOT_SCRIPT }} />
         <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)" />
         <meta name="theme-color" content="#121833" media="(prefers-color-scheme: dark)" />
         <meta name="format-detection" content="telephone=no" />
