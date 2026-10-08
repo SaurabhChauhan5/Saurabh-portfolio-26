@@ -635,25 +635,6 @@ a {
   color: rgb(var(--c-accent-text));
   transform: translateX(3px);
 }
-.footer-wordmark {
-  position: relative;
-  margin: 0 auto;
-  max-width: 72rem;
-  padding: 0 1rem;
-  font-size: clamp(2.2rem, 9.5vw, 7.5rem);
-  font-weight: 800;
-  line-height: 0.9;
-  letter-spacing: -0.04em;
-  text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(100, 116, 139, 0.16);
-  background: linear-gradient(180deg, rgba(100, 116, 139, 0.1), transparent 85%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  user-select: none;
-}
 .back-to-top {
   display: inline-flex;
   align-items: center;
@@ -2534,12 +2515,6 @@ a.site-chip:hover svg {
 .site-footer .footer-glow {
   background: radial-gradient(50% 60% at 50% 100%, rgba(79, 70, 229, 0.3), transparent 70%);
 }
-.footer-wordmark {
-  -webkit-text-stroke: 1px rgba(138, 180, 248, 0.18);
-  background: linear-gradient(180deg, rgba(138, 180, 248, 0.14), transparent 85%);
-  -webkit-background-clip: text;
-  background-clip: text;
-}
 
 /* Cards: a thin accent line slides in on hover. */
 .hover-lift {
@@ -2642,12 +2617,6 @@ html.theme-anim *::after {
 [data-theme='dusk'] .cta-card-inner .border-pink {
   border-color: rgba(238, 187, 195, 0.5);
 }
-[data-theme='dusk'] .footer-wordmark {
-  -webkit-text-stroke: 1px rgba(184, 193, 236, 0.16);
-  background: linear-gradient(180deg, rgba(184, 193, 236, 0.12), transparent 85%);
-  -webkit-background-clip: text;
-  background-clip: text;
-}
 [data-theme='dusk'] .site-footer .footer-glow {
   background: radial-gradient(50% 60% at 50% 100%, rgba(238, 187, 195, 0.14), transparent 70%);
 }
@@ -2724,4 +2693,89 @@ html.theme-anim *::after {
 .theme-auto-row .theme-swatch {
   color: rgb(var(--c-accent-text));
   background: rgb(var(--c-tint));
+}
+
+/* ---------- Footer signature ---------- */
+.footer-wordmark {
+  --wm-a: #8ab4f8;
+  --wm-b: #a5b4fc;
+  --wm-c: #ffffff;
+  --wm-glow: rgba(99, 132, 255, 0.35);
+  position: relative;
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 2.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  column-gap: 0.25em;
+  font-size: clamp(2.6rem, 11vw, 8rem);
+  line-height: 1;
+  text-align: center;
+  user-select: none;
+  overflow: hidden;
+}
+[data-theme='dusk'] .footer-wordmark {
+  --wm-a: #eebbc3;
+  --wm-b: #b8c1ec;
+  --wm-c: #fffffe;
+  --wm-glow: rgba(238, 187, 195, 0.28);
+}
+.footer-wordmark::before {
+  content: '';
+  position: absolute;
+  left: 15%;
+  right: 15%;
+  bottom: 18%;
+  height: 40%;
+  background: radial-gradient(50% 50% at 50% 50%, var(--wm-glow), transparent 70%);
+  filter: blur(24px);
+  pointer-events: none;
+}
+.wm-word {
+  position: relative;
+  display: inline-block;
+  padding: 0 0.04em 0.08em;
+  color: transparent;
+  background-image: linear-gradient(
+    100deg,
+    var(--wm-a) 0%,
+    var(--wm-b) 30%,
+    var(--wm-c) 50%,
+    var(--wm-b) 70%,
+    var(--wm-a) 100%
+  );
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: wm-sheen 9s linear infinite;
+  transition: transform 1s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 1s ease;
+}
+.wm-sans {
+  font-weight: 800;
+  letter-spacing: -0.045em;
+}
+.wm-serif {
+  font-family: var(--font-serif), Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  animation-delay: -1.5s;
+}
+.js .footer-wordmark:not(.is-in) .wm-word {
+  opacity: 0;
+  transform: translateY(45%);
+}
+.footer-wordmark.is-in .wm-serif {
+  transition-delay: 0.15s;
+}
+@keyframes wm-sheen {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: -220% 50%;
+  }
 }

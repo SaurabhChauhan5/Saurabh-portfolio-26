@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { ArrowUp, Clock, GitHub, Linkedin, Mail, MapPin, Phone } from 'react-feather';
 import { EXPERTISE, NAV_LINKS, PROFILE, RESUME_PATH } from '@utils/data';
 import Icon from './icon';
+import { useInView } from './reveal';
 
 const SOCIAL = [
   { label: 'LinkedIn', href: PROFILE.linkedin, icon: Linkedin, external: true },
@@ -28,6 +29,18 @@ function LocalTime(): JSX.Element {
     return () => clearInterval(id);
   }, []);
   return <span className="tabular-nums">{time || '--:--'}</span>;
+}
+
+// Large closing signature; the two words rise in when the footer scrolls into view.
+function Wordmark(): JSX.Element {
+  const [ref, inView] = useInView<HTMLDivElement>('0px 0px 0px 0px');
+  const [first, ...rest] = PROFILE.name.split(' ');
+  return (
+    <div ref={ref} className={`footer-wordmark ${inView ? 'is-in' : ''}`} aria-hidden="true">
+      <span className="wm-word wm-sans">{first}</span>{' '}
+      <span className="wm-word wm-serif">{rest.join(' ')}</span>
+    </div>
+  );
 }
 
 export default function Footer(): JSX.Element {
@@ -142,9 +155,7 @@ export default function Footer(): JSX.Element {
         </div>
       </div>
 
-      <p className="footer-wordmark" aria-hidden="true">
-        {PROFILE.name}
-      </p>
+      <Wordmark />
 
       <div className="relative border-t border-violet/10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-wrap items-center justify-between gap-4 text-xs text-violet">
