@@ -1,7 +1,7 @@
 /* eslint-disable react/require-default-props */
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import { ExternalLink, MapPin } from 'react-feather';
+import { Code, ExternalLink, MapPin } from 'react-feather';
 import { Button, Icon, Reveal } from '@shared-components';
 import {
   ACTIVE_WEBSITES,
@@ -14,6 +14,7 @@ import {
   TOTAL_WEBSITES
 } from '@utils/data';
 import PageHero from '../../shared/components/page-hero';
+import TopicIcon from '../../shared/components/topic-icon';
 
 function NoWebsiteCard({ name, delay }: { name: string; delay: number }): JSX.Element {
   const initials = name
@@ -60,7 +61,6 @@ function SiteCard({
   delay: number;
   badge?: string;
 }): JSX.Element {
-  const meta = [site.location || 'Australia', site.platform].filter(Boolean).join(' · ');
   return (
     <Reveal as="li" delay={delay} className="h-full">
       <a
@@ -97,9 +97,19 @@ function SiteCard({
           </h3>
           <p className="mt-auto pt-2 sm:pt-3 flex items-center gap-1.5 text-xs sm:text-sm text-violet">
             <MapPin size={13} aria-hidden="true" className="flex-shrink-0" />
-            <span className="truncate">{meta}</span>
-            <span className="sr-only">(opens in a new tab)</span>
+            <span className="truncate">{site.location || 'Australia'}</span>
           </p>
+          {site.platform && (
+            <p className="mt-1 flex items-center gap-1.5 text-xs sm:text-sm text-violet">
+              {/^custom/i.test(site.platform) ? (
+                <Code size={13} aria-hidden="true" className="flex-shrink-0 text-pink" />
+              ) : (
+                <TopicIcon label={site.platform} size={13} />
+              )}
+              <span className="truncate">{site.platform}</span>
+            </p>
+          )}
+          <span className="sr-only">(opens in a new tab)</span>
         </div>
       </a>
     </Reveal>

@@ -272,13 +272,28 @@ export const CASE_STUDIES: CaseStudy[] = [
 ];
 
 export const MULTI_PLATFORM_EXAMPLES = [
-  { platform: 'Shopify', sites: ['Deesarina', 'INCIA Australia', 'D’Olive Australia'] },
+  {
+    platform: 'Shopify',
+    sites: ['Magic Sports', 'Deesarina', 'INCIA Australia', 'D’Olive Australia']
+  },
   { platform: 'Wix', sites: ['Ettinka', 'Maria Projects'] },
   {
     platform: 'WordPress',
-    sites: ['HSK Blind', 'SydCity Glass', 'Other WordPress client websites']
+    sites: [
+      'HSK Blind',
+      'SydCity Glass',
+      'Five Star Car Detailing',
+      'Brisbane City Glass',
+      'Other WordPress client websites'
+    ]
   },
-  { platform: 'HTML', sites: ['SEO-friendly custom landing pages'] }
+  {
+    platform: 'HTML',
+    sites: [
+      'SEO-friendly custom landing pages',
+      'Custom-built sites such as State to State Removals and Olympus Glass'
+    ]
+  }
 ];
 
 // From the client master register (Oct 2026): 24 active websites = 23 client
@@ -314,6 +329,7 @@ export const PLATFORM_EXPERIENCE: PlatformExperience[] = [
     heading: 'Shopify & eCommerce SEO',
     intro: 'Shopify and eCommerce SEO across active and previous client projects.',
     sites: [
+      { name: 'Magic Sports', url: 'https://magicsports.com.au/', status: 'current' },
       { name: 'Deesarina', url: 'https://deesarina.com', status: 'current' },
       { name: 'INCIA Australia', status: 'previous' },
       { name: 'D’Olive Australia', status: 'previous' }
@@ -335,7 +351,17 @@ export const PLATFORM_EXPERIENCE: PlatformExperience[] = [
     intro: 'WordPress SEO across client websites, covering the areas below.',
     sites: [
       { name: 'HSK Blind', url: 'https://hskblind.com.au/', status: 'current' },
-      { name: 'SydCity Glass', url: 'https://sydcityglass.com.au/', status: 'current' }
+      { name: 'SydCity Glass', url: 'https://sydcityglass.com.au/', status: 'current' },
+      {
+        name: 'Five Star Car Detailing',
+        url: 'https://fivestarcardetailing.com.au/',
+        status: 'current'
+      },
+      {
+        name: 'Brisbane City Glass',
+        url: 'https://brisbanecityglass.com.au/',
+        status: 'current'
+      }
     ],
     othersNote: 'Other WordPress client websites',
     work: [
@@ -698,38 +724,55 @@ export const CLIENT_GROUPS: { industry: string; icon: string; sites: ClientWebsi
         location: 'Sydney, NSW',
         platform: 'WordPress'
       }),
-      site('Brisbane City Glass', 'brisbanecityglass.com.au', { location: 'Brisbane, QLD' }),
-      site('Mighty Glass', 'mightyglass.com.au', { location: 'Sydney, NSW' }),
-      site('Alpha Glazier', 'alphaglazier.com.au', { location: 'Sydney, NSW' }),
-      site('Glass Squad', 'glasssquad.com.au', { location: 'Sydney, NSW' }),
+      site('Brisbane City Glass', 'brisbanecityglass.com.au', {
+        location: 'Brisbane, QLD',
+        platform: 'WordPress + Custom'
+      }),
+      site('Mighty Glass', 'mightyglass.com.au', {
+        location: 'Sydney, NSW',
+        platform: 'WordPress + Custom'
+      }),
+      site('Alpha Glazier', 'alphaglazier.com.au', {
+        location: 'Sydney, NSW',
+        platform: 'WordPress + Custom'
+      }),
+      site('Glass Squad', 'glasssquad.com.au', {
+        location: 'Sydney, NSW',
+        platform: 'WordPress + Custom'
+      }),
       site('Alpha Emergency Glass Repairs', 'alphaemergencyglassrepairs.com.au', {
-        location: 'Sydney, NSW'
+        location: 'Sydney, NSW',
+        platform: 'Custom-built'
       }),
       site('Fixit Emergency Glass Repairs', 'fixitemergencyglassrepairs.com.au', {
-        location: 'Sydney, NSW'
+        location: 'Sydney, NSW',
+        platform: 'Custom-built'
       }),
-      site('Olympus Glass', 'olympusglass.com.au')
+      site('Olympus Glass', 'olympusglass.com.au', { platform: 'Custom-built' })
     ]
   },
   {
     industry: 'Removals',
     icon: 'truck',
     sites: [
-      site('State to State Removals', 'statetostateremovals.com.au', { location: 'Sydney, NSW' }),
-      site('Campsie Removals', 'campsieremovals.com.au'),
-      site('Blacktown Removals', 'blacktownremovals.com.au'),
-      site('Casula Movers', 'casulamovers.com.au'),
-      site('Parramatta Removals', 'parramattaremovals.com.au'),
-      site('Auburn Removals', 'auburnremovals.com.au'),
-      site('Desi Removals', 'desiremovals.com.au')
+      site('State to State Removals', 'statetostateremovals.com.au', {
+        location: 'Sydney, NSW',
+        platform: 'Custom-built'
+      }),
+      site('Campsie Removals', 'campsieremovals.com.au', { platform: 'Custom-built' }),
+      site('Blacktown Removals', 'blacktownremovals.com.au', { platform: 'Custom-built' }),
+      site('Casula Movers', 'casulamovers.com.au', { platform: 'Custom-built' }),
+      site('Parramatta Removals', 'parramattaremovals.com.au', { platform: 'Custom-built' }),
+      site('Auburn Removals', 'auburnremovals.com.au', { platform: 'Custom-built' }),
+      site('Desi Removals', 'desiremovals.com.au', { platform: 'Custom-built' })
     ]
   },
   {
     industry: 'Roofing & Construction',
     icon: 'home',
     sites: [
-      site('ARS Roofing Services', 'arsroofingservices.com.au'),
-      site('GoStruction', 'gostruction.com.au')
+      site('ARS Roofing Services', 'arsroofingservices.com.au', { platform: 'Custom-built' }),
+      site('GoStruction', 'gostruction.com.au', { platform: 'WordPress + Custom' })
     ]
   },
   {
@@ -743,7 +786,10 @@ export const CLIENT_GROUPS: { industry: string; icon: string; sites: ClientWebsi
     industry: 'Electrical',
     icon: 'zap',
     sites: [
-      site('Easy Choice Electrical', 'easychoiceelectrical.com.au', { location: 'Sydney, NSW' })
+      site('Easy Choice Electrical', 'easychoiceelectrical.com.au', {
+        location: 'Sydney, NSW',
+        platform: 'WordPress + Custom'
+      })
     ]
   },
   {
@@ -751,30 +797,40 @@ export const CLIENT_GROUPS: { industry: string; icon: string; sites: ClientWebsi
     icon: 'tool',
     sites: [
       site('Five Star Car Detailing', 'fivestarcardetailing.com.au', {
-        location: 'Kellyville, NSW'
+        location: 'Kellyville, NSW',
+        platform: 'WordPress'
       })
     ]
   },
   {
     industry: 'Sports Retail',
     icon: 'bag',
-    sites: [site('Magic Sports', 'magicsports.com.au', { location: 'Rouse Hill, NSW' })]
+    sites: [
+      site('Magic Sports', 'magicsports.com.au', {
+        location: 'Rouse Hill, NSW',
+        platform: 'Shopify'
+      })
+    ]
   }
 ];
 
 export const PREVIOUS_CLIENT_SITES: (ClientWebsite & { industry: string })[] = [
   {
-    ...site('Apollo Concrete', 'apolloconcrete.com.au', { location: 'Sydney, NSW' }),
+    ...site('Apollo Concrete', 'apolloconcrete.com.au', {
+      location: 'Sydney, NSW',
+      platform: 'Custom-built'
+    }),
     industry: 'Concrete'
   },
   { ...site('Ettinka', 'ettinka.com.au', { platform: 'Wix' }), industry: 'Wellness' },
   {
-    ...site('Ecoleaf Tree Services', 'ecoleaftreeservices.com.au'),
+    ...site('Ecoleaf Tree Services', 'ecoleaftreeservices.com.au', { platform: 'Custom-built' }),
     industry: 'Tree Services'
   },
   {
     ...site('Leaking Shower Repairs Sydney', 'leakingshowerrepairs.sydney', {
-      location: 'Sydney, NSW'
+      location: 'Sydney, NSW',
+      platform: 'WordPress'
     }),
     industry: 'Shower Repairs'
   }
@@ -784,7 +840,10 @@ export const PREVIOUS_CLIENT_SITES: (ClientWebsite & { industry: string })[] = [
 // entry to PREVIOUS_CLIENT_SITES with a screenshot) once the URL is known.
 export const PREVIOUS_CLIENTS_NO_WEBSITE: string[] = [];
 
-export const AGENCY_SITE = site('AAA Digital', 'aaadigital.com.au', { location: 'Sydney, NSW' });
+export const AGENCY_SITE = site('AAA Digital', 'aaadigital.com.au', {
+  location: 'Sydney, NSW',
+  platform: 'Custom-built'
+});
 
 // Active clients that don't have a public website listed in the register.
 export const CLIENTS_WITHOUT_WEBSITE = [
