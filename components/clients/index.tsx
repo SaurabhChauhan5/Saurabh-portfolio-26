@@ -357,18 +357,20 @@ export default function ClientsPage(): JSX.Element {
           </>
         }
         lead="Hands-on SEO work across Australian business websites and multiple industries, grouped by industry. Filter by industry, or click any card to visit the live site."
-        crumbs={[{ name: 'Home', href: '/' }, { name: 'Clients' }]}>
-        <dl className="client-stats">
-          {heroStats.map((st) => (
-            <div key={st.label} className="client-stat">
-              <dt className="text-xs sm:text-sm text-violet">{st.label}</dt>
-              <dd className="order-first text-2xl sm:text-3xl font-extrabold text-white">
-                {st.value}
-              </dd>
-            </div>
-          ))}
-        </dl>
-      </PageHero>
+        crumbs={[{ name: 'Home', href: '/' }, { name: 'Clients' }]}
+        aside={
+          <dl className="client-stats">
+            {heroStats.map((st) => (
+              <div key={st.label} className="client-stat">
+                <dt className="text-xs sm:text-sm text-violet">{st.label}</dt>
+                <dd className="order-first text-2xl sm:text-3xl font-extrabold text-white">
+                  {st.value}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        }
+      />
 
       <ShotMarquee />
 

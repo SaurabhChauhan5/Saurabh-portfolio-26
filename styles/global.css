@@ -2183,6 +2183,28 @@ a.site-chip:hover svg {
   padding-bottom: 0.25rem;
   font-size: 0.8125rem;
 }
+@media (min-width: 1024px) {
+  .page-hero-aside .client-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: none;
+  }
+  .page-hero-aside .client-stat {
+    padding: 1.1rem 1.15rem;
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
+  .page-hero-aside .career-path {
+    grid-template-columns: 1fr;
+    max-width: none;
+  }
+  .page-hero-aside .career-step + .career-step::before {
+    left: 1.5rem;
+    top: -0.75rem;
+    width: 2px;
+    height: 0.75rem;
+    background: linear-gradient(180deg, #b8c1ec, #eebbc3);
+  }
+}
 .github-tile {
   display: flex;
   flex-direction: column;

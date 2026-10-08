@@ -9,6 +9,8 @@ type Props = {
   crumbs: { name: string; href?: string }[];
   children?: ReactNode;
   art?: ReactNode;
+  // Cards shown in the empty right-hand column on large screens (below the text on small ones).
+  aside?: ReactNode;
 };
 
 // Shared header for inner pages: breadcrumb, H1 and lead, over the hero glow.
@@ -18,7 +20,8 @@ export default function PageHero({
   lead,
   crumbs,
   children,
-  art
+  art,
+  aside
 }: Props): JSX.Element {
   return (
     <header className="page-hero relative overflow-hidden pt-32 pb-14 lg:pt-40 lg:pb-20">
@@ -45,46 +48,58 @@ export default function PageHero({
           className="w-full opacity-70"
         />
       </span>
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <nav aria-label="Breadcrumb" className="text-sm text-violet mb-8 hero-anim">
-          <ol className="flex flex-wrap items-center gap-2">
-            {crumbs.map((c, i) => (
-              <li key={c.name} className="flex items-center gap-2">
-                {i > 0 && <span aria-hidden="true">/</span>}
-                {c.href ? (
-                  <Link
-                    href={c.href}
-                    className="inline-block py-1 hover:text-pink transition-colors">
-                    {c.name}
-                  </Link>
-                ) : (
-                  <span aria-current="page" className="text-white">
-                    {c.name}
-                  </span>
-                )}
-              </li>
-            ))}
-          </ol>
-        </nav>
-        <div className="flex items-center hero-anim" style={{ animationDelay: '60ms' }}>
-          <span className="eyebrow-line mr-3" aria-hidden="true" />
-          <p className="font-medium gradient-text text-sm md:text-base tracking-wide uppercase">
-            {eyebrow}
-          </p>
+      <div
+        className={`relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 ${
+          aside ? 'lg:grid lg:grid-cols-12 lg:gap-10 lg:items-end' : ''
+        }`}>
+        <div className={aside ? 'lg:col-span-7' : ''}>
+          <nav aria-label="Breadcrumb" className="text-sm text-violet mb-8 hero-anim">
+            <ol className="flex flex-wrap items-center gap-2">
+              {crumbs.map((c, i) => (
+                <li key={c.name} className="flex items-center gap-2">
+                  {i > 0 && <span aria-hidden="true">/</span>}
+                  {c.href ? (
+                    <Link
+                      href={c.href}
+                      className="inline-block py-1 hover:text-pink transition-colors">
+                      {c.name}
+                    </Link>
+                  ) : (
+                    <span aria-current="page" className="text-white">
+                      {c.name}
+                    </span>
+                  )}
+                </li>
+              ))}
+            </ol>
+          </nav>
+          <div className="flex items-center hero-anim" style={{ animationDelay: '60ms' }}>
+            <span className="eyebrow-line mr-3" aria-hidden="true" />
+            <p className="font-medium gradient-text text-sm md:text-base tracking-wide uppercase">
+              {eyebrow}
+            </p>
+          </div>
+          <h1 className="mt-4 max-w-4xl text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight">
+            {title}
+          </h1>
+          {lead && (
+            <p
+              className="mt-5 max-w-2xl text-base sm:text-lg text-violet leading-relaxed hero-anim"
+              style={{ animationDelay: '140ms' }}>
+              {lead}
+            </p>
+          )}
+          {children && (
+            <div className="mt-8 hero-anim" style={{ animationDelay: '220ms' }}>
+              {children}
+            </div>
+          )}
         </div>
-        <h1 className="mt-4 max-w-4xl text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight">
-          {title}
-        </h1>
-        {lead && (
-          <p
-            className="mt-5 max-w-2xl text-base sm:text-lg text-violet leading-relaxed hero-anim"
-            style={{ animationDelay: '140ms' }}>
-            {lead}
-          </p>
-        )}
-        {children && (
-          <div className="mt-8 hero-anim" style={{ animationDelay: '220ms' }}>
-            {children}
+        {aside && (
+          <div
+            className="page-hero-aside lg:col-span-5 mt-8 lg:mt-0 hero-anim"
+            style={{ animationDelay: '220ms' }}>
+            {aside}
           </div>
         )}
       </div>

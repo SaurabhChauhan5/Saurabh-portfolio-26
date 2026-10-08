@@ -27,23 +27,25 @@ const ExperiencePage = (): JSX.Element => (
         </>
       }
       lead="From front-end development to managing end-to-end SEO for 25 active Australian business websites."
-      crumbs={[{ name: 'Home', href: '/' }, { name: 'Experience' }]}>
-      <ol className="career-path" aria-label="Career progression">
-        {[...EXPERIENCE].reverse().map((role) => (
-          <li
-            key={`${role.position}-${role.startDate}`}
-            className={`career-step ${role.endDate ? '' : 'is-current'}`}>
-            <p className="text-xs text-violet">
-              {role.startDate} – {role.endDate || 'Present'}
-            </p>
-            <p className="mt-1 text-white font-semibold leading-snug">{role.position}</p>
-            <p className="mt-0.5 text-xs text-pink">
-              {role.company.startsWith('I Market') ? 'AAA Digital' : role.company}
-            </p>
-          </li>
-        ))}
-      </ol>
-      <div className="mt-6">
+      crumbs={[{ name: 'Home', href: '/' }, { name: 'Experience' }]}
+      aside={
+        <ol className="career-path" aria-label="Career progression">
+          {[...EXPERIENCE].reverse().map((role) => (
+            <li
+              key={`${role.position}-${role.startDate}`}
+              className={`career-step ${role.endDate ? '' : 'is-current'}`}>
+              <p className="text-xs text-violet">
+                {role.startDate} – {role.endDate || 'Present'}
+              </p>
+              <p className="mt-1 text-white font-semibold leading-snug">{role.position}</p>
+              <p className="mt-0.5 text-xs text-pink">
+                {role.company.startsWith('I Market') ? 'AAA Digital' : role.company}
+              </p>
+            </li>
+          ))}
+        </ol>
+      }>
+      <div>
         <Button href={RESUME_PATH} type="outlined" download>
           Download Resume
         </Button>

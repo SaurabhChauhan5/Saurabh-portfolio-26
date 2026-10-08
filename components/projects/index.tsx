@@ -81,23 +81,25 @@ const ProjectsPage = (): JSX.Element => {
           </>
         }
         lead="Academic and personal projects built during my Computer Science degree and front-end development work. They are not professional client work; they form the technical foundation behind my SEO practice."
-        crumbs={[{ name: 'Home', href: '/' }, { name: 'Projects' }]}>
-        <ul className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl">
-          {STATS.map(({ icon: StatIcon, value, label }) => (
-            <li key={label} className="card-inner p-3 sm:p-4 flex items-center gap-3">
-              <span className="icon-tile icon-tile-sm">
-                <StatIcon size={16} aria-hidden="true" />
-              </span>
-              <span>
-                <span className="block text-xl font-extrabold text-white leading-none">
-                  {value}
+        crumbs={[{ name: 'Home', href: '/' }, { name: 'Projects' }]}
+        aside={
+          <ul className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 gap-3 max-w-2xl lg:max-w-none">
+            {STATS.map(({ icon: StatIcon, value, label }) => (
+              <li key={label} className="card-inner p-3 sm:p-4 flex items-center gap-3">
+                <span className="icon-tile icon-tile-sm">
+                  <StatIcon size={16} aria-hidden="true" />
                 </span>
-                <span className="block mt-1 text-xs text-violet">{label}</span>
-              </span>
-            </li>
-          ))}
-        </ul>
-      </PageHero>
+                <span>
+                  <span className="block text-xl font-extrabold text-white leading-none">
+                    {value}
+                  </span>
+                  <span className="block mt-1 text-xs text-violet">{label}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
+        }
+      />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 space-y-16">
         {featured && <FeaturedProject project={featured} headingLevel="h2" />}
