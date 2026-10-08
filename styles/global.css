@@ -2729,3 +2729,19 @@ html.theme-anim *::after {
   opacity: 0;
   transform: translateY(30%);
 }
+
+.made-heart {
+  display: inline-block;
+  animation: heartbeat 1.6s ease-in-out infinite;
+}
+@keyframes heartbeat {
+  0%,
+  60%,
+  100% {
+    transform: scale(1);
+  }
+  15%,
+  35% {
+    transform: scale(1.18);
+  }
+}

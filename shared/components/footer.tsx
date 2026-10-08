@@ -160,6 +160,12 @@ export default function Footer(): JSX.Element {
           <p>
             © {new Date().getFullYear()} {PROFILE.name}. All rights reserved.
           </p>
+          <p className="inline-flex items-center gap-1.5">
+            Made with
+            <span role="img" aria-label="love" className="made-heart">
+              ❤️
+            </span>
+          </p>
           <button type="button" onClick={toTop} className="back-to-top">
             Back to top
             <ArrowUp size={14} aria-hidden="true" />
