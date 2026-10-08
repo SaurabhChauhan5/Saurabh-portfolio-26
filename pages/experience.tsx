@@ -10,7 +10,7 @@ const ExperiencePage = (): JSX.Element => (
   <>
     <Seo
       title={`Experience | ${PROFILE.name}, SEO Specialist`}
-      description="Career timeline of Saurabh Chauhan: SEO Specialist at I Market & Manage (AAA Digital), managing SEO for 24 active Australian business websites, with a front-end development background."
+      description="Career timeline of Saurabh Chauhan: SEO Specialist at I Market & Manage (AAA Digital), managing SEO for 25 active Australian business websites, with a front-end development background."
       path="/experience"
       jsonLd={[
         breadcrumbLd([
@@ -26,7 +26,7 @@ const ExperiencePage = (): JSX.Element => (
           Professional <span className="shimmer-text">Experience</span>
         </>
       }
-      lead="From front-end development to managing end-to-end SEO for 24 active Australian business websites."
+      lead="From front-end development to managing end-to-end SEO for 25 active Australian business websites."
       crumbs={[{ name: 'Home', href: '/' }, { name: 'Experience' }]}>
       <ol className="career-path" aria-label="Career progression">
         {[...EXPERIENCE].reverse().map((role) => (

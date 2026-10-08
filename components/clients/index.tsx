@@ -16,8 +16,14 @@ import {
 import PageHero from '../../shared/components/page-hero';
 import TopicIcon from '../../shared/components/topic-icon';
 
-function NoWebsiteCard({ name, delay }: { name: string; delay: number }): JSX.Element {
-  const initials = name
+function OfflineSiteCard({
+  site,
+  delay
+}: {
+  site: { name: string; domain: string; industry: string; platform: string };
+  delay: number;
+}): JSX.Element {
+  const initials = site.name
     .split(' ')
     .map((w) => w[0])
     .join('')
@@ -28,18 +34,22 @@ function NoWebsiteCard({ name, delay }: { name: string; delay: number }): JSX.El
         <div className="browser-bar" aria-hidden="true">
           <span className="browser-dot" />
           <span className="browser-dot" />
-          <span className="browser-dot" />
-          <span className="browser-url">No website listed</span>
+          <span className="browser-dot hidden sm:block" />
+          <span className="browser-url">{site.domain}</span>
         </div>
         <div className="no-site-preview aspect-16-10" aria-hidden="true">
           <span className="no-site-initials">{initials}</span>
         </div>
-        <div className="p-5 flex flex-col flex-1">
-          <div className="flex items-start justify-between gap-3">
-            <h3 className="text-lg font-bold text-white leading-snug">{name}</h3>
-            <span className="status-pill">Previous</span>
-          </div>
-          <p className="mt-1 text-sm text-violet">No website listed</p>
+        <div className="p-3 sm:p-5 flex flex-col flex-1">
+          <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-pink">
+            {site.industry}
+          </p>
+          <h3 className="text-sm sm:text-lg font-bold text-white leading-snug">{site.name}</h3>
+          <p className="mt-auto pt-2 sm:pt-3 text-xs sm:text-sm text-violet">Website offline</p>
+          <p className="mt-1 flex items-center gap-1.5 text-xs sm:text-sm text-violet">
+            <TopicIcon label={site.platform} size={13} />
+            {site.platform}
+          </p>
         </div>
       </div>
     </Reveal>
@@ -61,6 +71,7 @@ function SiteCard({
   delay: number;
   badge?: string;
 }): JSX.Element {
+  const location = site.location || (site.domain.endsWith('.au') ? 'Australia' : '');
   return (
     <Reveal as="li" delay={delay} className="h-full">
       <a
@@ -95,12 +106,18 @@ function SiteCard({
           <h3 className="text-sm sm:text-lg font-bold text-white leading-snug group-hover:text-pink transition-colors">
             {site.name}
           </h3>
-          <p className="mt-auto pt-2 sm:pt-3 flex items-center gap-1.5 text-xs sm:text-sm text-violet">
-            <MapPin size={13} aria-hidden="true" className="flex-shrink-0" />
-            <span className="truncate">{site.location || 'Australia'}</span>
-          </p>
+          <span className="mt-auto" />
+          {location && (
+            <p className="pt-2 sm:pt-3 flex items-center gap-1.5 text-xs sm:text-sm text-violet">
+              <MapPin size={13} aria-hidden="true" className="flex-shrink-0" />
+              <span className="truncate">{location}</span>
+            </p>
+          )}
           {site.platform && (
-            <p className="mt-1 flex items-center gap-1.5 text-xs sm:text-sm text-violet">
+            <p
+              className={`${
+                location ? 'mt-1' : 'pt-2 sm:pt-3'
+              } flex items-center gap-1.5 text-xs sm:text-sm text-violet`}>
               {/^custom/i.test(site.platform) ? (
                 <Code size={13} aria-hidden="true" className="flex-shrink-0 text-pink" />
               ) : (
@@ -298,10 +315,10 @@ export default function ClientsPage(): JSX.Element {
             {PREVIOUS_CLIENT_SITES.map((s, i) => (
               <SiteCard key={s.domain} site={s} delay={i * 90} badge={s.industry} />
             ))}
-            {PREVIOUS_CLIENTS_NO_WEBSITE.map((name, i) => (
-              <NoWebsiteCard
-                key={name}
-                name={name}
+            {PREVIOUS_CLIENTS_NO_WEBSITE.map((site, i) => (
+              <OfflineSiteCard
+                key={site.domain}
+                site={site}
                 delay={((PREVIOUS_CLIENT_SITES.length + i) % 3) * 90}
               />
             ))}
@@ -319,7 +336,8 @@ export default function ClientsPage(): JSX.Element {
                 All of this work is carried out at I Market &amp; Manage Private Limited (AAA
                 Digital), Australia, where I also manage SEO for the agency&apos;s own website. That
                 brings the total to {ACTIVE_WEBSITES} active websites: {withSites} client websites
-                shown above, {CLIENTS_WITHOUT_WEBSITE.length} active clients without a public
+                shown above, {CLIENTS_WITHOUT_WEBSITE.length} active{' '}
+                {CLIENTS_WITHOUT_WEBSITE.length === 1 ? 'client' : 'clients'} without a public
                 website ({CLIENTS_WITHOUT_WEBSITE.join(' and ')}), and the agency site.
               </p>
               <div className="mt-5">

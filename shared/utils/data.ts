@@ -25,7 +25,7 @@ export const PROFILE = {
   focusAreas: ['Technical SEO', 'Local SEO', 'eCommerce SEO', 'On-Page SEO', 'Web Performance'],
   summary:
     'I improve crawlability, indexability, website structure and organic search performance for Australian businesses across HTML, WordPress, Shopify and Wix.',
-  credibility: 'Managing SEO across 24 active Australian business websites',
+  credibility: 'Managing SEO across 25 active Australian business websites',
   differentiator:
     'SEO Specialist with a Computer Science and front-end development background, combining technical SEO expertise with web development knowledge.',
   location: 'Gurugram, Haryana, India',
@@ -45,7 +45,7 @@ export const PROFILE = {
 export const SEO_DEFAULTS = {
   title: 'Saurabh Chauhan | SEO Specialist · Technical SEO & Web Performance',
   description:
-    'SEO Specialist in Gurugram, India, managing SEO for 24 active Australian business websites: technical, local and eCommerce SEO across HTML, WordPress, Shopify and Wix.'
+    'SEO Specialist in Gurugram, India, managing SEO for 25 active Australian business websites: technical, local and eCommerce SEO across HTML, WordPress, Shopify and Wix.'
 };
 
 export const SOCIAL_LINKS: SocialLink[] = [
@@ -67,12 +67,12 @@ export const NAV_LINKS: { title: string; href: string; section?: string; match?:
 ];
 
 export const STATS = [
-  { value: 24, suffix: '', label: 'Active Australian Business Websites' },
+  { value: 25, suffix: '', label: 'Active Australian Business Websites' },
   {
-    value: 28,
+    value: 45,
     suffix: '',
     label: 'Business Websites Managed in Total',
-    note: '24 active + 4 previous'
+    note: '25 active + 20 previous'
   },
   {
     value: 1190,
@@ -282,14 +282,18 @@ export const MULTI_PLATFORM_EXAMPLES: {
     platform: 'Shopify',
     sites: [
       { name: 'Magic Sports', url: u('magicsports.com.au') },
-      { name: 'Deesarina', url: 'https://deesarina.com' },
-      { name: 'INCIA Australia' },
-      { name: 'D’Olive Australia' }
+      { name: 'Deesarina', url: u('deesarina.com') },
+      { name: 'INCIA Australia', url: u('incia.com.au') },
+      { name: 'D’Olive Australia', url: u('dolive.com.au') },
+      { name: 'Farran Hardware', url: u('farranhardware.com.au') }
     ]
   },
   {
     platform: 'Wix',
-    sites: [{ name: 'Ettinka', url: u('ettinka.com.au') }, { name: 'Maria Projects' }]
+    sites: [
+      { name: 'Ettinka', url: u('ettinka.com.au') },
+      { name: 'Maria Projects', url: u('mariaprojects.com') }
+    ]
   },
   {
     platform: 'WordPress',
@@ -298,6 +302,7 @@ export const MULTI_PLATFORM_EXAMPLES: {
       { name: 'SydCity Glass', url: u('sydcityglass.com.au') },
       { name: 'Five Star Car Detailing', url: u('fivestarcardetailing.com.au') },
       { name: 'Brisbane City Glass', url: u('brisbanecityglass.com.au') },
+      { name: 'Universal Home Cleaning', url: u('universalhomecleaning.com.au') },
       { name: 'Other WordPress client websites' }
     ]
   },
@@ -313,13 +318,14 @@ export const MULTI_PLATFORM_EXAMPLES: {
   { platform: 'HTML', sites: [{ name: 'SEO-friendly custom landing pages' }] }
 ];
 
-// From the client master register (Oct 2026): 24 active websites = 23 client
-// businesses + AAA Digital's own site; 28 in total including 4 previous clients.
+// From the client master register plus the user's list of past websites (Oct 2026):
+// 25 active websites = 24 client businesses + AAA Digital's own site; 45 in total
+// including 20 previous clients.
 // Industry counts are active clients only.
-export const ACTIVE_WEBSITES = 24;
-export const ACTIVE_CLIENT_BUSINESSES = 23;
-export const TOTAL_WEBSITES = 28; // 24 active + 4 inactive (previous) clients
-export const PREVIOUS_CLIENTS = 4;
+export const ACTIVE_WEBSITES = 25;
+export const ACTIVE_CLIENT_BUSINESSES = 24;
+export const TOTAL_WEBSITES = 45; // 25 active + 20 inactive (previous) clients
+export const PREVIOUS_CLIENTS = 20;
 export const CLIENT_LOCATIONS = ['Sydney & NSW', 'Brisbane, QLD'];
 
 export const INDUSTRIES = [
@@ -331,12 +337,13 @@ export const INDUSTRIES = [
   { name: 'Cleaning', icon: 'droplet', count: 1 },
   { name: 'Car Detailing', icon: 'tool', count: 1 },
   { name: 'Sports Retail', icon: 'bag', count: 1 },
+  { name: 'Coaching', icon: 'compass', count: 1 },
   { name: 'Other Local Business', icon: 'pin', count: 1 }
 ];
 
-// Service scope of the 23 active client businesses ("GMB Only" in the register).
+// Service scope of the 24 active client businesses ("GMB Only" in the register).
 export const SERVICE_SCOPE = [
-  { label: 'Full SEO service', count: 22 },
+  { label: 'Full SEO service', count: 23 },
   { label: 'Google Business Profile management only', count: 1 }
 ];
 
@@ -347,9 +354,10 @@ export const PLATFORM_EXPERIENCE: PlatformExperience[] = [
     intro: 'Shopify and eCommerce SEO across active and previous client projects.',
     sites: [
       { name: 'Magic Sports', url: u('magicsports.com.au'), status: 'current' },
-      { name: 'Deesarina', url: 'https://deesarina.com', status: 'current' },
-      { name: 'INCIA Australia', status: 'previous' },
-      { name: 'D’Olive Australia', status: 'previous' }
+      { name: 'Deesarina', url: u('deesarina.com'), status: 'current' },
+      { name: 'INCIA Australia', url: u('incia.com.au'), status: 'previous' },
+      { name: 'D’Olive Australia', url: u('dolive.com.au'), status: 'previous' },
+      { name: 'Farran Hardware', url: u('farranhardware.com.au'), status: 'previous' }
     ],
     othersNote: 'Other Shopify websites',
     work: [
@@ -368,7 +376,7 @@ export const PLATFORM_EXPERIENCE: PlatformExperience[] = [
     intro: 'SEO work on Wix client websites, focused on the areas below.',
     sites: [
       { name: 'Ettinka', url: u('ettinka.com.au'), status: 'previous' },
-      { name: 'Maria Projects', status: 'previous' }
+      { name: 'Maria Projects', url: u('mariaprojects.com'), status: 'previous' }
     ],
     work: ['SEO optimization', 'Website structure', 'Metadata', 'On-page improvements']
   },
@@ -386,7 +394,29 @@ export const PLATFORM_EXPERIENCE: PlatformExperience[] = [
       { name: 'Alpha Glazier', url: u('alphaglazier.com.au'), status: 'current' },
       { name: 'Glass Squad', url: u('glasssquad.com.au'), status: 'current' },
       { name: 'Easy Choice Electrical', url: u('easychoiceelectrical.com.au'), status: 'current' },
-      { name: 'GoStruction', url: u('gostruction.com.au'), status: 'current' }
+      { name: 'GoStruction', url: u('gostruction.com.au'), status: 'current' },
+      {
+        name: 'Universal Home Cleaning',
+        url: u('universalhomecleaning.com.au'),
+        status: 'current'
+      },
+      { name: 'EnviroGlaze Windows', url: u('enviroglazewindows.com.au'), status: 'previous' },
+      { name: 'A Class Detailing', url: u('aclassdetailing.com.au'), status: 'previous' },
+      { name: 'Queensland Blocklaying', url: u('qldblocklaying.com.au'), status: 'previous' },
+      { name: 'Premier Water Tanks', url: u('premierwatertanks.com.au'), status: 'previous' },
+      { name: 'Your Property Ally', url: u('yourpropertyally.com.au'), status: 'previous' },
+      { name: 'Mini Musos', url: u('minimusos.co'), status: 'previous' },
+      { name: 'Ozzy Brothers Removals', url: u('ozzybrothersremovals.com.au'), status: 'previous' },
+      { name: 'KC Resources & Services', url: u('kcresources.com.au'), status: 'previous' },
+      { name: 'Zacs Rubbish Removals', url: u('zacsrubbishremovals.com.au'), status: 'previous' },
+      {
+        name: 'Leaking Shower Repairs Sydney',
+        url: u('leakingshowerrepairs.sydney'),
+        status: 'previous'
+      },
+      { name: 'Home Urban Services (India)', url: u('homeurbanservices.com'), status: 'previous' },
+      { name: 'Cove Landscaping', status: 'previous' },
+      { name: 'Roadwheels Driving', status: 'previous' }
     ],
     othersNote: 'Other WordPress client websites',
     work: [
@@ -422,7 +452,9 @@ export const PLATFORM_EXPERIENCE: PlatformExperience[] = [
       { name: 'Casula Movers', url: u('casulamovers.com.au'), status: 'current' },
       { name: 'Parramatta Removals', url: u('parramattaremovals.com.au'), status: 'current' },
       { name: 'Auburn Removals', url: u('auburnremovals.com.au'), status: 'current' },
-      { name: 'Desi Removals', url: u('desiremovals.com.au'), status: 'current' }
+      { name: 'Desi Removals', url: u('desiremovals.com.au'), status: 'current' },
+      { name: 'Apollo Concrete', url: u('apolloconcrete.com.au'), status: 'previous' },
+      { name: 'Ecoleaf Tree Services', url: u('ecoleaftreeservices.com.au'), status: 'previous' }
     ],
     work: [
       'Technical SEO',
@@ -457,7 +489,7 @@ export const EXPERIENCE: Role[] = [
       'Wix'
     ],
     responsibilities: [
-      'Manage end-to-end technical SEO across 24 active Australian business websites on HTML, WordPress, Shopify and Wix, covering technical audits, on-page optimization, indexing, website structure and organic search performance.',
+      'Manage end-to-end technical SEO across 25 active Australian business websites on HTML, WordPress, Shopify and Wix, covering technical audits, on-page optimization, indexing, website structure and organic search performance.',
       'Increased indexed pages from approximately 164 to 1,190+ for a client website by resolving crawl and indexability issues, optimizing XML sitemaps and internal linking, and implementing technical SEO improvements.',
       'Conduct technical SEO audits covering XML sitemaps, robots.txt, canonical tags, schema markup, crawlability, indexability, Core Web Vitals and PageSpeed performance.',
       'Build SEO-friendly HTML landing pages and customize WordPress and Shopify websites for eCommerce SEO, implementing semantic structure, metadata, internal linking, structured data and technical improvements.',
@@ -861,6 +893,21 @@ export const CLIENT_GROUPS: { industry: string; icon: string; sites: ClientWebsi
         platform: 'Shopify'
       })
     ]
+  },
+  {
+    industry: 'Cleaning',
+    icon: 'droplet',
+    sites: [
+      site('Universal Home Cleaning', 'universalhomecleaning.com.au', {
+        location: 'Sydney, NSW',
+        platform: 'WordPress'
+      })
+    ]
+  },
+  {
+    industry: 'Coaching',
+    icon: 'compass',
+    sites: [site('Dee Sarina', 'deesarina.com', { platform: 'Shopify' })]
   }
 ];
 
@@ -883,12 +930,104 @@ export const PREVIOUS_CLIENT_SITES: (ClientWebsite & { industry: string })[] = [
       platform: 'WordPress'
     }),
     industry: 'Shower Repairs'
+  },
+  {
+    ...site('Home Urban Services', 'homeurbanservices.com', {
+      location: 'Mumbai, India',
+      platform: 'WordPress'
+    }),
+    industry: 'Cleaning'
+  },
+  {
+    ...site('EnviroGlaze Windows', 'enviroglazewindows.com.au', {
+      location: 'Melbourne, VIC',
+      platform: 'WordPress'
+    }),
+    industry: 'Windows & Glazing'
+  },
+  {
+    ...site('INCIA Australia', 'incia.com.au', { platform: 'Shopify' }),
+    industry: 'Baby & Skin Care'
+  },
+  {
+    ...site('D’Olive Australia', 'dolive.com.au', { platform: 'Shopify' }),
+    industry: 'Hair & Skin Care'
+  },
+  {
+    ...site('A Class Detailing', 'aclassdetailing.com.au', {
+      location: 'Castle Hill, NSW',
+      platform: 'WordPress'
+    }),
+    industry: 'Car Detailing'
+  },
+  {
+    ...site('Queensland Blocklaying', 'qldblocklaying.com.au', {
+      location: 'North Lakes, QLD',
+      platform: 'WordPress'
+    }),
+    industry: 'Blocklaying'
+  },
+  {
+    ...site('Premier Water Tanks', 'premierwatertanks.com.au', {
+      location: 'Horsham, VIC',
+      platform: 'WordPress'
+    }),
+    industry: 'Water Tanks'
+  },
+  {
+    ...site('Farran Hardware', 'farranhardware.com.au', { platform: 'Shopify' }),
+    industry: 'Hardware'
+  },
+  {
+    ...site('Your Property Ally', 'yourpropertyally.com.au', {
+      location: 'Campbelltown, NSW',
+      platform: 'WordPress'
+    }),
+    industry: 'Property'
+  },
+  {
+    ...site('Mini Musos', 'minimusos.co', { platform: 'WordPress' }),
+    industry: 'Music Classes'
+  },
+  {
+    ...site('Ozzy Brothers Removals', 'ozzybrothersremovals.com.au', { platform: 'WordPress' }),
+    industry: 'Removals'
+  },
+  {
+    ...site('KC Resources & Services', 'kcresources.com.au', { platform: 'WordPress' }),
+    industry: 'Water Tanks'
+  },
+  {
+    ...site('Maria Projects', 'mariaprojects.com', { location: 'Sydney, NSW', platform: 'Wix' }),
+    industry: 'Joinery'
+  },
+  {
+    ...site('Zacs Rubbish Removals', 'zacsrubbishremovals.com.au', { platform: 'WordPress' }),
+    industry: 'Rubbish Removal'
   }
 ];
 
-// Inactive clients with no website in the register. Add a domain here (and move the
-// entry to PREVIOUS_CLIENT_SITES with a screenshot) once the URL is known.
-export const PREVIOUS_CLIENTS_NO_WEBSITE: string[] = [];
+// Previous clients whose website no longer loads (domain not resolving, Oct 2026).
+// Move an entry to PREVIOUS_CLIENT_SITES with a screenshot if the site comes back.
+export const PREVIOUS_CLIENTS_NO_WEBSITE: {
+  name: string;
+  domain: string;
+  industry: string;
+  platform: string;
+}[] = [
+  {
+    name: 'Cove Landscaping',
+    domain: 'covelandscapping.com.au',
+    industry: 'Landscaping',
+    platform: 'WordPress'
+  },
+  {
+    name: 'Roadwheels Driving',
+    domain: 'roadwheelsdriving.com.au',
+    industry: 'Driving School',
+    platform: 'WordPress'
+  }
+];
 
 export const AGENCY_SITE = site('AAA Digital', 'aaadigital.com.au', {
   location: 'Sydney, NSW',
@@ -896,7 +1035,4 @@ export const AGENCY_SITE = site('AAA Digital', 'aaadigital.com.au', {
 });
 
 // Active clients that don't have a public website listed in the register.
-export const CLIENTS_WITHOUT_WEBSITE = [
-  'a home cleaning business',
-  'a Google Business Profile-only client'
-];
+export const CLIENTS_WITHOUT_WEBSITE = ['a Google Business Profile-only client'];

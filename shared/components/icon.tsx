@@ -5,6 +5,7 @@ import {
   BarChart2,
   Bookmark,
   Code,
+  Compass,
   Cpu,
   Database,
   ExternalLink,
@@ -48,6 +49,7 @@ const ICONS = {
   crawl: Search,
   index: Database,
   code: Code,
+  compass: Compass,
   external: ExternalLink,
   archive: Archive,
   schema: Share2
