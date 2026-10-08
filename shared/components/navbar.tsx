@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { ArrowUpRight, Download, GitHub, Linkedin, Mail, Menu, Phone, X } from 'react-feather';
 import { NAV_LINKS, PROFILE, RESUME_PATH } from '@utils/data';
+import ThemeToggle from './theme-toggle';
 
 // Tracks scroll position for the glass background, the progress bar and the
 // hide-on-scroll-down / show-on-scroll-up behaviour.
@@ -185,6 +186,7 @@ const Navbar = (): JSX.Element => {
         </ul>
 
         <div className="hidden lg:flex items-center gap-2 flex-shrink-0">
+          <ThemeToggle />
           <a
             href={RESUME_PATH}
             target="_blank"
@@ -203,6 +205,7 @@ const Navbar = (): JSX.Element => {
           </Link>
         </div>
 
+        <ThemeToggle className="lg:hidden ml-auto" />
         <button
           type="button"
           className="menu-btn lg:hidden"

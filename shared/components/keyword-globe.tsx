@@ -61,9 +61,11 @@ export default function KeywordGlobe({ words, className = '' }: Props): JSX.Elem
         const depth = (p.z + 1) / 2; // 0 = back, 1 = front
         const size = (p.big ? 17 : 12.5) * p.scale;
         ctx.font = `${p.big ? 600 : 400} ${size.toFixed(1)}px ${font}`;
+        // Colours follow the active theme (see the --c-* variables in global.css).
+        const dark = document.documentElement.dataset.theme === 'dark';
         ctx.fillStyle = p.big
-          ? `rgba(26, 115, 232, ${(0.18 + depth * 0.8).toFixed(3)})`
-          : `rgba(100, 116, 139, ${(0.1 + depth * 0.6).toFixed(3)})`;
+          ? `rgba(${dark ? '138, 180, 248' : '26, 115, 232'}, ${(0.18 + depth * 0.8).toFixed(3)})`
+          : `rgba(${dark ? '148, 163, 184' : '100, 116, 139'}, ${(0.1 + depth * 0.6).toFixed(3)})`;
         ctx.fillText(p.text, p.sx, p.sy);
       });
     };

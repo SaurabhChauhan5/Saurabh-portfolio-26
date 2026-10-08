@@ -1,3 +1,10 @@
+// rgb() colour backed by a "r, g, b" CSS variable, with Tailwind opacity support.
+const themeVar = (name) => ({ opacityVariable, opacityValue }) => {
+  if (opacityValue !== undefined) return `rgba(var(${name}), ${opacityValue})`;
+  if (opacityVariable !== undefined) return `rgba(var(${name}), var(${opacityVariable}, 1))`;
+  return `rgb(var(${name}))`;
+};
+
 module.exports = {
   mode: 'jit',
   purge: [
@@ -5,21 +12,22 @@ module.exports = {
     './shared/**/*.{js,ts,jsx,tsx}',
     './pages/**/*.{js,ts,jsx,tsx}'
   ],
-  darkMode: false,
+  darkMode: false, // handled by [data-theme] CSS variables
   theme: {
     extend: {
       fontFamily: {
         poppins: ['var(--font-poppins)', 'Poppins', 'system-ui', 'sans-serif']
       },
-      // Analytics dashboard light theme. Token names kept from the old palette:
+      // Theme colours come from CSS variables in styles/global.css (light and dark).
+      // Token names are kept from the original palette:
       // blue = text on accent, navy = alt section, white = headings, violet = body, pink = accent.
       colors: {
         blue: '#FFFFFF',
-        navy: '#FFFFFF',
-        surface: '#FFFFFF',
+        navy: themeVar('--c-surface-2'),
+        surface: themeVar('--c-surface'),
         pink: '#1A73E8',
-        violet: '#475569',
-        white: '#0F172A'
+        violet: themeVar('--c-body'),
+        white: themeVar('--c-heading')
       },
       animation: {
         spin: 'spin 14s linear infinite',
