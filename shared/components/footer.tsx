@@ -31,14 +31,12 @@ function LocalTime(): JSX.Element {
   return <span className="tabular-nums">{time || '--:--'}</span>;
 }
 
-// Large closing signature; the two words rise in when the footer scrolls into view.
+// Large closing signature that rises in when the footer scrolls into view.
 function Wordmark(): JSX.Element {
   const [ref, inView] = useInView<HTMLDivElement>('0px 0px 0px 0px');
-  const [first, ...rest] = PROFILE.name.split(' ');
   return (
     <div ref={ref} className={`footer-wordmark ${inView ? 'is-in' : ''}`} aria-hidden="true">
-      <span className="wm-word wm-sans">{first}</span>{' '}
-      <span className="wm-word wm-serif">{rest.join(' ')}</span>
+      <span className="wm-word">{PROFILE.name}</span>
     </div>
   );
 }
