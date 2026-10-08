@@ -1,7 +1,7 @@
 /* eslint-disable react/require-default-props */
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
-import { Code, ExternalLink, MapPin } from 'react-feather';
+import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
+import { ChevronDown, Code, ExternalLink, MapPin, Sliders, X } from 'react-feather';
 import { Button, Icon, Reveal } from '@shared-components';
 import {
   ACTIVE_WEBSITES,
@@ -154,11 +154,119 @@ function ShotMarquee(): JSX.Element {
   );
 }
 
+type FilterOption = { id: string; label: string; count: number; icon: ReactNode };
+
+// Bottom sheet with every filter option, used below the xl breakpoint where a
+// sideways-scrolling chip row hides most options.
+function FilterSheet({
+  open,
+  onClose,
+  initialMode,
+  industry,
+  platform,
+  active,
+  onSelect
+}: {
+  open: boolean;
+  onClose: () => void;
+  initialMode: 'industry' | 'platform';
+  industry: FilterOption[];
+  platform: FilterOption[];
+  active: string;
+  onSelect: (id: string) => void;
+}): JSX.Element | null {
+  const [mode, setMode] = useState(initialMode);
+  const panel = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return undefined;
+    setMode(initialMode);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
+    window.addEventListener('keydown', onKey);
+    setTimeout(
+      () => panel.current?.querySelector<HTMLButtonElement>('[aria-pressed=true]')?.focus(),
+      50
+    );
+    return () => {
+      document.body.style.overflow = prev;
+      window.removeEventListener('keydown', onKey);
+    };
+  }, [open, initialMode, onClose]);
+
+  if (!open) return null;
+  const options = mode === 'platform' ? platform : industry;
+  return (
+    <div className="filter-sheet-wrap xl:hidden" data-lenis-prevent>
+      <button
+        type="button"
+        className="filter-sheet-backdrop"
+        aria-label="Close filters"
+        onClick={onClose}
+      />
+      <div
+        ref={panel}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="filter-sheet-title"
+        className="filter-sheet">
+        <span className="filter-sheet-handle" aria-hidden="true" />
+        <div className="flex items-center justify-between gap-3">
+          <h2 id="filter-sheet-title" className="text-lg font-bold text-white">
+            Filter websites
+          </h2>
+          <button
+            type="button"
+            onClick={onClose}
+            className="sheet-close"
+            aria-label="Close filters">
+            <X size={18} aria-hidden="true" />
+          </button>
+        </div>
+        <div className="view-toggle w-full mt-4" role="group" aria-label="Group websites by">
+          {(['industry', 'platform'] as const).map((m) => (
+            <button
+              key={m}
+              type="button"
+              aria-pressed={mode === m}
+              onClick={() => setMode(m)}
+              className={`flex-1 justify-center ${mode === m ? 'is-active' : ''}`}>
+              <Icon name={m === 'industry' ? 'grid' : 'code'} size={14} />
+              {m === 'industry' ? 'By industry' : 'By platform'}
+            </button>
+          ))}
+        </div>
+        <ul className="sheet-grid mt-4">
+          {options.map((o) => (
+            <li key={o.id}>
+              <button
+                type="button"
+                aria-pressed={active === o.id}
+                onClick={() => {
+                  onSelect(o.id);
+                  onClose();
+                }}
+                className={`sheet-option ${active === o.id ? 'is-active' : ''}`}>
+                <span className="sheet-option-icon">{o.icon}</span>
+                <span className="flex-1 min-w-0 text-left leading-tight">{o.label}</span>
+                <span className="jump-count">{o.count}</span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
 const PREVIOUS = 'previous-clients';
 
 export default function ClientsPage(): JSX.Element {
   const withSites = CLIENT_GROUPS.reduce((n, g) => n + g.sites.length, 0);
   const [filter, setFilter] = useState('all');
+  const [sheetOpen, setSheetOpen] = useState(false);
+  const closeSheet = useCallback(() => setSheetOpen(false), []);
   const show = (id: string) => filter === 'all' || filter === id;
 
   // Support shareable links such as /clients#removals.
@@ -217,6 +325,21 @@ export default function ClientsPage(): JSX.Element {
       count: PREVIOUS_CLIENT_SITES.length + PREVIOUS_CLIENTS_NO_WEBSITE.length
     }
   ];
+  const platformIcon = (label: string) =>
+    label === 'Custom-built' ? (
+      <Code size={14} aria-hidden="true" />
+    ) : (
+      <TopicIcon label={label} size={14} />
+    );
+  const industryOptions: FilterOption[] = filters.map((f) => ({
+    ...f,
+    icon: <Icon name={f.icon} size={14} />
+  }));
+  const platformOptions: FilterOption[] = platformFilters.map((f) => ({
+    ...f,
+    icon: platformIcon(f.label)
+  }));
+  const current = [...industryOptions, ...platformOptions].find((o) => o.id === filter);
   const heroStats = [
     { value: ACTIVE_WEBSITES, label: 'Active websites' },
     { value: TOTAL_WEBSITES, label: 'Managed in total' },
@@ -250,7 +373,34 @@ export default function ClientsPage(): JSX.Element {
       <ShotMarquee />
 
       <div className="filter-bar sticky top-16 z-30">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex gap-2 overflow-x-auto filter-scroll">
+        <div className="xl:hidden max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => setSheetOpen(true)}
+            aria-haspopup="dialog"
+            aria-expanded={sheetOpen}
+            className="filter-trigger">
+            <Sliders size={16} className="text-pink flex-shrink-0" aria-hidden="true" />
+            <span className="flex-1 min-w-0 text-left leading-tight">
+              <span className="block text-xs text-violet">
+                {byPlatform ? 'Platform' : 'Industry'}
+              </span>
+              <span className="block truncate">{current?.label || 'All'}</span>
+            </span>
+            {current && <span className="jump-count">{current.count}</span>}
+            <ChevronDown size={16} className="text-violet flex-shrink-0" aria-hidden="true" />
+          </button>
+          {filter !== 'all' && (
+            <button
+              type="button"
+              onClick={() => select('all')}
+              className="sheet-close flex-shrink-0"
+              aria-label="Clear filter, show all websites">
+              <X size={16} aria-hidden="true" />
+            </button>
+          )}
+        </div>
+        <div className="hidden xl:flex items-start max-w-6xl mx-auto px-8 py-3 gap-2">
           <div className="view-toggle flex-shrink-0" role="group" aria-label="Group websites by">
             <button
               type="button"
@@ -275,7 +425,7 @@ export default function ClientsPage(): JSX.Element {
                 ? 'Filter client websites by platform'
                 : 'Filter client websites by industry'
             }
-            className="flex gap-2 lg:flex-wrap">
+            className="flex flex-wrap gap-2 min-w-0">
             {byPlatform
               ? platformFilters.map((f) => (
                   <button
@@ -293,28 +443,40 @@ export default function ClientsPage(): JSX.Element {
                     <span className="jump-count">{f.count}</span>
                   </button>
                 ))
-              : filters.map((f) => (
-                  <button
-                    key={f.id}
-                    type="button"
-                    aria-pressed={filter === f.id}
-                    onClick={(e) => {
-                      e.currentTarget.scrollIntoView({
-                        behavior: 'smooth',
-                        inline: 'center',
-                        block: 'nearest'
-                      });
-                      select(f.id);
-                    }}
-                    className={`jump-chip flex-shrink-0 ${filter === f.id ? 'is-active' : ''}`}>
-                    <Icon name={f.icon} size={14} />
-                    {f.label}
-                    <span className="jump-count">{f.count}</span>
-                  </button>
-                ))}
+              : filters
+                  .filter((f) => f.id !== 'all')
+                  .map((f) => (
+                    <button
+                      key={f.id}
+                      type="button"
+                      aria-pressed={filter === f.id}
+                      onClick={(e) => {
+                        e.currentTarget.scrollIntoView({
+                          behavior: 'smooth',
+                          inline: 'center',
+                          block: 'nearest'
+                        });
+                        select(f.id);
+                      }}
+                      className={`jump-chip flex-shrink-0 ${filter === f.id ? 'is-active' : ''}`}>
+                      <Icon name={f.icon} size={14} />
+                      {f.label}
+                      <span className="jump-count">{f.count}</span>
+                    </button>
+                  ))}
           </div>
         </div>
       </div>
+
+      <FilterSheet
+        open={sheetOpen}
+        onClose={closeSheet}
+        initialMode={byPlatform ? 'platform' : 'industry'}
+        industry={industryOptions}
+        platform={platformOptions}
+        active={filter}
+        onSelect={select}
+      />
 
       <p className="sr-only" aria-live="polite">
         {filter === 'all'
