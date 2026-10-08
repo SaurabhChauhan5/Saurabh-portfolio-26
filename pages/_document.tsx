@@ -13,7 +13,7 @@ export default function Document(): JSX.Element {
         <script
           dangerouslySetInnerHTML={{
             __html:
-              "(function(){var t;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='light'&&t!=='dark'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.dataset.theme=t})()"
+              "(function(){var t;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='light'&&t!=='dark'&&t!=='dusk'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.dataset.theme=t})()"
           }}
         />
         <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)" />

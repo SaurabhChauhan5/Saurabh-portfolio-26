@@ -1,5 +1,12 @@
 import { useEffect, useRef } from 'react';
 
+// [highlighted words, other words] as "r, g, b" per theme.
+const GLOBE_COLORS: Record<string, [string, string]> = {
+  light: ['26, 115, 232', '100, 116, 139'],
+  dark: ['138, 180, 248', '148, 163, 184'],
+  dusk: ['238, 187, 195', '184, 193, 236']
+};
+
 type Props = { words: string[]; className?: string };
 
 // SEO terms laid out on a slowly turning sphere (Fibonacci spiral so they
@@ -14,7 +21,8 @@ export default function KeywordGlobe({ words, className = '' }: Props): JSX.Elem
     if (!canvas || !ctx || !words.length) return undefined;
 
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const font = getComputedStyle(document.documentElement).getPropertyValue('--font-poppins') || 'sans-serif';
+    const font =
+      getComputedStyle(document.documentElement).getPropertyValue('--font-poppins') || 'sans-serif';
     const n = words.length;
     const points = words.map((text, i) => {
       const y = 1 - (i / (n - 1)) * 2;
@@ -52,7 +60,13 @@ export default function KeywordGlobe({ words, className = '' }: Props): JSX.Elem
         const y2 = p.y * cosT - z1 * sinT;
         const z2 = p.y * sinT + z1 * cosT;
         const scale = 2.6 / (2.6 - z2);
-        return { ...p, sx: w / 2 + x1 * radius * scale, sy: h / 2 + y2 * radius * scale, z: z2, scale };
+        return {
+          ...p,
+          sx: w / 2 + x1 * radius * scale,
+          sy: h / 2 + y2 * radius * scale,
+          z: z2,
+          scale
+        };
       });
       projected.sort((a, b) => a.z - b.z);
       ctx.textAlign = 'center';
@@ -62,10 +76,11 @@ export default function KeywordGlobe({ words, className = '' }: Props): JSX.Elem
         const size = (p.big ? 17 : 12.5) * p.scale;
         ctx.font = `${p.big ? 600 : 400} ${size.toFixed(1)}px ${font}`;
         // Colours follow the active theme (see the --c-* variables in global.css).
-        const dark = document.documentElement.dataset.theme === 'dark';
+        const { theme } = document.documentElement.dataset;
+        const [big, small] = GLOBE_COLORS[theme === 'dark' || theme === 'dusk' ? theme : 'light'];
         ctx.fillStyle = p.big
-          ? `rgba(${dark ? '138, 180, 248' : '26, 115, 232'}, ${(0.18 + depth * 0.8).toFixed(3)})`
-          : `rgba(${dark ? '148, 163, 184' : '100, 116, 139'}, ${(0.1 + depth * 0.6).toFixed(3)})`;
+          ? `rgba(${big}, ${(0.18 + depth * 0.8).toFixed(3)})`
+          : `rgba(${small}, ${(0.1 + depth * 0.6).toFixed(3)})`;
         ctx.fillText(p.text, p.sx, p.sy);
       });
     };

@@ -22,10 +22,10 @@ module.exports = {
       // Token names are kept from the original palette:
       // blue = text on accent, navy = alt section, white = headings, violet = body, pink = accent.
       colors: {
-        blue: '#FFFFFF',
+        blue: themeVar('--c-on-accent'),
         navy: themeVar('--c-surface-2'),
         surface: themeVar('--c-surface'),
-        pink: '#1A73E8',
+        pink: themeVar('--c-accent'),
         violet: themeVar('--c-body'),
         white: themeVar('--c-heading')
       },
