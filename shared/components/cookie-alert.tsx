@@ -43,7 +43,7 @@ export default function CookieAlert(): JSX.Element {
     <div
       role="region"
       aria-label="Cookie notice"
-      className="cookie-alert fixed bottom-0 sm:bottom-5 right-0 sm:right-5 z-50 w-full sm:max-w-sm px-4 py-2.5 sm:p-4 bg-pink text-blue sm:rounded-lg shadow-2xl cookie-row flex flex-wrap items-center gap-x-3 gap-y-1"
+      className="cookie-alert fixed bottom-0 sm:bottom-5 right-0 sm:right-5 z-50 w-full sm:max-w-sm px-4 py-2.5 sm:p-4 bg-surface text-white border-t sm:border border-violet/20 sm:rounded-xl shadow-2xl cookie-row flex flex-wrap items-center gap-x-3 gap-y-1"
       style={{ paddingBottom: 'max(0.625rem, env(safe-area-inset-bottom))' }}>
       <p className="flex-1 min-w-[12rem] text-xs sm:text-sm leading-snug sm:py-2">
         <span className="font-semibold">Cookies: </span>
@@ -52,12 +52,12 @@ export default function CookieAlert(): JSX.Element {
       <div className="flex items-center gap-2 sm:w-full sm:justify-between sm:mt-2 ml-auto">
         <button
           type="button"
-          className="px-2 py-2 text-sm hover:underline"
+          className="px-2 py-2 text-sm text-violet hover:text-white hover:underline"
           onClick={() => handleCookiesAlert(false)}>
           Dismiss
         </button>
         <button
-          className="px-4 sm:px-5 py-1.5 sm:py-2 text-sm sm:text-base bg-blue text-pink border-2 border-blue rounded hover:bg-transparent hover:text-blue transition-colors"
+          className="px-4 sm:px-5 py-1.5 sm:py-2 text-sm sm:text-base btn-solid bg-pink text-blue font-medium border-2 border-pink rounded-md transition-colors"
           type="button"
           onClick={() => handleCookiesAlert(true)}>
           Accept

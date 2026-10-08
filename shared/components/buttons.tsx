@@ -13,7 +13,7 @@ interface Props {
 }
 
 const styles = {
-  solid: 'bg-pink text-blue border-pink hover:bg-transparent hover:text-pink',
+  solid: 'btn-solid bg-pink text-blue border-pink shadow-sm',
   outlined: 'bg-transparent text-pink border-pink hover:bg-pink hover:text-blue',
   ghost: 'bg-transparent text-violet border-violet/40 hover:border-violet hover:text-white'
 };
@@ -30,7 +30,7 @@ export default function Button({
   ariaLabel
 }: Props): JSX.Element {
   const classes = `inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md border-2 font-medium text-base
-    transition-colors duration-200 hover:shadow-light-xl ${styles[type]} ${className}`;
+    transition-colors duration-200 ${styles[type]} ${className}`;
 
   if (external || download || href.startsWith('mailto:') || href.startsWith('tel:')) {
     return (
@@ -39,8 +39,7 @@ export default function Button({
         className={classes}
         aria-label={ariaLabel}
         {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-        {...(download ? { target: '_blank', rel: 'noopener' } : {})}
-      >
+        {...(download ? { target: '_blank', rel: 'noopener' } : {})}>
         {children}
       </a>
     );

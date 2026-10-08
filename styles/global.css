@@ -79,7 +79,7 @@ a {
 
 .gradient-text {
   background-color: #64748b;
-  background-image: linear-gradient(45deg, #1a73e8, #64748b);
+  background-image: linear-gradient(45deg, #1967d2, #1a73e8);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -117,8 +117,8 @@ a {
 }
 .hover-lift:hover {
   transform: translateY(-4px);
-  border-color: rgba(26, 115, 232, 0.45);
-  box-shadow: 0px 6px 58px -8px rgba(100, 116, 139, 0.3);
+  border-color: #bfd4f6;
+  box-shadow: 0 12px 28px -12px rgba(15, 23, 42, 0.18), 0 2px 6px rgba(15, 23, 42, 0.04);
 }
 
 .chip {
@@ -145,8 +145,8 @@ a {
   width: 2.75rem;
   height: 2.75rem;
   border-radius: 0.75rem;
-  color: #ffffff;
-  background: linear-gradient(135deg, #1a73e8, #64748b);
+  color: #1967d2;
+  background: #e8f0fe;
 }
 .icon-tile-sm {
   width: 2.25rem;
@@ -165,7 +165,7 @@ a {
   font-size: 1.15rem;
   letter-spacing: 0.02em;
   color: #ffffff;
-  background: linear-gradient(135deg, #1a73e8, #64748b);
+  background: #1a73e8;
   box-shadow: 0 10px 30px -10px rgba(26, 115, 232, 0.6);
 }
 
@@ -216,7 +216,7 @@ a {
   bottom: 0.15rem;
   height: 2px;
   border-radius: 2px;
-  background: linear-gradient(90deg, #1a73e8, #64748b);
+  background: #1a73e8;
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.3s ease;
@@ -229,7 +229,7 @@ a {
   height: 7px;
   bottom: -0.1rem;
   border-radius: 0;
-  background: linear-gradient(90deg, #1a73e8, #64748b);
+  background: #1a73e8;
   -webkit-mask: url('/images/vectors/nav-active.png') center / 100% 100% no-repeat;
   mask: url('/images/vectors/nav-active.png') center / 100% 100% no-repeat;
 }
@@ -293,7 +293,7 @@ a {
   font-size: 0.8rem;
   font-weight: 700;
   color: #ffffff;
-  background: linear-gradient(135deg, #1a73e8, #64748b);
+  background: #1a73e8;
 }
 @media (max-width: 400px) {
   .thumb-stack:not(.thumb-stack-sm) .thumb {
@@ -436,7 +436,7 @@ a {
     top: 50%;
     width: 0.75rem;
     height: 2px;
-    background: linear-gradient(90deg, #1a73e8, #64748b);
+    background: #1a73e8;
   }
 }
 .site-header {
@@ -455,7 +455,7 @@ a {
   display: inline-flex;
   padding: 3px;
   border-radius: 999px;
-  background: conic-gradient(from 180deg, #1a73e8, #64748b, #1a73e8);
+  background: #1a73e8;
 }
 .logo-ring img {
   border-radius: 999px;
@@ -483,7 +483,7 @@ a {
   font-size: 0.875rem;
   font-weight: 600;
   color: #ffffff;
-  background: linear-gradient(135deg, #1a73e8, #4c8df0);
+  background: #1a73e8;
   box-shadow: 0 8px 24px -10px rgba(26, 115, 232, 0.7);
   transition: transform 0.2s, box-shadow 0.2s;
 }
@@ -724,7 +724,7 @@ img[src$='skills/express.svg'] {
   width: 100%;
   transform: scaleX(0);
   transform-origin: left;
-  background: linear-gradient(90deg, #1a73e8, #64748b);
+  background: #1a73e8;
   will-change: transform;
 }
 
@@ -815,7 +815,7 @@ a.contact-item:hover {
   inset: 0 0 auto 0;
   height: 100%;
   border-radius: inherit;
-  background: linear-gradient(180deg, #64748b, #1a73e8);
+  background: #1a73e8;
   transform-origin: top;
   transform: scaleY(var(--progress));
   box-shadow: 0 0 12px rgba(26, 115, 232, 0.55);
@@ -974,8 +974,8 @@ body::before {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(38rem 28rem at 78% 30%, rgba(26, 115, 232, 0.16), transparent 65%),
-    radial-gradient(32rem 26rem at 12% 10%, rgba(100, 116, 139, 0.14), transparent 65%);
+  background: radial-gradient(38rem 28rem at 78% 30%, rgba(26, 115, 232, 0.08), transparent 65%),
+    radial-gradient(32rem 26rem at 12% 10%, rgba(100, 116, 139, 0.06), transparent 65%);
 }
 .js .hero-glow {
   animation: glowDrift 14s ease-in-out infinite alternate;
@@ -996,7 +996,7 @@ body::before {
   width: 3rem;
   height: 2px;
   border-radius: 2px;
-  background: linear-gradient(90deg, #1a73e8, #64748b);
+  background: #1a73e8;
 }
 @media (min-width: 640px) {
   .eyebrow-line {
@@ -1028,7 +1028,7 @@ body::before {
 }
 
 .shimmer-text {
-  background-image: linear-gradient(100deg, #1a73e8 0%, #64748b 30%, #1e293b 50%, #64748b 70%, #1a73e8 100%);
+  background-image: linear-gradient(100deg, #1967d2 0%, #1a73e8 35%, #5b9cf0 50%, #1a73e8 65%, #1967d2 100%);
   background-size: 250% 100%;
   background-position: 100% 0;
   -webkit-background-clip: text;
@@ -1107,7 +1107,7 @@ body::before {
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.3s ease;
-  background: radial-gradient(22rem circle at var(--mx, 50%) var(--my, 50%), rgba(26, 115, 232, 0.12), transparent 60%);
+  background: radial-gradient(22rem circle at var(--mx, 50%) var(--my, 50%), rgba(26, 115, 232, 0.05), transparent 60%);
 }
 .spotlight:hover::before {
   opacity: 1;
@@ -1116,8 +1116,8 @@ body::before {
 /* Gradient hairline border for featured cards */
 .card-glow {
   border: 1px solid transparent;
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.98)) padding-box,
-    linear-gradient(135deg, rgba(26, 115, 232, 0.7), rgba(100, 116, 139, 0.15) 40%, rgba(26, 115, 232, 0.5)) border-box;
+  background: #ffffff padding-box,
+    linear-gradient(135deg, rgba(26, 115, 232, 0.45), #e2e8f0 45%, rgba(26, 115, 232, 0.3)) border-box;
 }
 
 .float-slow {
@@ -1299,8 +1299,8 @@ body::before {
   border-radius: 999px;
   font-weight: 700;
   font-size: 0.75rem;
-  color: #ffffff;
-  background: linear-gradient(135deg, #1a73e8, #64748b);
+  color: #1967d2;
+  background: #e8f0fe;
 }
 
 
@@ -1587,7 +1587,7 @@ body::before {
   display: block;
   height: 2px;
   border-radius: 2px;
-  background: linear-gradient(90deg, #1a73e8, #64748b);
+  background: #1a73e8;
   transform-origin: left;
   transform: scaleX(var(--flow-p, 0));
 }
@@ -1634,8 +1634,8 @@ aside[aria-label='Social links'] {
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #ffffff;
-  background: linear-gradient(135deg, #1a73e8, #64748b);
+  color: #1967d2;
+  background: #e8f0fe;
 }
 .hero-focus {
   display: flex;
@@ -2223,7 +2223,7 @@ a.site-chip:hover svg {
     top: -0.75rem;
     width: 2px;
     height: 0.75rem;
-    background: linear-gradient(180deg, #1a73e8, #64748b);
+    background: #1a73e8;
   }
 }
 .client-sidebar-inner {
@@ -2355,6 +2355,13 @@ a.site-chip:hover svg {
 }
 
 @tailwind utilities;
+
+/* Professional finish: solid button hovers instead of colour inversion. */
+.btn-solid:hover {
+  background: #1765cc;
+  border-color: #1765cc;
+  color: #ffffff;
+}
 
 /* Accent as text: a deeper blue so links and labels clear WCAG AA (5.1:1 on #F8FAFC).
    Buttons and fills keep #1A73E8 with white text. */
