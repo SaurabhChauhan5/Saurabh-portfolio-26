@@ -1036,3 +1036,41 @@ export const AGENCY_SITE = site('AAA Digital', 'aaadigital.com.au', {
 
 // Active clients that don't have a public website listed in the register.
 export const CLIENTS_WITHOUT_WEBSITE = ['a Google Business Profile-only client'];
+
+// ---------- Websites by platform (for /clients#platform-… and the platform cards) ----------
+export const PLATFORM_FILTERS = [
+  { id: 'platform-wordpress', label: 'WordPress', test: (p: string) => /wordpress/i.test(p) },
+  { id: 'platform-shopify', label: 'Shopify', test: (p: string) => /shopify/i.test(p) },
+  { id: 'platform-wix', label: 'Wix', test: (p: string) => /\bwix\b/i.test(p) },
+  { id: 'platform-custom-built', label: 'Custom-built', test: (p: string) => /^custom/i.test(p) }
+];
+
+// '/clients#platform-…' for a platform name such as 'WordPress' or 'HTML & Custom-built'.
+export const platformHref = (name: string): string => {
+  const f = PLATFORM_FILTERS.find((x) => x.test(name)) || PLATFORM_FILTERS[3];
+  return `/clients#${f.id}`;
+};
+
+export type PlatformSite = ClientWebsite & { industry: string; previous: boolean };
+
+export const sitesOnPlatform = (
+  id: string
+): { sites: PlatformSite[]; offline: typeof PREVIOUS_CLIENTS_NO_WEBSITE } => {
+  const f = PLATFORM_FILTERS.find((x) => x.id === id);
+  if (!f) return { sites: [], offline: [] };
+  const active = [
+    ...CLIENT_GROUPS.flatMap((g) => g.sites.map((s) => ({ ...s, industry: g.industry }))),
+    { ...AGENCY_SITE, industry: 'Digital Agency' }
+  ].map((s) => ({ ...s, previous: false }));
+  const previous = PREVIOUS_CLIENT_SITES.map((s) => ({ ...s, previous: true }));
+  return {
+    sites: [...active, ...previous].filter((s) => s.platform && f.test(s.platform)),
+    offline: PREVIOUS_CLIENTS_NO_WEBSITE.filter((s) => f.test(s.platform))
+  };
+};
+
+export const platformCount = (name: string): number => {
+  const id = platformHref(name).split('#')[1];
+  const { sites, offline } = sitesOnPlatform(id);
+  return sites.length + offline.length;
+};

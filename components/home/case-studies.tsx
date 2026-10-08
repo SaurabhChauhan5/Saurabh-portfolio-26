@@ -8,6 +8,8 @@ import {
   INDEXATION,
   INDUSTRIES,
   MULTI_PLATFORM_EXAMPLES,
+  platformCount,
+  platformHref,
   SERVICE_SCOPE
 } from '@utils/data';
 import { CaseStudy } from '@utils/types';
@@ -194,10 +196,12 @@ export default function CaseStudies({ preview = false }: Props): JSX.Element {
                         <span>
                           <span className="block text-white font-semibold">{ex.platform}</span>
                           <span className="block mt-0.5 text-sm text-violet leading-snug">
-                            {ex.sites.map((st, k) => (
-                              <span key={st.name}>
-                                {k > 0 && <span aria-hidden="true"> · </span>}
-                                {st.url ? (
+                            {ex.sites
+                              .filter((st) => st.url)
+                              .slice(0, 3)
+                              .map((st, k) => (
+                                <span key={st.name}>
+                                  {k > 0 && <span aria-hidden="true"> · </span>}
                                   <a
                                     href={st.url}
                                     target="_blank"
@@ -206,12 +210,16 @@ export default function CaseStudies({ preview = false }: Props): JSX.Element {
                                     {st.name}
                                     <span className="sr-only"> (opens in a new tab)</span>
                                   </a>
-                                ) : (
-                                  st.name
-                                )}
-                              </span>
-                            ))}
+                                </span>
+                              ))}
                           </span>
+                          <Link
+                            href={platformHref(ex.platform)}
+                            className="mt-1.5 inline-flex items-center gap-1 text-xs text-pink font-medium hover:underline">
+                            View all {platformCount(ex.platform)}
+                            <span className="sr-only"> {ex.platform} websites</span>
+                            <span aria-hidden="true">→</span>
+                          </Link>
                         </span>
                       </li>
                     ))}

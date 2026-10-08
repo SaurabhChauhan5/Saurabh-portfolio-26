@@ -11,6 +11,8 @@ import {
   ClientWebsite,
   PREVIOUS_CLIENT_SITES,
   PREVIOUS_CLIENTS_NO_WEBSITE,
+  PLATFORM_FILTERS,
+  sitesOnPlatform,
   TOTAL_WEBSITES
 } from '@utils/data';
 import PageHero from '../../shared/components/page-hero';
@@ -161,12 +163,23 @@ export default function ClientsPage(): JSX.Element {
 
   // Support shareable links such as /clients#removals.
   useEffect(() => {
-    const valid = [...CLIENT_GROUPS.map((g) => slugify(g.industry)), PREVIOUS];
+    const valid = [
+      ...CLIENT_GROUPS.map((g) => slugify(g.industry)),
+      PREVIOUS,
+      ...PLATFORM_FILTERS.map((f) => f.id)
+    ];
     const apply = () => {
       const hash = window.location.hash.slice(1);
       setFilter(valid.includes(hash) ? hash : 'all');
     };
     apply();
+    // Arriving from a platform or industry link: jump straight to the filtered grid.
+    if (valid.includes(window.location.hash.slice(1))) {
+      setTimeout(
+        () => document.getElementById('client-grid')?.scrollIntoView({ block: 'start' }),
+        150
+      );
+    }
     window.addEventListener('hashchange', apply);
     return () => window.removeEventListener('hashchange', apply);
   }, []);
@@ -177,6 +190,13 @@ export default function ClientsPage(): JSX.Element {
     document.getElementById('client-grid')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
+  const byPlatform = filter.startsWith('platform-');
+  const platformFilters = PLATFORM_FILTERS.map((f) => {
+    const { sites, offline } = sitesOnPlatform(f.id);
+    return { id: f.id, label: f.label, count: sites.length + offline.length };
+  });
+  const activePlatform = PLATFORM_FILTERS.find((f) => f.id === filter);
+  const platformView = activePlatform ? sitesOnPlatform(activePlatform.id) : null;
   const filters = [
     {
       id: 'all',
@@ -230,40 +250,134 @@ export default function ClientsPage(): JSX.Element {
       <ShotMarquee />
 
       <div className="filter-bar sticky top-16 z-30">
-        <div
-          role="group"
-          aria-label="Filter client websites by industry"
-          className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex gap-2 overflow-x-auto filter-scroll">
-          {filters.map((f) => (
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex gap-2 overflow-x-auto filter-scroll">
+          <div className="view-toggle flex-shrink-0" role="group" aria-label="Group websites by">
             <button
-              key={f.id}
               type="button"
-              aria-pressed={filter === f.id}
-              onClick={(e) => {
-                e.currentTarget.scrollIntoView({
-                  behavior: 'smooth',
-                  inline: 'center',
-                  block: 'nearest'
-                });
-                select(f.id);
-              }}
-              className={`jump-chip flex-shrink-0 ${filter === f.id ? 'is-active' : ''}`}>
-              <Icon name={f.icon} size={14} />
-              {f.label}
-              <span className="jump-count">{f.count}</span>
+              aria-pressed={!byPlatform}
+              onClick={() => select('all')}
+              className={!byPlatform ? 'is-active' : ''}>
+              <Icon name="grid" size={14} /> Industry
             </button>
-          ))}
+            <button
+              type="button"
+              aria-pressed={byPlatform}
+              onClick={() => select(byPlatform ? filter : PLATFORM_FILTERS[0].id)}
+              className={byPlatform ? 'is-active' : ''}>
+              <Icon name="code" size={14} /> Platform
+            </button>
+          </div>
+          <span className="w-px self-stretch bg-violet/20 flex-shrink-0" aria-hidden="true" />
+          <div
+            role="group"
+            aria-label={
+              byPlatform
+                ? 'Filter client websites by platform'
+                : 'Filter client websites by industry'
+            }
+            className="flex gap-2 lg:flex-wrap">
+            {byPlatform
+              ? platformFilters.map((f) => (
+                  <button
+                    key={f.id}
+                    type="button"
+                    aria-pressed={filter === f.id}
+                    onClick={() => select(f.id)}
+                    className={`jump-chip flex-shrink-0 ${filter === f.id ? 'is-active' : ''}`}>
+                    {f.label === 'Custom-built' ? (
+                      <Code size={14} aria-hidden="true" />
+                    ) : (
+                      <TopicIcon label={f.label} size={14} />
+                    )}
+                    {f.label}
+                    <span className="jump-count">{f.count}</span>
+                  </button>
+                ))
+              : filters.map((f) => (
+                  <button
+                    key={f.id}
+                    type="button"
+                    aria-pressed={filter === f.id}
+                    onClick={(e) => {
+                      e.currentTarget.scrollIntoView({
+                        behavior: 'smooth',
+                        inline: 'center',
+                        block: 'nearest'
+                      });
+                      select(f.id);
+                    }}
+                    className={`jump-chip flex-shrink-0 ${filter === f.id ? 'is-active' : ''}`}>
+                    <Icon name={f.icon} size={14} />
+                    {f.label}
+                    <span className="jump-count">{f.count}</span>
+                  </button>
+                ))}
+          </div>
         </div>
       </div>
 
       <p className="sr-only" aria-live="polite">
         {filter === 'all'
           ? 'Showing all client websites'
-          : `Showing ${filters.find((f) => f.id === filter)?.label}`}
+          : `Showing ${
+              [...filters, ...platformFilters].find((f) => f.id === filter)?.label
+            } websites`}
       </p>
       <div
         id="client-grid"
-        className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-20 space-y-14 sm:space-y-20">
+        className="scroll-mt-28 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-20 space-y-14 sm:space-y-20">
+        {activePlatform && platformView && (
+          <section aria-labelledby="platform-view-title">
+            <Reveal className="flex flex-wrap items-center gap-3 sm:gap-4 mb-2">
+              <span className="brand-tile">
+                {activePlatform.label === 'Custom-built' ? (
+                  <Code size={20} className="text-blue" aria-hidden="true" />
+                ) : (
+                  <TopicIcon label={activePlatform.label} size={22} />
+                )}
+              </span>
+              <h2
+                id="platform-view-title"
+                className="text-xl sm:text-3xl font-extrabold text-white">
+                {activePlatform.label} websites
+              </h2>
+              <span className="jump-count text-sm">
+                {platformView.sites.length + platformView.offline.length}
+              </span>
+            </Reveal>
+            <p className="mb-6 sm:mb-8 text-sm sm:text-base text-violet">
+              {[
+                [platformView.sites.filter((x) => !x.previous).length, 'active'],
+                [
+                  platformView.sites.filter((x) => x.previous).length + platformView.offline.length,
+                  'previous'
+                ]
+              ]
+                .filter(([n]) => n)
+                .map(([n, l]) => `${n} ${l}`)
+                .join(' · ')}
+              . Each card shows the industry, and previous clients are marked.
+            </p>
+            <ul className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
+              {platformView.sites.map((x, i) => (
+                <SiteCard
+                  key={x.domain}
+                  site={x}
+                  delay={(i % 3) * 90}
+                  badge={x.previous ? `Previous · ${x.industry}` : x.industry}
+                />
+              ))}
+              {platformView.offline.map((x, i) => (
+                <OfflineSiteCard
+                  key={x.domain}
+                  site={x}
+                  delay={((platformView.sites.length + i) % 3) * 90}
+                />
+              ))}
+            </ul>
+          </section>
+        )}
+
         {CLIENT_GROUPS.map((group) => (
           <section
             key={group.industry}
