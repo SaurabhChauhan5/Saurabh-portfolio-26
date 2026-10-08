@@ -2701,7 +2701,7 @@ html.theme-anim *::after {
   --wm-bottom: #8ab4f8;
   max-width: 72rem;
   margin: 0 auto;
-  padding: 1.25rem 1rem 1.75rem;
+  padding: 0.5rem 1rem 1rem;
   font-size: min(9vw, 6.5rem);
   font-weight: 700;
   line-height: 1.05;
@@ -2744,4 +2744,57 @@ html.theme-anim *::after {
   35% {
     transform: scale(1.18);
   }
+}
+
+/* ---------- Footer polish ---------- */
+.site-footer .footer-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.6rem;
+}
+.site-footer .footer-heading::before {
+  content: '';
+  width: 0.9rem;
+  height: 2px;
+  border-radius: 2px;
+  background: rgb(var(--c-accent));
+}
+[data-theme='dusk'] .site-footer .footer-heading::before {
+  background: #eebbc3;
+}
+.site-footer .footer-link {
+  position: relative;
+}
+.site-footer .footer-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.15rem;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+.site-footer .footer-link:hover::after {
+  transform: scaleX(1);
+}
+.site-footer .footer-link:hover {
+  transform: none;
+}
+.site-footer .social-btn {
+  width: 2.5rem;
+  height: 2.5rem;
+  background: rgba(255, 255, 255, 0.04);
+}
+.site-footer .social-btn:hover {
+  color: #ffffff;
+  background: rgb(var(--c-accent));
+  border-color: rgb(var(--c-accent));
+  transform: translateY(-2px);
+}
+[data-theme='dusk'] .site-footer .social-btn:hover {
+  color: #232946;
 }

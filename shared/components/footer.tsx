@@ -46,8 +46,8 @@ export default function Footer(): JSX.Element {
   return (
     <footer className="site-footer relative overflow-hidden bg-navy border-t border-violet/10 text-violet">
       <div className="footer-glow" aria-hidden="true" />
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-10 grid gap-10 sm:grid-cols-2 lg:grid-cols-12">
-        <div className="lg:col-span-4">
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-12 pb-4 grid grid-cols-2 gap-x-6 gap-y-8 lg:grid-cols-12 lg:gap-x-8">
+        <div className="col-span-2 lg:col-span-3 xl:col-span-4">
           <Link href="/" className="inline-flex items-center gap-3 group">
             <span className="logo-ring">
               <img
@@ -68,7 +68,7 @@ export default function Footer(): JSX.Element {
             Technical, local and eCommerce SEO for Australian businesses across HTML, WordPress,
             Shopify and Wix.
           </p>
-          <ul className="mt-5 flex gap-2.5">
+          <ul className="mt-4 flex gap-2">
             {SOCIAL.map(({ label, href, icon: SIcon, external }) => (
               <li key={label}>
                 <a
@@ -83,9 +83,9 @@ export default function Footer(): JSX.Element {
           </ul>
         </div>
 
-        <nav aria-label="Footer" className="lg:col-span-2">
+        <nav aria-label="Footer" className="col-span-1 lg:col-span-2">
           <p className="footer-heading">Explore</p>
-          <ul className="space-y-1 text-sm">
+          <ul className="space-y-0.5 text-sm">
             {NAV_LINKS.map((l) => (
               <li key={l.href}>
                 <Link href={l.href} className="footer-link">
@@ -105,12 +105,14 @@ export default function Footer(): JSX.Element {
           </ul>
         </nav>
 
-        <div className="lg:col-span-2">
+        <div className="col-span-1 lg:col-span-3 xl:col-span-2">
           <p className="footer-heading">Expertise</p>
-          <ul className="space-y-1 text-sm">
+          <ul className="space-y-0.5 text-sm">
             {EXPERTISE.map((g) => (
               <li key={g.title}>
-                <Link href="/#expertise" className="footer-link inline-flex items-center gap-2">
+                <Link
+                  href="/#expertise"
+                  className="footer-link inline-flex items-center gap-2 whitespace-nowrap">
                   <Icon name={g.icon} size={14} className="text-pink" />
                   {g.title}
                 </Link>
@@ -119,9 +121,9 @@ export default function Footer(): JSX.Element {
           </ul>
         </div>
 
-        <div className="lg:col-span-4">
+        <div className="col-span-2 lg:col-span-4">
           <p className="footer-heading">Get in touch</p>
-          <ul className="space-y-1 text-sm">
+          <ul className="space-y-0.5 text-sm">
             <li>
               <a
                 href={`mailto:${PROFILE.email}`}
@@ -147,7 +149,7 @@ export default function Footer(): JSX.Element {
               </span>
             </li>
           </ul>
-          <Link href="/connect" className="nav-cta mt-5">
+          <Link href="/connect" className="nav-cta mt-4">
             Let&apos;s talk
           </Link>
         </div>
@@ -156,7 +158,7 @@ export default function Footer(): JSX.Element {
       <Wordmark />
 
       <div className="relative border-t border-violet/10">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-wrap items-center justify-between gap-4 text-xs text-violet">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-wrap items-center justify-between gap-x-4 gap-y-2 text-xs text-violet">
           <p>
             © {new Date().getFullYear()} {PROFILE.name}. All rights reserved.
           </p>
