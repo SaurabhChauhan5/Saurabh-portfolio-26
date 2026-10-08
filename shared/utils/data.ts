@@ -70,7 +70,7 @@ export const STATS = [
   { value: 25, suffix: '', label: 'Active Australian Business Websites' },
   {
     value: 45,
-    suffix: '',
+    suffix: '+',
     label: 'Business Websites Managed in Total',
     note: '25 active + 20 previous'
   },

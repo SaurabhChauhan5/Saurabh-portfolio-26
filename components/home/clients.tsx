@@ -29,17 +29,21 @@ const sitesFor = (industry: string): ClientWebsite[] =>
 function ThumbStack({
   sites,
   max,
-  small = false
+  small = false,
+  className = ''
 }: {
   sites: ClientWebsite[];
   max: number;
   small?: boolean;
+  className?: string;
 }): JSX.Element | null {
   if (!sites.length) return null;
   const shown = sites.slice(0, max);
   const rest = sites.length - shown.length;
   return (
-    <span className={`thumb-stack ${small ? 'thumb-stack-sm' : 'mt-4'}`} aria-hidden="true">
+    <span
+      className={`thumb-stack ${small ? 'thumb-stack-sm' : 'mt-4'} ${className}`}
+      aria-hidden="true">
       {shown.map((site) => (
         <span key={site.domain} className="thumb">
           <Image src={site.img} alt="" fill sizes="96px" className="object-cover object-top" />
@@ -83,41 +87,49 @@ export default function Clients(): JSX.Element {
         <div className="grid lg:grid-cols-12 gap-6 items-stretch">
           <Reveal
             variant="scale"
-            className="lg:col-span-4 card card-glow spotlight p-5 sm:p-6 flex flex-col justify-center text-center">
-            <p className="text-5xl sm:text-6xl font-extrabold gradient-text leading-none">
-              <CountUp end={ACTIVE_WEBSITES} />
-            </p>
-            <p className="mt-2 text-white font-semibold text-lg">Active business websites</p>
-            <p className="mt-1 text-sm text-violet">
-              {ACTIVE_CLIENT_BUSINESSES} client businesses plus the{' '}
-              <a
-                href={AGENCY.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-pink hover:underline">
-                {AGENCY.name}
-              </a>{' '}
-              agency website
-            </p>
-            <ul className="mt-4 space-y-1.5 text-sm text-left">
+            className="lg:col-span-4 card card-glow spotlight p-4 sm:p-6 grid grid-cols-2 lg:grid-cols-1 gap-x-3 gap-y-4 content-center text-center">
+            <div>
+              <p className="text-4xl sm:text-6xl font-extrabold gradient-text leading-none">
+                <CountUp end={ACTIVE_WEBSITES} />
+              </p>
+              <p className="mt-2 text-white font-semibold text-sm sm:text-lg leading-snug">
+                Active business websites
+              </p>
+              <p className="mt-1 text-xs sm:text-sm text-violet">
+                {ACTIVE_CLIENT_BUSINESSES} client businesses plus the{' '}
+                <a
+                  href={AGENCY.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-pink hover:underline">
+                  {AGENCY.name}
+                </a>{' '}
+                agency website
+              </p>
+            </div>
+            <div className="border-l border-violet/20 pl-3 lg:border-l-0 lg:pl-0 lg:pt-4 lg:border-t lg:order-3">
+              <p className="text-4xl font-extrabold text-white leading-none">
+                <CountUp end={TOTAL_WEBSITES} suffix="+" />
+              </p>
+              <p className="mt-2 text-white font-semibold text-sm sm:text-lg leading-snug lg:hidden">
+                Managed in total
+              </p>
+              <p className="mt-1 lg:mt-2 text-xs sm:text-sm text-violet">
+                <span className="hidden lg:inline">websites managed in total, </span>including{' '}
+                {PREVIOUS_CLIENTS} previous clients
+              </p>
+            </div>
+            <ul className="col-span-2 lg:col-span-1 lg:order-2 grid grid-cols-2 lg:grid-cols-1 gap-1.5 text-xs sm:text-sm text-left">
               {SERVICE_SCOPE.map((sc) => (
                 <li
                   key={sc.label}
-                  className="flex items-center justify-between gap-3 card-inner px-3 py-1.5">
-                  <span className="text-violet">{sc.label}</span>
+                  className="flex items-center justify-between gap-2 card-inner px-2.5 sm:px-3 py-1.5">
+                  <span className="text-violet leading-tight">{sc.label}</span>
                   <span className="text-white font-semibold tabular-nums">{sc.count}</span>
                 </li>
               ))}
             </ul>
-            <div className="mt-4 pt-4 border-t border-violet/20">
-              <p className="text-3xl sm:text-4xl font-extrabold text-white leading-none">
-                <CountUp end={TOTAL_WEBSITES} />
-              </p>
-              <p className="mt-2 text-sm text-violet">
-                websites managed in total, including {PREVIOUS_CLIENTS} previous clients
-              </p>
-            </div>
-            <ul className="mt-4 flex flex-wrap justify-center gap-2">
+            <ul className="col-span-2 lg:col-span-1 lg:order-4 flex flex-wrap justify-center gap-2">
               {CLIENT_LOCATIONS.map((loc) => (
                 <li key={loc} className="chip inline-flex items-center gap-1.5">
                   <MapPin size={12} aria-hidden="true" />
@@ -126,31 +138,33 @@ export default function Clients(): JSX.Element {
               ))}
             </ul>
           </Reveal>
-          <div className="lg:col-span-8 grid sm:grid-cols-2 gap-4 content-start">
+          <div className="lg:col-span-8 grid grid-cols-2 gap-3 sm:gap-4 content-start">
             {featured.map((ind, i) => (
               <Reveal key={ind.name} delay={i * 90} className="h-full min-w-0">
                 <Link
                   href={`/clients#${slugify(ind.name)}`}
                   className="industry-feature card spotlight hover-lift group h-full flex flex-col p-4 sm:p-5">
                   <div className="flex items-start justify-between gap-3">
-                    <span className="icon-tile">
-                      <Icon name={ind.icon} size={20} />
+                    <span className="icon-tile icon-tile-sm">
+                      <Icon name={ind.icon} size={18} />
                     </span>
                     <span className="text-right">
                       <span className="block text-3xl sm:text-4xl font-extrabold gradient-text leading-none tabular-nums">
                         {ind.count}
                       </span>
-                      <span className="block mt-1 text-xs text-violet uppercase tracking-wider">
+                      <span className="block mt-1 text-xs text-violet uppercase tracking-wide sm:tracking-wider">
                         active clients
                       </span>
                     </span>
                   </div>
-                  <h3 className="mt-3 text-lg font-bold text-white group-hover:text-pink transition-colors">
+                  <h3 className="mt-3 text-base sm:text-lg font-bold text-white group-hover:text-pink transition-colors">
                     {ind.name}
                   </h3>
-                  <ThumbStack sites={sitesFor(ind.name)} max={4} />
-                  <span className="mt-auto pt-4 inline-flex items-center gap-1.5 text-sm text-pink font-medium">
-                    See these websites
+                  <ThumbStack sites={sitesFor(ind.name)} max={2} small className="sm:hidden mt-3" />
+                  <ThumbStack sites={sitesFor(ind.name)} max={4} className="hidden sm:flex" />
+                  <span className="mt-auto pt-3 sm:pt-4 inline-flex items-center gap-1.5 text-sm text-pink font-medium">
+                    <span className="sm:hidden">View</span>
+                    <span className="hidden sm:inline">See these websites</span>
                     <ArrowRight
                       size={15}
                       aria-hidden="true"
@@ -161,11 +175,11 @@ export default function Clients(): JSX.Element {
               </Reveal>
             ))}
 
-            <Reveal delay={180} className="sm:col-span-2 card spotlight p-4 sm:p-5">
+            <Reveal delay={180} className="col-span-2 card spotlight p-4 sm:p-5">
               <h3 className="text-xs font-semibold tracking-widest text-pink uppercase">
                 More industries
               </h3>
-              <ul className="mt-2 grid sm:grid-cols-2 gap-x-8">
+              <ul className="mt-2 grid grid-cols-2 gap-x-4 sm:gap-x-8">
                 {others.map((ind) => {
                   const sites = sitesFor(ind.name);
                   const row = (
@@ -173,11 +187,13 @@ export default function Clients(): JSX.Element {
                       <span className="icon-tile icon-tile-sm">
                         <Icon name={ind.icon} size={16} />
                       </span>
-                      <span className="flex-1 text-sm sm:text-base text-white font-medium leading-snug">
+                      <span className="flex-1 min-w-0 text-xs sm:text-base text-white font-medium leading-snug">
                         {ind.name}
                       </span>
-                      {sites.length > 0 && <ThumbStack sites={sites} max={2} small />}
-                      <span className="w-6 text-right text-lg font-extrabold gradient-text tabular-nums">
+                      {sites.length > 0 && (
+                        <ThumbStack sites={sites} max={2} small className="hidden sm:flex" />
+                      )}
+                      <span className="w-5 sm:w-6 text-right text-base sm:text-lg font-extrabold gradient-text tabular-nums">
                         {ind.count}
                       </span>
                     </>
@@ -187,11 +203,13 @@ export default function Clients(): JSX.Element {
                       {sites.length > 0 ? (
                         <Link
                           href={`/clients#${slugify(ind.name)}`}
-                          className="industry-row group flex items-center gap-3 py-2">
+                          className="industry-row group flex items-center gap-2 sm:gap-3 py-2">
                           {row}
                         </Link>
                       ) : (
-                        <span className="industry-row flex items-center gap-3 py-2">{row}</span>
+                        <span className="industry-row flex items-center gap-2 sm:gap-3 py-2">
+                          {row}
+                        </span>
                       )}
                     </li>
                   );

@@ -342,7 +342,7 @@ export default function ClientsPage(): JSX.Element {
   const current = [...industryOptions, ...platformOptions].find((o) => o.id === filter);
   const heroStats = [
     { value: ACTIVE_WEBSITES, label: 'Active websites' },
-    { value: TOTAL_WEBSITES, label: 'Managed in total' },
+    { value: `${TOTAL_WEBSITES}+`, label: 'Managed in total' },
     { value: CLIENT_GROUPS.length, label: 'Industries shown' },
     { value: '2 states', label: 'Sydney (NSW) & Brisbane (QLD)' }
   ];
