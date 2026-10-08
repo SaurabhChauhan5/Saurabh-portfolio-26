@@ -537,10 +537,10 @@ export const EXPERIENCE: Role[] = [
 export const PROJECT_CATEGORIES = [
   { value: 'all', label: 'All' },
   { value: 'Frontend', label: 'Frontend' },
-  { value: 'Full Stack', label: 'Full Stack' },
   { value: 'Data Analysis', label: 'Data Analysis' },
-  { value: 'Machine Learning', label: 'Machine Learning' },
-  { value: 'IoT', label: 'IoT' }
+  { value: 'IoT', label: 'IoT' },
+  { value: 'Full Stack', label: 'Full Stack' },
+  { value: 'Machine Learning', label: 'Machine Learning' }
 ];
 
 export const PROJECTS: Project[] = [
